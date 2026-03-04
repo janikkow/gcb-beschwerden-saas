@@ -12,6 +12,17 @@ type LeadPayload = {
   website?: string; // honeypot
 };
 
+type LeadEntry = {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  vertical: string;
+  message: string;
+  createdAt: string;
+  ip: string;
+};
+
 const ipHits = new Map<string, number[]>();
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_HITS = 6;
@@ -32,6 +43,29 @@ function isRateLimited(ip: string, now: number) {
   recent.push(now);
   ipHits.set(ip, recent);
   return recent.length > MAX_HITS;
+}
+
+async function persistLeadLocal(entry: LeadEntry) {
+  const configuredDir = process.env.LEAD_LOCAL_STORE_DIR?.trim();
+  const dataDirs = [
+    configuredDir,
+    path.join(process.cwd(), "data"),
+    path.join("/tmp", "beschwerden_saas"),
+  ].filter((value): value is string => Boolean(value));
+
+  for (const dataDir of dataDirs) {
+    const filePath = path.join(dataDir, "leads.json");
+    try {
+      await fs.mkdir(dataDir, { recursive: true });
+      const existing = await fs.readFile(filePath, "utf-8").catch(() => "[]");
+      const rows = JSON.parse(existing) as LeadEntry[];
+      rows.push(entry);
+      await fs.writeFile(filePath, JSON.stringify(rows, null, 2), "utf-8");
+      return;
+    } catch (error) {
+      console.error(`Lead local store error (${dataDir})`, error);
+    }
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -66,8 +100,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const entry = {
-    ...payload,
+  const entry: LeadEntry = {
     name: payload.name.trim(),
     company: payload.company.trim(),
     email: payload.email.trim().toLowerCase(),
@@ -78,18 +111,7 @@ export async function POST(request: NextRequest) {
     ip,
   };
 
-  const dataDir = path.join(process.cwd(), "data");
-  const filePath = path.join(dataDir, "leads.json");
-  await fs.mkdir(dataDir, { recursive: true });
-
-  try {
-    const existing = await fs.readFile(filePath, "utf-8").catch(() => "[]");
-    const rows = JSON.parse(existing) as typeof entry[];
-    rows.push(entry);
-    await fs.writeFile(filePath, JSON.stringify(rows, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Lead local store error", err);
-  }
+  await persistLeadLocal(entry);
 
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (webhook) {

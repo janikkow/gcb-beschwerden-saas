@@ -186,6 +186,16 @@ body {
   100% { transform: scale(2);   opacity: 0; }
 }
 
+/* Touch feedback for mobile */
+@media (hover: none) {
+  .glass-card:active {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .glass:active {
+    background: rgba(255, 255, 255, 0.10);
+  }
+}
+
 .blog-prose h1,
 .blog-prose h2,
 .blog-prose h3 {
