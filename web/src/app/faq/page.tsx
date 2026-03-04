@@ -8,7 +8,7 @@ import { absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = buildMetadata({
   title: "FAQ",
   description:
-    "Einfache Antworten zu Beschwerdemanagement fuer Automatenlaeden: Meldung, KI-Unterstuetzung, Datenschutz und Start.",
+    "Einfache Antworten zu Beschwerdemanagement für Automatenläden: Meldung, KI-Unterstützung, Datenschutz und Start.",
   path: "/faq",
 });
 
@@ -44,11 +44,11 @@ export default function FaqPage() {
               FAQ
             </p>
             <h1 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Haeufige Fragen
+              Häufige Fragen
             </h1>
             <p className="mt-3 text-pretty text-base text-zinc-400">
-              Kurz und verstaendlich erklaert fuer Betreiber und Support-Teams
-              von Automatenlaeden.
+              Kurz und verständlich erklärt für Betreiber und Support-Teams
+              von Automatenläden.
             </p>
           </div>
 

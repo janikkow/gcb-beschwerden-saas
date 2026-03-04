@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "GCB Incident Management",
-  legalName: "GCB Bavaria",
+  name: "NODEZERO",
+  legalName: "Dutz Jonas, Kowalsky Janik, Then Philipp GbR",
   description:
-    "Beschwerdemanagement fuer Automatenlaeden: Meldung per Telefon oder Webformular, KI-Vorsortierung und sofortige Ticket- oder E-Mail-Ausgabe.",
+    "Kunden melden Probleme am Automaten per Anruf. Du bekommst sofort eine klare Aufgabe mit Priorität – ohne Papierchaos und ohne IT-Kenntnisse.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
     "https://gcb-incident.example",

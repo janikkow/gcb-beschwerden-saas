@@ -1,29 +1,44 @@
 ---
-title: "Impact-Matrix einfuehren ohne Overhead"
-description: "Pragmatische Schritte, um Priorisierung pro Tenant sauber aufzusetzen."
+title: "Nicht jede Stoerung ist gleich dringend - so priorisieren Sie richtig"
+description: "Wie Sie mit drei einfachen Stufen sicherstellen, dass Ihr Team zuerst das Wichtigste bearbeitet."
 date: "2026-02-27"
-tags: ["impact-matrix", "priorisierung", "tenant"]
+tags: ["priorisierung", "operations", "stoerungen"]
 ---
 
-## Warum eine Impact-Matrix
+# Nicht jede Störung ist gleich dringend -- so priorisieren Sie richtig
 
-Nicht jeder Incident ist gleich kritisch.  
-Die Impact-Matrix uebersetzt Geschaeftsrisiko in handhabbare Prioritaeten.
+Montagmorgen, Sie öffnen Ihre Meldungen: Ein defekter Kassenautomat, eine verschmutzte Bodenfläche, ein klemmendes Drehkreuz und eine kaputte Beleuchtung. Alles muss irgendwann erledigt werden. Aber womit fangen Sie an?
 
-## Minimalstart
+Wenn alles gleich wichtig aussieht, entscheiden die meisten Teams nach Bauchgefühl. Oder sie arbeiten einfach der Reihe nach ab. Das führt dazu, dass die dringende Meldung von gestern Abend hinter der Putzbeschwerde von heute Morgen verschwindet.
 
-Definiere drei Stufen:
+## Drei Stufen, mehr brauchen Sie nicht
 
-- **Hoch**: Sofortige Eskalation
-- **Mittel**: Bearbeitung im Tagesfenster
-- **Niedrig**: Sammelbearbeitung
+Eine einfache Einteilung reicht:
 
-## Pro Tenant statt global
+- **Sofort** -- Automat komplett ausgefallen, Zugang blockiert, Sicherheitsrisiko. Hier muss innerhalb von Minuten jemand reagieren.
+- **Heute** -- Einzelne Funktion gestört, Kunde kann aber noch bezahlen oder das Gebäude nutzen. Wird im Laufe des Tages bearbeitet.
+- **Gesammelt** -- Verschmutzung, kosmetische Mängel, Verbesserungsvorschläge. Werden gebündelt, zum Beispiel als Wochenübersicht.
 
-Was im Parkhaus kritisch ist, kann im Automatenbetrieb mittel sein.  
-Darum gehoert die Matrix immer in die tenant-spezifische Konfiguration.
+Das ist kein kompliziertes System. Es ist eine einfache Regel, die dafür sorgt, dass die richtige Meldung zuerst bearbeitet wird.
 
-## Nach 30 Tagen nachjustieren
+## Warum dieselbe Störung nicht überall gleich dringend ist
 
-Nutze Ticket-Historie und Fehlalarme, um Regeln zu schaerfen.  
-Ziel ist weniger Alarmrauschen bei gleichbleibender Sicherheit.
+Ein ausgefallener Automat in einem Parkhaus mit zwei Kassenautomaten ist kritisch -- die Hälfte der Infrastruktur steht still. Derselbe Ausfall in einem Parkhaus mit zehn Automaten ist ärgerlich, aber der Betrieb läuft weiter.
+
+Deshalb sollte die Einteilung zu Ihrem Standort passen. Was bei Ihnen "Sofort" bedeutet, kann bei einem anderen Betreiber "Heute" sein. Es gibt keine allgemeingültige Regel, die für alle funktioniert.
+
+## Wie das System für Sie priorisiert
+
+Wenn eine Störungsmeldung per Anruf eingeht, ordnet das System sie automatisch ein. Dabei berücksichtigt es:
+
+- **Die Art der Störung** -- Totalausfall oder Teilproblem?
+- **Den Standort** -- Wie viele Alternativen gibt es vor Ort?
+- **Die Tageszeit** -- Eine Störung zur Stoßzeit ist dringender als um 2 Uhr nachts.
+
+Sie definieren einmal, was die Stufen für Ihren Betrieb bedeuten. Ab dann wird jede neue Meldung automatisch richtig einsortiert.
+
+## Nach ein paar Wochen nachjustieren
+
+In den ersten Wochen werden Sie merken: Manche Meldungen werden zu hoch eingestuft, andere zu niedrig. Das ist normal. Schauen Sie sich nach 30 Tagen an, welche Einstufungen nicht gepasst haben, und passen Sie die Regeln an.
+
+Das Ziel ist einfach: Weniger Fehlalarme, aber trotzdem keine dringende Meldung übersehen.

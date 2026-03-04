@@ -81,7 +81,7 @@ export default function VoiceDemoCard() {
           <div className="glass-card w-full max-w-sm rounded-2xl p-6">
             <h4 className="text-lg font-semibold text-white">Demo per QR starten</h4>
             <p className="mt-1 text-sm text-zinc-400">
-              Kamera oeffnen und Code scannen, um direkt anzurufen.
+              Kamera öffnen und Code scannen, um direkt anzurufen.
             </p>
             <Image
               src={qrUrl}
@@ -96,7 +96,7 @@ export default function VoiceDemoCard() {
               onClick={() => setQrOpen(false)}
               className="mt-5 w-full rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/15"
             >
-              Schliessen
+              Schließen
             </button>
           </div>
         </div>

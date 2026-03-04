@@ -93,10 +93,17 @@ export async function POST(request: NextRequest) {
 
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (webhook) {
+    const webhookHeaders: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+    const apiKey = process.env.LEAD_WEBHOOK_API_KEY;
+    if (apiKey) {
+      webhookHeaders["api"] = apiKey;
+    }
     try {
       await fetch(webhook, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: webhookHeaders,
         body: JSON.stringify(entry),
       });
     } catch (err) {

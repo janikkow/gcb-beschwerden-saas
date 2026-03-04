@@ -1,30 +1,51 @@
 ---
-title: "Voice Intake fuer Stoerungsmeldungen"
-description: "Wie Twilio und Voice-AI den Eingang von Vorfaellen standardisieren."
+title: "Stoerungsmeldung per Anruf: Was passiert nach dem Klingeln?"
+description: "Was genau passiert, wenn ein Kunde eine Stoerung meldet - vom Anruf bis zum fertigen Ticket. Schritt fuer Schritt erklaert."
 date: "2026-03-02"
-tags: ["voice-intake", "twilio", "ultravox"]
+tags: ["voice-intake", "stoerungsmeldung", "ablauf"]
 ---
 
-## Eingang standardisieren
+# Störungsmeldung per Anruf: Was passiert nach dem Klingeln?
 
-Ein Voice-Flow sollte immer dieselben Kernfelder aufnehmen:
+Ein Kunde steht vor Ihrem Automaten und etwas funktioniert nicht. Er ruft die Nummer an, die am Gerät steht. Aber was passiert dann eigentlich? Hier erklären wir den Ablauf -- Schritt für Schritt, ohne technische Fachbegriffe.
 
-- Wer meldet?
-- Was ist passiert?
-- Wo ist der Vorfall?
-- Wie kann rueckgemeldet werden?
+## Schritt 1: Der Anruf wird angenommen
 
-## Technischer Aufbau
+Der Kunde ruft an und wird sofort verbunden. Keine Warteschleife, kein "Drücken Sie die 1 für...". Ein Voice-Agent meldet sich freundlich und fragt, was passiert ist.
 
-Ein typischer Ablauf:
+Das funktioniert rund um die Uhr, auch nachts und am Wochenende.
 
-- Twilio nimmt den Call entgegen
-- Voice-Agent fuehrt den Dialog
-- Summary-Node erzeugt strukturierte Daten
-- Klassifikation bestimmt Kategorie und Auswirkung
-- Ticket/Email wird generiert
+## Schritt 2: Der Agent fragt gezielt nach
 
-## Vorteil gegenueber freier Hotline
+Damit die Meldung brauchbar ist, stellt der Agent ein paar einfache Fragen:
 
-Freie Hotline-Gespraeche sind menschlich, aber schwer auswertbar.  
-Voice Intake verbindet Empathie im Gespraech mit verwertbarer Datenqualitaet.
+- **Was ist passiert?** -- "Der Automat nimmt keine Scheine an."
+- **Wo genau?** -- "Im Laden an der Hauptstraße 12."
+- **Wer meldet?** -- "Mein Name ist Müller."
+- **Wie erreichen wir Sie?** -- "Unter dieser Nummer."
+
+Der Kunde antwortet in normaler Sprache. Kein Formular, kein Buchstabieren von Ticket-Nummern.
+
+## Schritt 3: Die Meldung wird eingeordnet
+
+Aus den Antworten entsteht automatisch eine strukturierte Meldung. Das System erkennt, ob es sich um eine Kleinigkeit handelt oder um etwas Dringendes:
+
+- **Dringend** -- Automat komplett ausgefallen, Zugang blockiert, Sicherheitsproblem. Sofortige Benachrichtigung an den zuständigen Techniker.
+- **Normal** -- Einzelne Funktion gestört, aber Betrieb läuft weiter. Ticket wird erstellt und in die normale Bearbeitung aufgenommen.
+- **Niedrig** -- Verschmutzung, kosmetischer Mangel, Wunsch statt Störung. Wird gesammelt und gebündelt bearbeitet.
+
+## Schritt 4: Sie werden informiert
+
+Je nach Dringlichkeit bekommen Sie die Meldung auf verschiedenen Wegen:
+
+- Sofort als SMS oder Push-Nachricht bei dringenden Fällen
+- Als E-Mail-Zusammenfassung am Morgen für alles andere
+- Jederzeit abrufbar in Ihrer Ticketübersicht
+
+## Warum das besser ist als eine normale Hotline
+
+Bei einer klassischen Hotline müssen Ihre Mitarbeiter ans Telefon gehen, zuhören, mitschreiben, entscheiden und weiterleiten. Das kostet Zeit und ist fehleranfällig.
+
+Mit einem Voice-Agenten passiert das alles automatisch. Die Meldung kommt strukturiert, priorisiert und dokumentiert bei Ihnen an -- egal ob um 10 Uhr morgens oder um 3 Uhr nachts.
+
+Und Ihr Kunde? Der hat einfach kurz telefoniert und fühlt sich gehört. Genau so, wie es sein soll.

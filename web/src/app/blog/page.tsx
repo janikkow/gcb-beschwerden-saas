@@ -36,11 +36,11 @@ export default async function BlogPage() {
             Blog
           </p>
           <h1 className="text-balance font-display text-4xl font-semibold leading-tight text-white sm:text-5xl">
-            Insights fuer Incident-Management im Alltag
+            Insights für Incident-Management im Alltag
           </h1>
           <p className="mt-4 max-w-2xl text-pretty text-base text-zinc-300 sm:text-lg">
             Praxisnahe Artikel zu Voice Intake, Priorisierung und stabilen
-            Support-Prozessen fuer Betreiber autonomer Standorte.
+            Support-Prozessen für Betreiber autonomer Standorte.
           </p>
         </header>
 

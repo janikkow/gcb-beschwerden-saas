@@ -4,14 +4,14 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Datenschutz",
-  description: "MVP-Datenschutzhinweise fuer Website, Lead-Formular und Voice-Verarbeitung.",
+  description: "MVP-Datenschutzhinweise für Website, Lead-Formular und Voice-Verarbeitung.",
   path: "/legal/datenschutz",
 });
 
 export default function DatenschutzPage() {
   return (
     <Section
-      title="Datenschutzerklaerung"
+      title="Datenschutzerklärung"
       description="MVP-Text als Platzhalter. Vor Go-Live rechtlich finalisieren."
     >
       <article className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 text-sm leading-relaxed text-slate-700">
@@ -39,11 +39,11 @@ export default function DatenschutzPage() {
           <h2 className="text-base font-semibold text-ink-900">4. Voice-Processing</h2>
           <p>
             Eingehende Meldungen werden zur Incident-Bearbeitung transkribiert und
-            klassifiziert. Trainingsnutzung ist vertraglich auszuschliessen.
+            klassifiziert. Trainingsnutzung ist vertraglich auszuschließen.
           </p>
         </section>
         <p className="text-xs text-slate-500">
-          Hinweis: Dieser Text ist kein Rechtsrat. Juristische Finalpruefung ist Pflicht.
+          Hinweis: Dieser Text ist kein Rechtsrat. Juristische Finalprüfung ist Pflicht.
         </p>
       </article>
     </Section>

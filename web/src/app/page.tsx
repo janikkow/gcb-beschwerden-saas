@@ -9,12 +9,12 @@ import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Beschwerden fuer Automatenlaeden einfach bearbeiten",
+  title: "Beschwerden für Automatenläden einfach bearbeiten",
   description:
-    "Kundinnen und Kunden melden Probleme per Telefon oder Webformular. Die KI sortiert Beschwerden vor und dein Team erhaelt sofort eine klare Aufgabe.",
+    "Kundinnen und Kunden melden Probleme per Telefon oder Webformular. Die KI sortiert Beschwerden vor und dein Team erhält sofort eine klare Aufgabe.",
   path: "/",
   keywords: [
-    "beschwerdemanagement automatenlaeden",
+    "beschwerdemanagement automatenläden",
     "webformular beschwerde",
     "beschwerdemanagement",
     "automatenladen",
@@ -41,19 +41,19 @@ const steps = [
   {
     number: "04",
     title: "Team bekommt klare Aufgabe",
-    body: "Automatisch entsteht eine verstaendliche E-Mail oder ein Ticket mit Referenz.",
+    body: "Automatisch entsteht eine verständliche E-Mail oder ein Ticket mit Referenz.",
   },
   {
     number: "05",
-    title: "Mensch prueft nur Sonderfaelle",
-    body: "Unklare oder sensible Meldungen werden fuer Review markiert.",
+    title: "Mensch prüft nur Sonderfälle",
+    body: "Unklare oder sensible Meldungen werden für Review markiert.",
   },
 ];
 
 const useCases = [
   {
     title: "Typische Beschwerden",
-    description: "Geld geschluckt, Produkt bleibt haengen, Kartenzahlung geht nicht.",
+    description: "Geld geschluckt, Produkt bleibt hängen, Kartenzahlung geht nicht.",
     href: "/use-cases/automaten",
   },
   {
@@ -61,8 +61,8 @@ const useCases = [
     description: "Kundinnen und Kunden nutzen einfach Telefon oder Webformular.",
   },
   {
-    title: "KI uebernimmt Vorarbeit",
-    description: "Kategorie und Prioritaet werden automatisch vorbereitet.",
+    title: "KI übernimmt Vorarbeit",
+    description: "Kategorie und Priorität werden automatisch vorbereitet.",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function HomePage() {
           name: "GCB Incident Management",
           url: absoluteUrl("/"),
           description:
-            "Beschwerden fuer Automatenlaeden per Telefon oder Webformular erfassen und durch KI vorsortieren.",
+            "Beschwerden für Automatenläden per Telefon oder Webformular erfassen und durch KI vorsortieren.",
         }}
       />
 
@@ -84,7 +84,7 @@ export default function HomePage() {
       <section className="pb-16 pt-16 sm:pt-24">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <Badge variant="default">Beschwerdemanagement fuer Automatenlaeden</Badge>
+            <Badge variant="default">Beschwerdemanagement für Automatenläden</Badge>
             <h1 className="mt-5 text-balance font-display text-4xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-6xl">
               Weniger Support-Chaos bei Beschwerden aus dem Automatenladen.
             </h1>
@@ -95,9 +95,6 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/demo">Demo anfragen</Button>
-              <Button href="/produkt" variant="secondary">
-                Produkt ansehen
-              </Button>
             </div>
           </div>
 
@@ -107,7 +104,7 @@ export default function HomePage() {
               "Telefon und Webformular als Eingang",
               "KI sortiert Beschwerden automatisch",
               "Klare Meldung statt unstrukturiertem Text",
-              "Menschlicher Review nur wenn noetig",
+              "Menschlicher Review nur wenn nötig",
             ].map((feat) => (
               <span
                 key={feat}
@@ -128,7 +125,7 @@ export default function HomePage() {
               So funktioniert es
             </p>
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Ein klarer Ablauf fuer den Alltag im Automatenladen
+              Ein klarer Ablauf für den Alltag im Automatenladen
             </h2>
             <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
               Meldung rein, KI sortiert, Team arbeitet gezielt ab.
@@ -167,8 +164,8 @@ export default function HomePage() {
               Demo-Anruf und Ticket-Vorschau
             </h2>
             <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Starte ein Gespraech im Browser oder ruf direkt an. Danach siehst du,
-              welche Meldung dein Team konkret erhaelt.
+              Starte ein Gespräch im Browser oder ruf direkt an. Danach siehst du,
+              welche Meldung dein Team konkret erhält.
             </p>
           </div>
 
@@ -187,10 +184,10 @@ export default function HomePage() {
               Fokus
             </p>
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Zunaechst nur fuer Automatenlaeden
+              Zunächst nur für Automatenläden
             </h2>
             <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Die ersten Prozesse sind auf typische Beschwerden in Automatenlaeden ausgerichtet.
+              Die ersten Prozesse sind auf typische Beschwerden in Automatenläden ausgerichtet.
             </p>
           </div>
 

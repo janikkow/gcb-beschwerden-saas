@@ -10,6 +10,12 @@ export type BlogPost = {
   body: string;
 };
 
+export type BlogHeading = {
+  id: string;
+  text: string;
+  level: 2 | 3;
+};
+
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
 function parseFrontmatter(raw: string): Omit<BlogPost, "slug" | "body"> & {
@@ -105,9 +111,69 @@ function formatInline(text: string) {
     );
 }
 
+function plainHeadingText(text: string) {
+  return text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/\*(.+?)\*/g, "$1")
+    .replace(/`(.+?)`/g, "$1")
+    .trim();
+}
+
+function slugifyHeading(text: string) {
+  const base = plainHeadingText(text)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return base || "section";
+}
+
+function uniqueSlug(base: string, used: Map<string, number>) {
+  const current = used.get(base) ?? 0;
+  const next = current + 1;
+  used.set(base, next);
+  return current === 0 ? base : `${base}-${next}`;
+}
+
+function readHeading(trimmed: string): { level: 2 | 3; text: string } | null {
+  if (trimmed.startsWith("### ")) {
+    return { level: 3, text: trimmed.slice(4).trim() };
+  }
+  if (trimmed.startsWith("## ")) {
+    return { level: 2, text: trimmed.slice(3).trim() };
+  }
+  return null;
+}
+
+export function extractHeadings(body: string): BlogHeading[] {
+  const usedIds = new Map<string, number>();
+  const headings: BlogHeading[] = [];
+
+  for (const line of body.split("\n")) {
+    const trimmed = line.trim();
+    const heading = readHeading(trimmed);
+    if (!heading) continue;
+
+    const slug = slugifyHeading(heading.text);
+    const id = uniqueSlug(slug, usedIds);
+
+    headings.push({
+      id,
+      text: plainHeadingText(heading.text),
+      level: heading.level,
+    });
+  }
+
+  return headings;
+}
+
 export function mdxLikeToHtml(body: string): string {
   const lines = body.split("\n");
   const html: string[] = [];
+  const usedIds = new Map<string, number>();
   let inList = false;
 
   for (const line of lines) {
@@ -120,21 +186,16 @@ export function mdxLikeToHtml(body: string): string {
       continue;
     }
 
-    if (trimmed.startsWith("### ")) {
+    const heading = readHeading(trimmed);
+    if (heading) {
       if (inList) {
         html.push("</ul>");
         inList = false;
       }
-      html.push(`<h3>${formatInline(trimmed.slice(4))}</h3>`);
-      continue;
-    }
-
-    if (trimmed.startsWith("## ")) {
-      if (inList) {
-        html.push("</ul>");
-        inList = false;
-      }
-      html.push(`<h2>${formatInline(trimmed.slice(3))}</h2>`);
+      const slug = slugifyHeading(heading.text);
+      const id = uniqueSlug(slug, usedIds);
+      const tag = heading.level === 2 ? "h2" : "h3";
+      html.push(`<${tag} id="${id}">${formatInline(heading.text)}</${tag}>`);
       continue;
     }
 

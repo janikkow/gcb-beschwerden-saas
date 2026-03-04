@@ -1,24 +1,42 @@
 ---
-title: "LLM-Isolation - Warum Datensicherheit im B2B SaaS entscheidend ist"
-description: "Erfahren Sie, wie wir mit einer strikten Schema-per-Tenant Architektur verhindern, dass KI-Modelle Kundendaten vermischen."
+title: "Ihre Daten gehoeren Ihnen - wie wir Kundendaten voneinander trennen"
+description: "Warum kein anderer Kunde jemals Ihre Meldungen sehen kann. Einfach erklaert, ohne Fachjargon."
 date: "2026-03-06"
-tags: ["llm-isolation", "datensicherheit", "multi-tenant"]
+tags: ["datensicherheit", "vertrauen", "saas"]
 ---
 
-# LLM-Isolation: Warum Datensicherheit im B2B SaaS entscheidend ist
+# Ihre Daten gehören Ihnen -- wie wir Kundendaten voneinander trennen
 
-Mit dem Aufstieg von generativer KI in SaaS-Produkten wächst bei B2B-Kunden die Sorge: "Was passiert, wenn die KI halluziniert und meinem Konkurrenten meine Daten zeigt?" 
+Eine berechtigte Frage, die Betreiber stellen: "Wenn mehrere Unternehmen dasselbe System nutzen -- kann dann ein anderer Kunde meine Daten sehen?"
 
-Dieses Phänomen, bekannt als *Cross-Tenant Data Leakage*, ist ein reales Risiko, wenn Architektur-Entscheidungen nicht Security-First getroffen werden.
+Die kurze Antwort: Nein. Und zwar nicht, weil wir darauf aufpassen, sondern weil es technisch nicht möglich ist.
 
-## Die klassische, unsichere Methode
-Viele Startups werfen alle Kundendaten in eine große Datenbank-Tabelle. Wenn die KI eine Analyse machen soll, holt ein Skript "die letzten 10 Incidents". Ein winziger Fehler in der Tenant-ID-Abfrage führt dazu, dass Kunde A die Tickets von Kunde B sieht.
+## Warum die Frage wichtig ist
 
-## Unser Ansatz: Die LLM-Firewall
-Wir bei GCB Beschwerdemanagement nutzen eine **Schema-per-Tenant** Architektur. Das bedeutet:
+Wenn Sie ein System für Ihre Störungsmeldungen nutzen, enthält es sensible Informationen. Standortdaten, Kundennamen, interne Abläufe, vielleicht sogar Umsatzzahlen, die sich aus der Störungshäufigkeit ableiten lassen.
 
-1. Jeder Kunde hat einen physisch isolierten Bereich in der PostgreSQL-Datenbank.
-2. Der n8n-Workflow verbindet sich dynamisch nur mit den Rechten (Credentials) des aktuellen Kunden.
-3. Wenn das System die KI (OpenAI) anfragt, ist es auf Datenbank-Ebene *unmöglich*, Daten eines anderen Kunden abzurufen.
+Sie wollen sicher sein, dass diese Daten nur Ihnen gehören. Nicht Ihrem Wettbewerber, der zufällig dasselbe System nutzt. Nicht einem anderen Kunden, der sich verklickt. Niemandem.
 
-Die KI bekommt nur das zu sehen, was die Datenbank für diesen spezifischen Kunden freigibt. Keine Vermischung. Keine Halluzinationen über fremde Daten. Enterprise-Sicherheit ab dem ersten Ticket.
+## Wie wir das sicherstellen
+
+Stellen Sie sich ein Bürogebäude vor. Es gibt zwei Möglichkeiten, Mieter unterzubringen:
+
+**Variante A:** Alle Mieter teilen sich einen großen Raum. Jeder hat seinen Schreibtisch, aber die Akten stehen im selben Regal. Man vertraut darauf, dass niemand in die falsche Schublade greift.
+
+**Variante B:** Jeder Mieter hat seine eigene abgeschlossene Etage. Eigener Eingang, eigene Schlüssel. Es gibt physisch keinen Weg, an die Akten des Nachbarn zu kommen.
+
+Wir nutzen Variante B.
+
+Jeder Kunde bekommt seinen eigenen, abgetrennten Datenbereich. Das System verbindet sich immer nur mit dem Bereich des jeweiligen Kunden. Es gibt keinen gemeinsamen Raum, in dem Daten versehentlich vermischt werden könnten.
+
+## Was das in der Praxis heißt
+
+- Wenn Sie Ihre Meldungen aufrufen, sehen Sie nur Ihre Meldungen.
+- Wenn das System eine Auswertung erstellt, nutzt es nur Ihre Daten.
+- Wenn ein Fehler im System auftritt, betrifft er nur Ihren Bereich -- nicht den eines anderen Kunden.
+
+Es gibt keine Situation, in der Daten "versehentlich" den Besitzer wechseln. Nicht durch einen Softwarefehler, nicht durch eine fehlerhafte Abfrage, nicht durch menschliches Versehen.
+
+## Warum uns das wichtig ist
+
+Vertrauen ist die Grundlage jeder Geschäftsbeziehung. Wenn Sie uns Ihre Störungsmeldungen anvertrauen, nehmen wir das ernst. Die strikte Trennung der Daten ist keine optionale Zusatzfunktion. Sie ist die Basis, auf der alles andere aufbaut.

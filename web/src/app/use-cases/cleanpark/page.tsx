@@ -11,12 +11,12 @@ const faqs = [
   {
     question: "Kann der Agent Box- oder Saugernummern erfassen?",
     answer:
-      "Ja. Standortbezug ist zentral, damit Techniker ohne Rueckruf direkt reagieren koennen.",
+      "Ja. Standortbezug ist zentral, damit Techniker ohne Rückruf direkt reagieren können.",
   },
   {
     question: "Wie trennt das System niedrig und kritisch?",
     answer:
-      "Kritische Faelle wie Gesamtausfall bekommen sofortige Eskalation, geringere Stoerungen gehen in geplante Bearbeitung.",
+      "Kritische Fälle wie Gesamtausfall bekommen sofortige Eskalation, geringere Störungen gehen in geplante Bearbeitung.",
   },
   {
     question: "Ist Vandalismus separat kennzeichnbar?",
@@ -24,21 +24,21 @@ const faqs = [
       "Ja. Vandalismus kann als eigene Kategorie und Eskalationsklasse gepflegt werden.",
   },
   {
-    question: "Wie schnell ist die Rueckmeldung fuer den Betrieb?",
+    question: "Wie schnell ist die Rückmeldung für den Betrieb?",
     answer:
-      "Ticket und Prioritaet stehen direkt nach dem Intake-Flow bereit.",
+      "Ticket und Priorität stehen direkt nach dem Intake-Flow bereit.",
   },
   {
-    question: "Unterstuetzt das Setup mehrere Standorte?",
+    question: "Unterstützt das Setup mehrere Standorte?",
     answer:
-      "Ja. Mehrere Standorte lassen sich ueber tenant-spezifische Standort- und Asset-Strukturen abbilden.",
+      "Ja. Mehrere Standorte lassen sich über tenant-spezifische Standort- und Asset-Strukturen abbilden.",
   },
 ];
 
 export const metadata: Metadata = buildMetadata({
   title: "Use-Case Cleanpark",
   description:
-    "Incident-Management fuer Cleanparks und Waschstrassen: Stoerungen frueh erkennen, priorisieren und schnell beheben.",
+    "Incident-Management für Cleanparks und Waschstraßen: Störungen früh erkennen, priorisieren und schnell beheben.",
   path: "/use-cases/cleanpark",
 });
 
@@ -85,8 +85,8 @@ export default function CleanparkUseCasePage() {
 
       <Section
         eyebrow="Use-Case"
-        title="Cleanpark: Service-Ausfaelle frueh erkennen und steuern"
-        description="Bei Wasser- und Payment-Stoerungen entscheidet Reaktionszeit direkt ueber Umsatz und Kundenerlebnis."
+        title="Cleanpark: Service-Ausfälle früh erkennen und steuern"
+        description="Bei Wasser- und Payment-Störungen entscheidet Reaktionszeit direkt über Umsatz und Kundenerlebnis."
       >
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
@@ -101,14 +101,14 @@ export default function CleanparkUseCasePage() {
           <Card>
             <h2 className="text-lg font-semibold">Nutzen / ROI</h2>
             <p className="mt-3 text-sm text-slate-600">
-              Techniker fahren zielgerichteter raus, das Team bearbeitet Vorfaelle
-              nach Prioritaet statt nach Lautstaerke.
+              Techniker fahren zielgerichteter raus, das Team bearbeitet Vorfälle
+              nach Priorität statt nach Lautstärke.
             </p>
           </Card>
         </div>
       </Section>
 
-      <Section title="Prozess und Output" description="Standardisiert ueber alle Standorte.">
+      <Section title="Prozess und Output" description="Standardisiert über alle Standorte.">
         <div className="grid gap-4 md:grid-cols-3">
           <Card>1. Voice Intake mit Box-Bezug</Card>
           <Card>2. Incident-Bewertung via Impact-Matrix</Card>
@@ -116,10 +116,10 @@ export default function CleanparkUseCasePage() {
         </div>
       </Section>
 
-      <Section title="FAQ Cleanpark" description="Hauefige Umsetzungsfragen.">
+      <Section title="FAQ Cleanpark" description="Häufige Umsetzungsfragen.">
         <FAQAccordion items={faqs} />
         <div className="mt-8">
-          <Button href="/demo">Demo fuer Cleanparks anfragen</Button>
+          <Button href="/demo">Demo für Cleanparks anfragen</Button>
         </div>
       </Section>
     </>

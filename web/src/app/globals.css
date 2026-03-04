@@ -189,31 +189,57 @@ body {
 .blog-prose h1,
 .blog-prose h2,
 .blog-prose h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
   font-family: var(--font-serif), Georgia, serif;
-  color: var(--ink-900);
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.blog-prose h2 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.blog-prose h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #e4e4e7;
+}
+
+.blog-prose h2[id],
+.blog-prose h3[id] {
+  scroll-margin-top: 6rem;
 }
 
 .blog-prose p {
-  margin-bottom: 0.8rem;
-  line-height: 1.8;
-  color: #334155;
+  margin-bottom: 0.9rem;
+  line-height: 1.85;
+  color: #a1a1aa;
 }
 
 .blog-prose ul {
   margin: 0.7rem 0 1rem;
-  padding-left: 1.2rem;
-  color: #334155;
+  padding-left: 1.4rem;
+  color: #a1a1aa;
 }
 
 .blog-prose li {
-  margin: 0.4rem 0;
+  margin: 0.45rem 0;
+  line-height: 1.75;
+}
+
+.blog-prose strong {
+  color: #e4e4e7;
+  font-weight: 600;
 }
 
 .blog-link {
-  color: var(--brand-700);
+  color: var(--brand-400);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .dark {

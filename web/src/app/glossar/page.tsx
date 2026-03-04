@@ -15,7 +15,7 @@ const terms = [
   {
     term: "Incident",
     definition:
-      "Ein Stoerfall an einem Standort, der technische oder operative Reaktion ausloest.",
+      "Ein Störfall an einem Standort, der technische oder operative Reaktion auslöst.",
   },
   {
     term: "Impact-Matrix",
@@ -30,12 +30,12 @@ const terms = [
   {
     term: "Voice Intake",
     definition:
-      "Strukturierte Erfassung eines Vorfalls ueber Telefon-/Voice-Agent-Flow.",
+      "Strukturierte Erfassung eines Vorfalls über Telefon-/Voice-Agent-Flow.",
   },
   {
     term: "Data Plane / Control Plane",
     definition:
-      "Data Plane verarbeitet operative Vorfaelle, Control Plane steuert Provisioning, Deploy und Monitoring.",
+      "Data Plane verarbeitet operative Vorfälle, Control Plane steuert Provisioning, Deploy und Monitoring.",
   },
 ];
 
@@ -43,8 +43,8 @@ export default function GlossarPage() {
   return (
     <Section
       eyebrow="Glossar"
-      title="Begriffe fuer ein gemeinsames Betriebsverstaendnis"
-      description="Intern stark verlinkt, damit Produkt-, Security- und FAQ-Seiten konsistent sprechen."
+      title="Begriffe für ein gemeinsames Betriebsverständnis"
+      description="Die wichtigsten Fachbegriffe rund um Störungsmeldungen, Priorisierung und Datentrennung."
     >
       <div className="grid gap-4">
         {terms.map((item) => (
@@ -55,8 +55,7 @@ export default function GlossarPage() {
         ))}
       </div>
       <p className="mt-6 text-sm text-slate-600">
-        Weiterfuehrend: <Link className="text-brand-700 underline" href="/security">Security</Link> und{" "}
-        <Link className="text-brand-700 underline" href="/faq">FAQ</Link>.
+        Weiterführend: <Link className="text-brand-700 underline" href="/faq">FAQ</Link>.
       </p>
     </Section>
   );

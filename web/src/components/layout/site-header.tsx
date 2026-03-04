@@ -8,7 +8,7 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-black/30 backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between gap-6">
         <Link href="/" className="text-sm font-bold tracking-wide text-white">
-          GCB <span className="text-brand-400">Incident Management</span>
+          NODE<span className="text-brand-400">ZERO</span>
         </Link>
         <nav className="hidden items-center gap-5 md:flex">
           {siteConfig.nav.map((item) => (

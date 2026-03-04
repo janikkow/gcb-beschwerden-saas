@@ -21,7 +21,7 @@ export const ticketScenarios: TicketScenario[] = [
     email: "m.klein@example.de",
     phone: "+49 151 23456789",
     message:
-      "Automat hat 8 EUR abgebucht, aber kein Produkt ausgegeben. Bitte sofort pruefen.",
+      "Automat hat 8 EUR abgebucht, aber kein Produkt ausgegeben. Bitte sofort prüfen.",
     timestamp: "04.03.2026, 08:14",
     reference: "BSW-KR29A",
   },
@@ -34,7 +34,7 @@ export const ticketScenarios: TicketScenario[] = [
     email: "jan.weber@example.de",
     phone: "+49 170 9988776",
     message:
-      "Snack ist im Schacht haengen geblieben. Nach zweitem Versuch funktionierte die Ausgabe.",
+      "Snack ist im Schacht hängen geblieben. Nach zweitem Versuch funktionierte die Ausgabe.",
     timestamp: "04.03.2026, 10:37",
     reference: "BSW-QP71D",
   },
@@ -60,7 +60,7 @@ export const ticketScenarios: TicketScenario[] = [
     email: "tim.berger@example.de",
     phone: "+49 152 44112233",
     message:
-      "Unklare Alterspruefung am Alkoholautomaten. Bitte manuelle Ueberpruefung und Rueckmeldung.",
+      "Unklare Altersüberprüfung am Alkoholautomaten. Bitte manuelle Überprüfung und Rückmeldung.",
     timestamp: "04.03.2026, 14:21",
     reference: "BSW-ZX90P",
   },
