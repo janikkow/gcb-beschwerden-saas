@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F8FBFF"/>
+  <circle cx="158" cy="119" r="180" fill="#BFD8FF" fill-opacity="0.45"/>
+  <circle cx="1042" cy="562" r="248" fill="#FFE5BA" fill-opacity="0.5"/>
+  <rect x="84" y="96" width="1032" height="438" rx="28" fill="white" stroke="#D9E5F5"/>
+  <text x="150" y="245" fill="#0F1A2B" font-family="Arial, sans-serif" font-size="34" font-weight="700">
+    GCB Incident Management
+  </text>
+  <text x="150" y="302" fill="#33527F" font-family="Arial, sans-serif" font-size="24">
+    Voice Intake - AI Klassifikation - Ticket/Email Output
+  </text>
+  <rect x="150" y="356" width="196" height="44" rx="22" fill="#1371FF"/>
+  <text x="180" y="384" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="700">
+    Demo anfragen
+  </text>
+</svg>

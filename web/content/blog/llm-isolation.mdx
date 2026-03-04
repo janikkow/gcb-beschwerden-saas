@@ -1,0 +1,24 @@
+---
+title: "LLM-Isolation - Warum Datensicherheit im B2B SaaS entscheidend ist"
+description: "Erfahren Sie, wie wir mit einer strikten Schema-per-Tenant Architektur verhindern, dass KI-Modelle Kundendaten vermischen."
+date: "2026-03-06"
+tags: ["llm-isolation", "datensicherheit", "multi-tenant"]
+---
+
+# LLM-Isolation: Warum Datensicherheit im B2B SaaS entscheidend ist
+
+Mit dem Aufstieg von generativer KI in SaaS-Produkten wächst bei B2B-Kunden die Sorge: "Was passiert, wenn die KI halluziniert und meinem Konkurrenten meine Daten zeigt?" 
+
+Dieses Phänomen, bekannt als *Cross-Tenant Data Leakage*, ist ein reales Risiko, wenn Architektur-Entscheidungen nicht Security-First getroffen werden.
+
+## Die klassische, unsichere Methode
+Viele Startups werfen alle Kundendaten in eine große Datenbank-Tabelle. Wenn die KI eine Analyse machen soll, holt ein Skript "die letzten 10 Incidents". Ein winziger Fehler in der Tenant-ID-Abfrage führt dazu, dass Kunde A die Tickets von Kunde B sieht.
+
+## Unser Ansatz: Die LLM-Firewall
+Wir bei GCB Beschwerdemanagement nutzen eine **Schema-per-Tenant** Architektur. Das bedeutet:
+
+1. Jeder Kunde hat einen physisch isolierten Bereich in der PostgreSQL-Datenbank.
+2. Der n8n-Workflow verbindet sich dynamisch nur mit den Rechten (Credentials) des aktuellen Kunden.
+3. Wenn das System die KI (OpenAI) anfragt, ist es auf Datenbank-Ebene *unmöglich*, Daten eines anderen Kunden abzurufen.
+
+Die KI bekommt nur das zu sehen, was die Datenbank für diesen spezifischen Kunden freigibt. Keine Vermischung. Keine Halluzinationen über fremde Daten. Enterprise-Sicherheit ab dem ersten Ticket.

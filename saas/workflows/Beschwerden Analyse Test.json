@@ -1,0 +1,797 @@
+{
+  "name": "Beschwerden_Analyse_test_nicht_aktiv",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Problemformular - Snackautomat",
+        "formDescription": "Ihre Anfrage wird automatisiert verarbeitet. Mit dem Absenden des Formulars erklären Sie sich damit einverstanden, dass Ihre Angaben elektronisch erfasst, gespeichert und zur weiteren Bearbeitung automatisiert ausgewertet werden.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email Adresse",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Handynummer",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nachricht",
+              "fieldType": "textarea",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "ignoreBots": true,
+          "customCss": ":root {\n\t--font-family: 'Open Sans', sans-serif;\n\t--font-weight-normal: 400;\n\t--font-weight-bold: 600;\n\t--font-size-body: 12px;\n\t--font-size-label: 14px;\n\t--font-size-input: 14px;\n\t--font-size-header: 20px;\n\t--font-size-paragraph: 14px;\n\t--color-background: #f5f8ff;\n\t--color-card-bg: #ffffff;\n\t--color-card-border: #d0ddf5;\n\t--color-card-shadow: rgba(2, 117, 242, 0.10);\n\t--color-link: #0275f2;\n\t--color-header: #1f2a3a;\n\t--color-label: #243447;\n\t--color-input-border: #c3d3f5;\n\t--color-input-text: #4a5568;\n\t--color-focus-border: #0275f2;\n\t--color-submit-btn-bg: #0275f2;\n\t--color-submit-btn-text: #ffffff;\n\t--color-error: #ea1f30;\n\t--color-required: #0275f2;\n\t--border-radius-card: 8px;\n\t--border-radius-input: 6px;\n\t--padding-card: 24px;\n\t--container-width: 448px;\n\t--submit-btn-height: 48px;\n\t--box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);\n}"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        144,
+        192
+      ],
+      "id": "768c04c1-2db6-42ac-9bd3-ead8217ae6c7",
+      "name": "📋 Formular Eingang",
+      "webhookId": "7eb075a6-50a2-4e97-a9a7-990dfd046038"
+    },
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"Name\": \"Test User\",\n  \"Email Adresse\": \"test@example.de\",\n  \"Handynummer\": \"0123456789\",\n  \"Nachricht\": \"Mein Geld wurde geschluckt, 3 Euro sind weg\",\n  \"submittedAt\": \"2025-12-26T10:00:00.000+01:00\",\n  \"formMode\": \"production\"\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        144,
+        384
+      ],
+      "id": "5e5e8a5f-d4a9-4258-b30b-d59ef341e40c",
+      "name": "🔧 Manueller/Externer Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "validate-name",
+              "leftValue": "={{ $json.Name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            },
+            {
+              "id": "validate-email",
+              "leftValue": "={{ $json['Email Adresse'] }}",
+              "rightValue": "@",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "validate-message",
+              "leftValue": "={{ $json.Nachricht }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        288
+      ],
+      "id": "46e49e1c-0c6e-4a9c-aa94-30cf5e3c5632",
+      "name": "✅ Eingabe Validierung"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "error-log",
+              "name": "error",
+              "value": "Ungültige Eingabedaten",
+              "type": "string"
+            },
+            {
+              "id": "original-data",
+              "name": "originalData",
+              "value": "={{ JSON.stringify($json) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        624
+      ],
+      "id": "d5f6111c-2de8-4834-a991-3308aca44ae6",
+      "name": "⚠️ Validierungsfehler Log"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.Nachricht }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Geld geschluckt",
+              "description": "Wenn in dem Text die Rede davon ist dass Geld geschluckt wurde, das Rückgeld fehlt oder der Automat nach Geldeinwurf nicht reagiert hat."
+            },
+            {
+              "category": "Ausgabe Fehler",
+              "description": "Wenn in dem Text beschrieben wird, dass das Produkt hängen geblieben ist, der Automat nicht funktioniert hat, das Produkt klemmt, nicht ausgegeben wurde oder das Produkt beschädigt ist/wurde."
+            },
+            {
+              "category": "Kartenzahlung fehlgeschlagen",
+              "description": "Wenn in dem Text beschrieben wird, dass die Kartenzahlung nicht funktioniert hat, abgebrochen wurde oder die Karte nicht angenommen wurde."
+            },
+            {
+              "category": "Alkoholautomat",
+              "description": "Jegliche Probleme mit dem Alkoholautomaten: Altersverifizierung, Vapes, Alkohol, Schnaps, Bier, Snus."
+            }
+          ]
+        },
+        "options": {
+          "fallback": "Sonstiges",
+          "enableAutoFixing": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        768,
+        192
+      ],
+      "id": "2d21c6a2-0e33-49ce-82e5-589050a44484",
+      "name": "🏷️ Kategorie Klassifikation"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        768,
+        416
+      ],
+      "id": "e616f3bc-d484-4895-bff9-c055060d98c9",
+      "name": "OpenAI (Klassifikation)",
+      "credentials": {
+        "openAiApi": {
+          "id": "Fv3ISzl3LUp5oax2",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "set-kategorie",
+              "name": "Kategorie",
+              "value": "={{ $json.categorization?.category || 'Sonstiges' }}",
+              "type": "string"
+            },
+            {
+              "id": "preserve-name",
+              "name": "Name",
+              "value": "={{ $json.Name }}",
+              "type": "string"
+            },
+            {
+              "id": "preserve-email",
+              "name": "Email",
+              "value": "={{ $json['Email Adresse'] }}",
+              "type": "string"
+            },
+            {
+              "id": "preserve-phone",
+              "name": "Telefonnummer",
+              "value": "={{ $json.Handynummer }}",
+              "type": "string"
+            },
+            {
+              "id": "preserve-message",
+              "name": "Nachricht",
+              "value": "={{ $json.Nachricht }}",
+              "type": "string"
+            },
+            {
+              "id": "timestamp",
+              "name": "Eingereicht",
+              "value": "={{ $json.submittedAt || new Date().toISOString() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1104,
+        208
+      ],
+      "id": "ec201729-2223-4442-9e08-5e800b5b3b05",
+      "name": "📦 Daten Konsolidieren"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.Nachricht }}",
+        "options": {
+          "categories": "Hoch, Mittel, Niedrig",
+          "systemPromptTemplate": "Du bist ein präziser Analyse-Assistent für Beschwerden an Snackautomaten. Bewerte die Auswirkung/Schweregrad der Beschwerde anhand dieser Kriterien:\n\n**HOCH:**\n- Betrag über 5 Euro nicht zurückgegeben\n- Produkt beschädigt/kaputt/geplatzt\n- Automat zeigt Störung an\n- Sicherheitsrelevante Probleme\n- Mehrfache Fehlversuche erwähnt\n\n**MITTEL:**\n- Betrag zwischen 2-5 Euro betroffen\n- Produkt hängen geblieben (aber nicht beschädigt)\n- Einmaliger technischer Fehler\n\n**NIEDRIG:**\n- Betrag unter 2 Euro\n- Kleinere Unannehmlichkeiten\n- Fehlende Restgeld-Ausgabe unter 2 Euro\n\nAnalysiere den Text und kategorisiere in: {categories}\n\nAntworte NUR mit dem JSON-Format.",
+          "enableAutoFixing": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1.1,
+      "position": [
+        1248,
+        192
+      ],
+      "id": "901a9749-1e43-435e-ac19-d9bdd1d3a8b3",
+      "name": "📊 Auswirkung Analyse"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1248,
+        416
+      ],
+      "id": "0a7db889-9412-4ca7-82d8-7202b3cd91cc",
+      "name": "OpenAI (Auswirkung)",
+      "credentials": {
+        "openAiApi": {
+          "id": "Fv3ISzl3LUp5oax2",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "final-auswirkung",
+              "name": "Auswirkung",
+              "value": "={{ $json.sentimentAnalysis?.category || 'Mittel' }}",
+              "type": "string"
+            },
+            {
+              "id": "needs-review-flag",
+              "name": "NeedsHumanReview",
+              "value": "={{ ($json.Kategorie === 'Geld geschluckt' && ($json.sentimentAnalysis?.category === 'Hoch')) || $json.Kategorie === 'Alkoholautomat' }}",
+              "type": "boolean"
+            },
+            {
+              "id": "priority-score",
+              "name": "Priorität",
+              "value": "={{ $json.sentimentAnalysis?.category === 'Hoch' ? 1 : ($json.sentimentAnalysis?.category === 'Mittel' ? 2 : 3) }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1552,
+        192
+      ],
+      "id": "25b996c3-8fde-4ade-bbca-77efb2f1d2f8",
+      "name": "🎯 Finale Daten"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "T869aTHAw8ADJZSG",
+          "mode": "list",
+          "cachedResultName": "Beschwerden"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Email": "={{ $json.Email }}",
+            "Telefonnummer": "={{ $json.Telefonnummer }}",
+            "Nachricht": "={{ $json.Nachricht }}",
+            "Kategorie": "={{ $json.Kategorie }}",
+            "Auswirkung": "={{ $json.Auswirkung }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string"
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string"
+            },
+            {
+              "id": "Telefonnummer",
+              "displayName": "Telefonnummer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string"
+            },
+            {
+              "id": "Nachricht",
+              "displayName": "Nachricht",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string"
+            },
+            {
+              "id": "Kategorie",
+              "displayName": "Kategorie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string"
+            },
+            {
+              "id": "Auswirkung",
+              "displayName": "Auswirkung",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1728,
+        192
+      ],
+      "id": "5c6585d0-b5ed-4aa3-a479-4392d9643d1b",
+      "name": "💾 In Datentabelle Speichern",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-review",
+              "leftValue": "={{ $json.NeedsHumanReview }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1904,
+        192
+      ],
+      "id": "ee041f2e-33ec-4faa-8312-53e609249c7d",
+      "name": "🚨 Human Review nötig?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\nconst timestamp = new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });\n\nconst priorityEmoji = {\n  'Hoch': '🔴',\n  'Mittel': '🟡',\n  'Niedrig': '🟢'\n};\n\nconst categoryEmoji = {\n  'Geld geschluckt': '💰',\n  'Ausgabe Fehler': '📦',\n  'Kartenzahlung fehlgeschlagen': '💳',\n  'Alkoholautomat': '🍺',\n  'Sonstiges': '❓'\n};\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }\n    .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }\n    .header { background: linear-gradient(135deg, #0275f2, #0056b3); color: white; padding: 24px; }\n    .header h1 { margin: 0; font-size: 20px; }\n    .priority-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-top: 8px; }\n    .priority-hoch { background: #fee2e2; color: #dc2626; }\n    .priority-mittel { background: #fef3c7; color: #d97706; }\n    .priority-niedrig { background: #d1fae5; color: #059669; }\n    .content { padding: 24px; }\n    .field { margin-bottom: 16px; }\n    .field-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }\n    .field-value { font-size: 14px; color: #1f2937; }\n    .message-box { background: #f9fafb; border-left: 4px solid #0275f2; padding: 16px; border-radius: 0 8px 8px 0; margin-top: 16px; }\n    .footer { background: #f9fafb; padding: 16px 24px; font-size: 12px; color: #6b7280; border-top: 1px solid #e5e7eb; }\n    .category-tag { display: inline-block; background: #e0f2fe; color: #0275f2; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>${categoryEmoji[item.Kategorie] || '📋'} Neue Beschwerde eingegangen</h1>\n      <span class=\"priority-badge priority-${item.Auswirkung?.toLowerCase()}\">${priorityEmoji[item.Auswirkung] || '⚪'} Priorität: ${item.Auswirkung || 'Unbekannt'}</span>\n    </div>\n    <div class=\"content\">\n      <div class=\"field\">\n        <div class=\"field-label\">Kunde</div>\n        <div class=\"field-value\"><strong>${item.Name || 'Nicht angegeben'}</strong></div>\n      </div>\n      <div class=\"field\">\n        <div class=\"field-label\">Kontakt</div>\n        <div class=\"field-value\">📧 ${item.Email || '-'}<br>📱 ${item.Telefonnummer || '-'}</div>\n      </div>\n      <div class=\"field\">\n        <div class=\"field-label\">Kategorie</div>\n        <div class=\"field-value\"><span class=\"category-tag\">${item.Kategorie || 'Nicht klassifiziert'}</span></div>\n      </div>\n      <div class=\"message-box\">\n        <div class=\"field-label\">Nachricht</div>\n        <div class=\"field-value\">${item.Nachricht || 'Keine Nachricht'}</div>\n      </div>\n    </div>\n    <div class=\"footer\">\n      📅 Eingereicht: ${item.Eingereicht || timestamp}<br>\n      🆔 Referenz: BSW-${Date.now().toString(36).toUpperCase()}\n    </div>\n  </div>\n</body>\n</html>\n`;\n\nreturn [{ json: { ...item, html, timestamp } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2128,
+        64
+      ],
+      "id": "dffc17cc-e970-4da4-b434-1675837fdf8c",
+      "name": "🚨 Alert Email generieren"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\nconst timestamp = new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });\n\nconst priorityEmoji = {\n  'Hoch': '🔴',\n  'Mittel': '🟡',\n  'Niedrig': '🟢'\n};\n\nconst categoryEmoji = {\n  'Geld geschluckt': '💰',\n  'Ausgabe Fehler': '📦',\n  'Kartenzahlung fehlgeschlagen': '💳',\n  'Alkoholautomat': '🍺',\n  'Sonstiges': '❓'\n};\n\nconst html = `\n<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }\n    .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }\n    .header { background: linear-gradient(135deg, #0275f2, #0056b3); color: white; padding: 24px; }\n    .header h1 { margin: 0; font-size: 20px; }\n    .priority-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-top: 8px; }\n    .priority-hoch { background: #fee2e2; color: #dc2626; }\n    .priority-mittel { background: #fef3c7; color: #d97706; }\n    .priority-niedrig { background: #d1fae5; color: #059669; }\n    .content { padding: 24px; }\n    .field { margin-bottom: 16px; }\n    .field-label { font-size: 12px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }\n    .field-value { font-size: 14px; color: #1f2937; }\n    .message-box { background: #f9fafb; border-left: 4px solid #0275f2; padding: 16px; border-radius: 0 8px 8px 0; margin-top: 16px; }\n    .footer { background: #f9fafb; padding: 16px 24px; font-size: 12px; color: #6b7280; border-top: 1px solid #e5e7eb; }\n    .category-tag { display: inline-block; background: #e0f2fe; color: #0275f2; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>${categoryEmoji[item.Kategorie] || '📋'} Neue Beschwerde eingegangen</h1>\n      <span class=\"priority-badge priority-${item.Auswirkung?.toLowerCase()}\">${priorityEmoji[item.Auswirkung] || '⚪'} Priorität: ${item.Auswirkung || 'Unbekannt'}</span>\n    </div>\n    <div class=\"content\">\n      <div class=\"field\">\n        <div class=\"field-label\">Kunde</div>\n        <div class=\"field-value\"><strong>${item.Name || 'Nicht angegeben'}</strong></div>\n      </div>\n      <div class=\"field\">\n        <div class=\"field-label\">Kontakt</div>\n        <div class=\"field-value\">📧 ${item.Email || '-'}<br>📱 ${item.Telefonnummer || '-'}</div>\n      </div>\n      <div class=\"field\">\n        <div class=\"field-label\">Kategorie</div>\n        <div class=\"field-value\"><span class=\"category-tag\">${item.Kategorie || 'Nicht klassifiziert'}</span></div>\n      </div>\n      <div class=\"message-box\">\n        <div class=\"field-label\">Nachricht</div>\n        <div class=\"field-value\">${item.Nachricht || 'Keine Nachricht'}</div>\n      </div>\n    </div>\n    <div class=\"footer\">\n      📅 Eingereicht: ${item.Eingereicht || timestamp}<br>\n      🆔 Referenz: BSW-${Date.now().toString(36).toUpperCase()}\n    </div>\n  </div>\n</body>\n</html>\n`;\n\nreturn [{ json: { ...item, html, timestamp } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2128,
+        304
+      ],
+      "id": "a80cb2bb-dc9d-4847-b62b-4a9f321f3779",
+      "name": "📧 Standard Email generieren"
+    },
+    {
+      "parameters": {
+        "fromEmail": "info@gcbavaria.com",
+        "toEmail": "gcbavaria@protonmail.com",
+        "subject": "🚨 DRINGEND: Manuelle Überprüfung - {{ $json.Kategorie }} ({{ $json.Auswirkung }})",
+        "html": "={{ $json.html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        2336,
+        64
+      ],
+      "id": "c7a002a6-5c01-4311-865d-96e855abaaec",
+      "name": "📨 Alert Email senden",
+      "webhookId": "7993f676-873f-4d30-83e3-96caa66445a8",
+      "credentials": {
+        "smtp": {
+          "id": "JnA3gkQ6eBBJlVgg",
+          "name": "info@gcbavaria.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "info@gcbavaria.com",
+        "toEmail": "gcbavaria@protonmail.com",
+        "subject": "📋 Neue Beschwerde: {{ $json.Kategorie }} - {{ $json.Name }}",
+        "html": "={{ $json.html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        2336,
+        304
+      ],
+      "id": "9a2841e2-8927-47fe-9cb8-18a7fe8846ee",
+      "name": "📨 Standard Email senden",
+      "webhookId": "4e104310-37c7-4201-8129-66de8a0d31ae",
+      "credentials": {
+        "smtp": {
+          "id": "JnA3gkQ6eBBJlVgg",
+          "name": "info@gcbavaria.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 📋 Beschwerden Management - Optimiert\n\n**Formular URL:** https://n8n.gcbavaria.com/form/7eb075a6-50a2-4e97-a9a7-990dfd046038\n\n### Verbesserungen:\n✅ Eingabe-Validierung\n✅ Einheitliches AI-Modell (gpt-4o-mini)\n✅ Konsolidierte Datenverarbeitung\n✅ Human Review Flag automatisch\n✅ Professionelle HTML-Emails\n✅ Prioritäts-Scoring",
+        "height": 240,
+        "width": 380,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        96,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "f7be5f66-2455-428f-9449-b33e77e26fa4",
+      "name": "Sticky Note - Overview"
+    },
+    {
+      "parameters": {
+        "content": "## 🏷️ Klassifikation\n\n**Kategorien:**\n- 💰 Geld geschluckt\n- 📦 Ausgabe Fehler\n- 💳 Kartenzahlung\n- 🍺 Alkoholautomat",
+        "width": 280,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        720,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "b8edc484-e8da-4411-9a49-3aa1ce586ff3",
+      "name": "Sticky Note - Klassifikation"
+    },
+    {
+      "parameters": {
+        "content": "## 📊 Auswirkung\n\n**Hoch:** >5€ / Produkt kaputt / Störung\n**Mittel:** 2-5€ / Produkt hängt\n**Niedrig:** <2€",
+        "height": 140,
+        "width": 280,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1200,
+        16
+      ],
+      "typeVersion": 1,
+      "id": "8fd504dc-26ee-4b04-9bee-e02a5146867d",
+      "name": "Sticky Note - Auswirkung"
+    },
+    {
+      "parameters": {
+        "content": "## 🚨 Human Review Kriterien\n\n- Geld geschluckt + Hoch\n- Alkoholautomat (immer)",
+        "height": 152,
+        "width": 280,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1856,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "68a69bca-d6ec-403f-9b77-f70ce67b3860",
+      "name": "Sticky Note - Human Review"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "📋 Formular Eingang": {
+      "main": [
+        [
+          {
+            "node": "✅ Eingabe Validierung",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔧 Manueller/Externer Trigger": {
+      "main": [
+        [
+          {
+            "node": "✅ Eingabe Validierung",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "✅ Eingabe Validierung": {
+      "main": [
+        [
+          {
+            "node": "🏷️ Kategorie Klassifikation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "⚠️ Validierungsfehler Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI (Klassifikation)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "🏷️ Kategorie Klassifikation",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🏷️ Kategorie Klassifikation": {
+      "main": [
+        [
+          {
+            "node": "📦 Daten Konsolidieren",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "📦 Daten Konsolidieren",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "📦 Daten Konsolidieren",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "📦 Daten Konsolidieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📦 Daten Konsolidieren": {
+      "main": [
+        [
+          {
+            "node": "📊 Auswirkung Analyse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI (Auswirkung)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "📊 Auswirkung Analyse",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📊 Auswirkung Analyse": {
+      "main": [
+        [
+          {
+            "node": "🎯 Finale Daten",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "🎯 Finale Daten",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "🎯 Finale Daten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🎯 Finale Daten": {
+      "main": [
+        [
+          {
+            "node": "💾 In Datentabelle Speichern",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "💾 In Datentabelle Speichern": {
+      "main": [
+        [
+          {
+            "node": "🚨 Human Review nötig?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🚨 Human Review nötig?": {
+      "main": [
+        [
+          {
+            "node": "🚨 Alert Email generieren",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "📧 Standard Email generieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🚨 Alert Email generieren": {
+      "main": [
+        [
+          {
+            "node": "📨 Alert Email senden",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📧 Standard Email generieren": {
+      "main": [
+        [
+          {
+            "node": "📨 Standard Email senden",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "1cee819a-ed7b-4d6d-9bae-98665c868516",
+  "meta": {
+    "instanceId": "bf0b53e98be6faae67b881815e4b32187ba4d26e28f8c2f7533abe47c61a5843"
+  },
+  "id": "53a5RKzLOtm39DWo",
+  "tags": []
+}

@@ -1,0 +1,29 @@
+---
+title: "Impact-Matrix einfuehren ohne Overhead"
+description: "Pragmatische Schritte, um Priorisierung pro Tenant sauber aufzusetzen."
+date: "2026-02-27"
+tags: ["impact-matrix", "priorisierung", "tenant"]
+---
+
+## Warum eine Impact-Matrix
+
+Nicht jeder Incident ist gleich kritisch.  
+Die Impact-Matrix uebersetzt Geschaeftsrisiko in handhabbare Prioritaeten.
+
+## Minimalstart
+
+Definiere drei Stufen:
+
+- **Hoch**: Sofortige Eskalation
+- **Mittel**: Bearbeitung im Tagesfenster
+- **Niedrig**: Sammelbearbeitung
+
+## Pro Tenant statt global
+
+Was im Parkhaus kritisch ist, kann im Automatenbetrieb mittel sein.  
+Darum gehoert die Matrix immer in die tenant-spezifische Konfiguration.
+
+## Nach 30 Tagen nachjustieren
+
+Nutze Ticket-Historie und Fehlalarme, um Regeln zu schaerfen.  
+Ziel ist weniger Alarmrauschen bei gleichbleibender Sicherheit.

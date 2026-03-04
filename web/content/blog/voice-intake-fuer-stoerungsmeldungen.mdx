@@ -1,0 +1,30 @@
+---
+title: "Voice Intake fuer Stoerungsmeldungen"
+description: "Wie Twilio und Voice-AI den Eingang von Vorfaellen standardisieren."
+date: "2026-03-02"
+tags: ["voice-intake", "twilio", "ultravox"]
+---
+
+## Eingang standardisieren
+
+Ein Voice-Flow sollte immer dieselben Kernfelder aufnehmen:
+
+- Wer meldet?
+- Was ist passiert?
+- Wo ist der Vorfall?
+- Wie kann rueckgemeldet werden?
+
+## Technischer Aufbau
+
+Ein typischer Ablauf:
+
+- Twilio nimmt den Call entgegen
+- Voice-Agent fuehrt den Dialog
+- Summary-Node erzeugt strukturierte Daten
+- Klassifikation bestimmt Kategorie und Auswirkung
+- Ticket/Email wird generiert
+
+## Vorteil gegenueber freier Hotline
+
+Freie Hotline-Gespraeche sind menschlich, aber schwer auswertbar.  
+Voice Intake verbindet Empathie im Gespraech mit verwertbarer Datenqualitaet.

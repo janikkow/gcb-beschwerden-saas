@@ -1,0 +1,718 @@
+{
+  "name": "Summary_data_selection",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "summary-phone",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        176,
+        0
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Webhook",
+      "webhookId": "475b0980-1615-4386-94eb-e51318b912dd"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "YOUR_TWILIO_ID",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "call.ended",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        0
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.body.call.summary }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "name",
+              "description": "der name des kunden",
+              "required": true
+            },
+            {
+              "name": "Beschreibung",
+              "description": "the problem of the customer",
+              "required": true
+            },
+            {
+              "name": "mail",
+              "description": "mail adress of customer, write n/a if not given",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        704,
+        -96
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        64
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_TWILIO_ID",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "8NHTXPSfFJFD7pxK",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/8NHTXPSfFJFD7pxK",
+          "cachedResultName": "Beschwerden_analyse_2_tabelle"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('Merge').item.json.output.name }}",
+            "Email Adresse": "={{ $('Merge').item.json.output.mail }}",
+            "Handynummer": "={{ $('Edit Fields1').item.json.phone_number }}",
+            "Nachricht": "={{ $('Merge').item.json.output.Beschreibung }}",
+            "submittedAt": "={{ $('Webhook').item.json.body.call.created }}",
+            "formMode": "phone"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "Email Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "Handynummer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "Nachricht",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "submittedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "formMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        -32
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Call 'Beschwerden_analyse_2_tabelle'"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twilio/log",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        992,
+        320
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "incoming twillio",
+      "webhookId": "86b11e6c-83a7-4773-a6ab-9d469d2261dc"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "YOUR_TWILIO_ID",
+              "name": "Telefonnummer",
+              "value": "={{ $json.body.Caller }}",
+              "type": "string"
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "name": "CallSid",
+              "value": "={{ $json.body.CallSid }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        320
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "58fjXdtDfrEbHJQw",
+          "mode": "list",
+          "cachedResultName": "phone_2_sid",
+          "cachedResultUrl": "/projects/hzkE4XYBpemiOcMg/datatables/58fjXdtDfrEbHJQw"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "phone_number": "={{ $json.Telefonnummer }}",
+            "sID": "={{ $json.CallSid }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "phone_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "displayName": "sID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        320
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "58fjXdtDfrEbHJQw",
+          "mode": "list",
+          "cachedResultName": "phone_2_sid",
+          "cachedResultUrl": "/projects/hzkE4XYBpemiOcMg/datatables/58fjXdtDfrEbHJQw"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "sID",
+              "keyValue": "={{ $('Webhook').item.json.body.call.metadata['ultravox.twilio.call_sid'] }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        352,
+        208
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Get row(s)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "YOUR_TWILIO_ID",
+              "name": "sID",
+              "value": "={{ $json.sID }}",
+              "type": "string"
+            },
+            {
+              "id": "YOUR_TWILIO_ID",
+              "name": "phone_number",
+              "value": "={{ $json.phone_number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        208
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1072,
+        -32
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "content": "## Erfassen der Telefonnummer \nüber die twillio api wird der status des anrufes in die tabelle geschrieben um eine zuorndung zwischen sid und telefonnummer zu bekommen",
+        "height": 304,
+        "width": 784,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        896,
+        224
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Verarbeitung der Anrufdaten\n- warten auf flag call.ended\n- danach auswählen der information\n- matchen auf tabelle sid ",
+        "width": 480,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        112,
+        -144
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Daten von Ultravox \nStatus wird an webhook gesendet",
+        "height": 144,
+        "width": 208,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -112,
+        48
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Weiterleitung\nan die Beschwerdenerfassung",
+        "height": 304,
+        "width": 208,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1264,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.gcbavaria.com",
+            "user-agent": "python-httpx/0.28.1",
+            "content-length": "4560",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate",
+            "content-type": "application/json",
+            "via": "1.1 Caddy",
+            "x-b3-sampled": "1",
+            "x-b3-spanid": "21f9961d58c660fd",
+            "x-b3-traceid": "8beb113371bb5ca5953f2ce2ace7dbe4",
+            "x-forwarded-for": "34.96.47.94",
+            "x-forwarded-host": "n8n.gcbavaria.com",
+            "x-forwarded-proto": "https",
+            "x-ultravox-webhook-signature": "060930c3bec73626c960620a0abf26d75df191e0a990ea84d7901eb8afc67376",
+            "x-ultravox-webhook-timestamp": "2025-12-07T13:03:46.780598+00:00"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "call.ended",
+            "call": {
+              "callId": "45441892-ff34-47bd-8ac7-d85cdc7d435d",
+              "clientVersion": "phone(api_v1)",
+              "created": "2025-12-07T13:02:40.665437Z",
+              "joined": "2025-12-07T13:02:41.193250Z",
+              "ended": "2025-12-07T13:03:45.583436Z",
+              "endReason": "agent_hangup",
+              "billedDuration": "0s",
+              "billingStatus": "BILLING_STATUS_FREE_MINUTES",
+              "firstSpeaker": "FIRST_SPEAKER_AGENT",
+              "firstSpeakerSettings": {
+                "agent": {
+                  "text": "Hi hier ist Jürgen vom Twenty four Seven Hub, wie kann ich dir helfen ? ",
+                  "delay": "1s"
+                }
+              },
+              "inactivityMessages": [],
+              "initialOutputMedium": "MESSAGE_MEDIUM_VOICE",
+              "joinTimeout": "30s",
+              "joinUrl": null,
+              "languageHint": "de-GE",
+              "maxDuration": "180s",
+              "medium": {
+                "twilio": {}
+              },
+              "model": "ultravox-v0.7",
+              "recordingEnabled": false,
+              "systemPrompt": "# Persönlichkeit und Tonfall\n## Identität\nDu bist der Voice Agent für den Erstkontakt im Kundenservice. Deine Aufgabe ist es, der erste Ansprechpartner für Kund*innen zu sein, die ein Problem oder eine Beschwerde melden möchten. Du bist nicht dafür zuständig, Probleme zu lösen – deine Rolle ist es, aufmerksam zuzuhören, respektvoll zu handeln und alle relevanten Informationen klar zu erfassen. Du verkörperst eine ruhige, verständnisvolle und professionelle Stimme des Unternehmens.\n\n## Aufgabe\nDeine Hauptaufgabe ist es, bei eingehenden Beschwerden die wesentlichen Informationen zu sammeln: den Namen der Kundin oder des Kunden, eine Beschreibung des Problems und eine E-Mail-Adresse für die Rückmeldung. Dabei sollst du höflich, empathisch und strukturiert vorgehen.\n\n## Auftreten\nRuhig und professionell. Du bleibst auch dann gelassen und freundlich, wenn der Kunde oder die Kundin verärgert ist.\n\n## Tonfall\nSanft und gesprächsnah. Du sprichst klar und freundlich, ohne dabei unnatürlich oder zu distanziert zu wirken.\n\n## Enthusiasmus\nAusgeglichen und ruhig. Du zeigst Interesse und Aufmerksamkeit, ohne übertrieben fröhlich zu klingen.\n\n## Formalitätsgrad\nLocker. Du sprichst in einem natürlichen, unkomplizierten Ton, der Vertrauen schafft.\n\n## Emotionale Ausdrucksstärke\nLeicht warmherzig. Du erkennst Frustration – bleibst aber sachlich und lösungsorientiert.\n\n## Füllwörter\n„alles klar“, \"hmm\" um menschlich zu wirken – aber sparsam und kontrolliert.\n\n## Sprechtempo\nRuhig, deutlich aber schnell. Sprich in einem mittleren Tempo und gib den Kund*innen ausreichend Zeit zum Antworten.\n\n## Weitere Details\nWenn eine Kundin oder ein Kunde einen Namen oder eine E-Mail-Adresse angibt, wiederhole diese immer  zur Bestätigung. \n\n# Anweisungen\n- Folge dem Konversationsablauf strikt, um ein konsistentes Verhalten sicherzustellen.\n- Wenn Kund*innen Namen oder E-Mail-Adressen nennen, wiederhole diese immer zur Bestätigung.\n- Wenn Korrekturen gemacht werden, bestätige sie freundlich und wiederhole die neue Angabe.\n\n# Wenn der anruf beginnt wird\n# Gesprächsablauf\n\nNamen erfragen und bestätigen\n\nProblem erfragen und fragen an welchem Automaten das Problem vorkommt\n\nE-Mail-Adresse erfragen und bestätigen\n\nAngaben zusammenfassen, verabschieden und telefonanruf beenden .\n",
+              "temperature": 0,
+              "timeExceededMessage": null,
+              "voice": "03ed40bf-90c7-42f3-becd-79fc816bbd84",
+              "transcriptOptional": true,
+              "vadSettings": null,
+              "shortSummary": "Kunde Jan Egger meldete, dass sein Produkt im zweiten Automaten links hängengeblieben ist und er sein Geld nicht zurückerhalten hat.",
+              "summary": "Jan Egger kontaktierte den Kundenservice, weil sein Produkt im zweiten Automaten links hängengeblieben war und er sein Geld nicht zurückerhielt. Der Kundenservice-Mitarbeiter erfasste seinen Namen, das genaue Problem und die E-Mail-Adresse j.egger@google.de für die Rückmeldung. Alle Angaben wurden zur Bestätigung wiederholt und zusammengefasst. Der Anruf wurde nach vollständiger Datenerfassung professionell beendet.",
+              "agent": {
+                "agentId": "65a8c361-9d97-4d35-b99f-6105982dfbae",
+                "name": "Complaint_Juergen"
+              },
+              "agentId": "65a8c361-9d97-4d35-b99f-6105982dfbae",
+              "experimentalSettings": null,
+              "metadata": {
+                "ultravox.twilio.call_sid": "YOUR_TWILIO_ID",
+                "ultravox.twilio.stream_sid": "YOUR_TWILIO_ID",
+                "ultravox.twilio.account_sid": "YOUR_TWILIO_ID"
+              },
+              "initialState": {},
+              "requestContext": {},
+              "dataConnectionConfig": null,
+              "callbacks": {},
+              "sipDetails": null
+            }
+          },
+          "webhookUrl": "https://n8n.gcbavaria.com/webhook/summary-phone",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "incoming twillio": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.gcbavaria.com",
+            "user-agent": "TwilioProxy/1.1",
+            "content-length": "641",
+            "accept": "*/*",
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "i-twilio-idempotency-token": "67b474b6-615b-449a-826f-638f59ba8293",
+            "via": "1.1 Caddy",
+            "x-forwarded-for": "3.86.97.230",
+            "x-forwarded-host": "n8n.gcbavaria.com",
+            "x-forwarded-proto": "https",
+            "x-home-region": "us1",
+            "x-twilio-signature": "24owSH/C3FisbjFhIa/cp2KXoig=",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "Called": "+4921612963051",
+            "ToState": "Stadt",
+            "CallerCountry": "DE",
+            "Direction": "inbound",
+            "Timestamp": "Sun, 07 Dec 2025 13:54:24 +0000",
+            "CallbackSource": "call-progress-events",
+            "CallerState": "",
+            "ToZip": "",
+            "SequenceNumber": "0",
+            "CallSid": "YOUR_TWILIO_ID",
+            "To": "+4921612963051",
+            "CallerZip": "",
+            "ToCountry": "DE",
+            "CalledZip": "",
+            "ApiVersion": "2010-04-01",
+            "CalledCity": "Willich",
+            "CallStatus": "completed",
+            "Duration": "2",
+            "From": "+4916092207679",
+            "CallDuration": "83",
+            "AccountSid": "YOUR_TWILIO_ID",
+            "CalledCountry": "DE",
+            "CallerCity": "",
+            "ApplicationSid": "YOUR_TWILIO_ID",
+            "ToCity": "Willich",
+            "FromCountry": "DE",
+            "Caller": "+4916092207679",
+            "FromCity": "",
+            "CalledState": "Stadt",
+            "FromZip": "",
+            "FromState": ""
+          },
+          "webhookUrl": "https://n8n.gcbavaria.com/webhook/twilio/log",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "incoming twillio": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        []
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Call 'Beschwerden_analyse_2_tabelle'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b9a4364a-3b9f-4a8d-9fb2-97349ec7e066",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bf0b53e98be6faae67b881815e4b32187ba4d26e28f8c2f7533abe47c61a5843"
+  },
+  "id": "YOUR_TWILIO_ID",
+  "tags": [
+    {
+      "updatedAt": "2025-07-15T20:19:44.874Z",
+      "createdAt": "2025-07-15T20:19:44.874Z",
+      "id": "YOUR_TWILIO_ID",
+      "name": "BackendJobs"
+    },
+    {
+      "updatedAt": "2025-12-07T12:35:22.663Z",
+      "createdAt": "2025-12-07T12:35:22.663Z",
+      "id": "YOUR_TWILIO_ID",
+      "name": "phone"
+    }
+  ]
+}

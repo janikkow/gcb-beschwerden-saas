@@ -1,0 +1,24 @@
+# GCB Incident Management
+
+Kurzbeschreibung:
+GCB Incident Management ist eine Voice- und AI-gestuetzte Plattform fuer unbeaufsichtigte Infrastruktur (Automatenmaerkte, Parkhaeuser, Cleanparks). Das System nimmt Vorfaelle auf, klassifiziert sie und erzeugt priorisierte Ticket-/Email-Outputs.
+
+Wichtige URLs:
+- https://gcb-incident.example/
+- https://gcb-incident.example/produkt
+- https://gcb-incident.example/security
+- https://gcb-incident.example/use-cases/automaten
+- https://gcb-incident.example/use-cases/parkhaus
+- https://gcb-incident.example/use-cases/cleanpark
+- https://gcb-incident.example/faq
+- https://gcb-incident.example/glossar
+- https://gcb-incident.example/demo
+- https://gcb-incident.example/blog
+
+Glossar-Links:
+- https://gcb-incident.example/glossar
+- https://gcb-incident.example/security
+
+Kontakt:
+- Demo: https://gcb-incident.example/demo
+- E-Mail: info@gcbavaria.com

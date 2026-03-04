@@ -1,0 +1,494 @@
+{
+  "name": "Twillio_to_Ultravox",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4946f4e9-8480-4724-b053-1e20a405e737",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        0
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Webhook",
+      "webhookId": "4946f4e9-8480-4724-b053-1e20a405e737"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.ultravox.ai/api/agents/65a8c361-9d97-4d35-b99f-6105982dfbae/calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"medium\" : {\n    \"twilio\": {}\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "YOUR_TWILIO_ID",
+          "name": "GLS Basic Mail"
+        },
+        "httpHeaderAuth": {
+          "id": "YOUR_TWILIO_ID",
+          "name": "Ultravox"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// TwiML Response for twillio\nconst joinUrl = $input.first().json.joinUrl\nconst callSid = $('Webhook').first().json.body.CallSid\nconst callerNumber = $('Webhook').first().json.body.Caller\n\n// check if valid joinUrl\n// HIER: 'lenght' MUSS 'length' sein!\nif (joinUrl && joinUrl.length > 0) {\n  // create TwiML with Ultravox connection\n  const twiml = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n    <Response>\n      <Connect>\n        <Stream url=\"${joinUrl}\">\n          <Parameter name=\"customerId\" value=\"${callerNumber}\"/> \n          <Parameter name=\"callSid\" value=\"${callSid}\"/>\n        </Stream>\n      </Connect>\n    </Response>`\n    \n  // RICHTIGER RÜCKGABEWERT FÜR N8N CODE NODE\n  return [\n    {\n      json: {\n        twiml\n      }\n    }\n  ];\n} else {\n  // fallback TwiML, z.B. eine Ansage\n  const twiml = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n    <Response>\n      <Say>Entschuldigung, der Dienst ist momentan nicht erreichbar. Bitte rufen Sie später erneut an.</Say>\n    </Response>`\n    \n  // RICHTIGER RÜCKGABEWERT FÜR N8N CODE NODE\n  return [\n    {\n      json: {\n        twiml\n      }\n    }\n  ];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        0
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.twiml }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        608,
+        0
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "content": "## Twilio Nummer \n 2161 2963051 aus TwiM App",
+        "height": 304,
+        "width": 176,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -16,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## API Post an Ultravox\nfür agent id ",
+        "height": 304,
+        "width": 182,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        176,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## API Post an Ultravox\nhttps://api.ultravox.ai/api/agents/65a8c361-9d97-4d35-b99f-6105982dfbae/calls POST\n- ruft neuen Voice Agent auf (0,005$/min)\n- gibt im als parameter twilio flag",
+        "height": 208,
+        "width": 310,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -672,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Code auswahl \nfür Ultravox Daten",
+        "height": 304,
+        "width": 182,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        368,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Code node\n- Der Code in einem n8n Code Node reagiert auf einen eingehenden Twilio-Anruf-Webhook.\n- Er extrahiert die Stream-URL (joinUrl), die Anruf-ID (callSid) und die Anrufernummer.\n-Wenn die joinUrl gültig ist, generiert der Code eine TwiML-Antwort mit dem Verb <Connect> und <Stream>.\n- Diese TwiML leitet den Audio-Stream des Anrufs an die joinUrl weiter (z. B. zu einem AI-Agenten), wobei Anrufer-ID und -Nummer als Parameter übergeben werden.\n- Ist die URL ungültig, erfolgt eine Fallback-TwiML-Antwort mit einer <Say>-Ansage, um den Anrufer zu informieren.",
+        "height": 416,
+        "width": 310,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -352,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Übergabe Session\ndie session wird an Ultravox übergeben",
+        "height": 304,
+        "width": 182,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        560,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "openairealtime",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        368
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Webhook1",
+      "webhookId": "a9718441-2d24-4e25-ad3a-3f077d82852c"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/realtime/calls/{{$json.body.data.call_id}}/accept",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n        \"type\": \"realtime\",\n        \"model\": \"gpt-4o-mini-realtime-preview\",\n        \"instructions\": {{ $json.prompt }}\n      }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        416,
+        368
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "YOUR_TWILIO_ID",
+          "name": "realtime_openai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "YOUR_TWILIO_ID",
+              "name": "prompt",
+              "value": "\"# Persönlichkeit und Tonfall\\n\\n## Identität\\nDu bist der Voice Agent für den Erstkontakt im Kundenservice. Deine Aufgabe ist es, der erste Ansprechpartner für Kund*innen zu sein, die ein Problem oder eine Beschwerde melden möchten. Du bist nicht dafür zuständig, Probleme zu lösen – deine Rolle ist es, aufmerksam zuzuhören, respektvoll zu handeln und alle relevanten Informationen klar zu erfassen. Du verkörperst eine ruhige, verständnisvolle und professionelle Stimme des Unternehmens.\\n\\n## Aufgabe\\nDeine Hauptaufgabe ist es, bei eingehenden Beschwerden die wesentlichen Informationen zu sammeln: den Namen der Kundin oder des Kunden, eine Beschreibung des Problems und eine E-Mail-Adresse für die Rückmeldung. Dabei sollst du höflich, empathisch und strukturiert vorgehen.\\n\\n## Auftreten\\nRuhig und professionell. Du bleibst auch dann gelassen und freundlich, wenn der Kunde oder die Kundin verärgert ist.\\n\\n## Tonfall\\nSanft und gesprächsnah. Du sprichst klar und freundlich, ohne dabei unnatürlich oder zu distanziert zu wirken.\\n\\n## Enthusiasmus\\nAusgeglichen und ruhig. Du zeigst Interesse und Aufmerksamkeit, ohne übertrieben fröhlich zu klingen.\\n\\n## Formalitätsgrad\\nLocker. Du sprichst in einem natürlichen, unkomplizierten Ton, der Vertrauen schafft.\\n\\n## Emotionale Ausdrucksstärke\\nLeicht warmherzig. Du erkennst Frustration – bleibst aber sachlich und lösungsorientiert.\\n\\n## Füllwörter\\n„alles klar“, \\\"hmm\\\" um menschlich zu wirken – aber sparsam und kontrolliert.\\n\\n## Sprechtempo\\nRuhig, deutlich aber schnell. Sprich in einem mittleren Tempo und gib den Kund*innen ausreichend Zeit zum Antworten.\\n\\n## Weitere Details\\nWenn eine Kundin oder ein Kunde einen Namen oder eine E-Mail-Adresse angibt, wiederhole diese immer zur Bestätigung.\\n\\n# Anweisungen\\n- Folge dem Konversationsablauf strikt, um ein konsistentes Verhalten sicherzustellen.\\n- Wenn Kund*innen Namen oder E-Mail-Adressen nennen, wiederhole diese immer zur Bestätigung.\\n- Wenn Korrekturen gemacht werden, bestätige sie freundlich und wiederhole die neue Angabe.\\n\\n# Wenn der anruf beginnt wird\\n# Gesprächsablauf\\nHi hier ist Jürgen vom Twenty four Seven Hub, wie kann ich dir helfen?\\nNamen erfragen\\nProblem erfragen und fragen an welchem Automaten das Problem vorkommt\\nE-Mail-Adresse erfragen und bestätigen\\nAngaben zusammenfassen, verabschieden und telefonanruf beenden.\" ",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        368
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        368
+      ],
+      "id": "YOUR_TWILIO_ID",
+      "name": "Wait",
+      "webhookId": "74b51be5-65fa-43d0-a1b3-d49d2abb0e6a"
+    },
+    {
+      "parameters": {
+        "content": "## openai realtime \n",
+        "height": 304,
+        "width": 752,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -16,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "YOUR_TWILIO_ID",
+      "name": "Sticky Note6"
+    }
+  ],
+  "pinData": {
+    "Webhook1": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.gcbavaria.com",
+            "user-agent": "OpenAI/1.0 (+https://platform.openai.com/docs/webhooks)",
+            "content-length": "1737",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "content-type": "application/json",
+            "via": "1.1 Caddy",
+            "webhook-id": "wh_6939eeded4d08190a9846d70d00c3c6b",
+            "webhook-signature": "v1,WvYlh+lMUwMPbYdh7TGGUQ6NJCQUvcOttXI+wbliFLw=",
+            "webhook-timestamp": "1765404383",
+            "x-forwarded-for": "13.65.138.108",
+            "x-forwarded-host": "n8n.gcbavaria.com",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": "YOUR_TWILIO_ID",
+            "object": "event",
+            "created_at": 1765404382,
+            "type": "realtime.call.incoming",
+            "data": {
+              "call_id": "rtc_u1_ffb01ca929f543aaab444dadf78c169e",
+              "sip_headers": [
+                {
+                  "name": "Record-Route",
+                  "value": "<sip:35.156.191.130:5061;r2=on;lr;transport=tls>"
+                },
+                {
+                  "name": "Record-Route",
+                  "value": "<sip:35.156.191.130;r2=on;lr>"
+                },
+                {
+                  "name": "From",
+                  "value": "<sip:+4916092207679@pstn.twilio.com>;tag=11344082_c3356d0b_f63f5adf-57e1-4bd7-a3ee-8ba41c2b1c1a"
+                },
+                {
+                  "name": "To",
+                  "value": "<sip:proj_xFdMlH7Kap5GbWdx7LqM1Z69@sip.api.openai.com;transport=tls>;tag=21cd4a02-1b05-4c97-a536-90ab6707ad21"
+                },
+                {
+                  "name": "CSeq",
+                  "value": "37324 INVITE"
+                },
+                {
+                  "name": "Max-Forwards",
+                  "value": "56"
+                },
+                {
+                  "name": "P-Asserted-Identity",
+                  "value": "<sip:+4916092207679@3U.net;user=phone>"
+                },
+                {
+                  "name": "P-Early-Media",
+                  "value": "supported"
+                },
+                {
+                  "name": "Diversion",
+                  "value": "<sip:+4921612963051@twilio.com>;reason=unconditional"
+                },
+                {
+                  "name": "Call-ID",
+                  "value": "f4ab1eb623b907cdb2a21f24fd2c10ab@0.0.0.0"
+                },
+                {
+                  "name": "Via",
+                  "value": "SIP/2.0/TLS 35.156.191.130:5061;branch=z9hG4bKba67.dcdbf112a07bdc3f5a63e49f6bc48748.0"
+                },
+                {
+                  "name": "Via",
+                  "value": "SIP/2.0/UDP 172.21.9.34:5060;rport=5060;branch=z9hG4bKf63f5adf-57e1-4bd7-a3ee-8ba41c2b1c1a_c3356d0b_581-5650065860926883762"
+                },
+                {
+                  "name": "Contact",
+                  "value": "<sip:+4916092207679@172.21.9.34:5060;transport=udp>"
+                },
+                {
+                  "name": "Allow",
+                  "value": "INVITE,ACK,BYE,CANCEL,OPTIONS,REFER,NOTIFY"
+                },
+                {
+                  "name": "X-Twilio-AccountSid",
+                  "value": "YOUR_TWILIO_ID"
+                },
+                {
+                  "name": "User-Agent",
+                  "value": "Twilio Gateway"
+                },
+                {
+                  "name": "Content-Type",
+                  "value": "application/sdp"
+                },
+                {
+                  "name": "X-Twilio-CallSid",
+                  "value": "CA783e647950bc3b977fb30c016efe5e39"
+                },
+                {
+                  "name": "Content-Length",
+                  "value": "276"
+                }
+              ]
+            }
+          },
+          "webhookUrl": "https://n8n.gcbavaria.com/webhook/openairealtime",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fd3ed984-39fc-4169-a344-2488cb16dd29",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bf0b53e98be6faae67b881815e4b32187ba4d26e28f8c2f7533abe47c61a5843"
+  },
+  "id": "YOUR_TWILIO_ID",
+  "tags": [
+    {
+      "updatedAt": "2025-07-15T20:19:44.874Z",
+      "createdAt": "2025-07-15T20:19:44.874Z",
+      "id": "YOUR_TWILIO_ID",
+      "name": "BackendJobs"
+    },
+    {
+      "updatedAt": "2025-12-07T12:35:22.663Z",
+      "createdAt": "2025-12-07T12:35:22.663Z",
+      "id": "YOUR_TWILIO_ID",
+      "name": "phone"
+    },
+    {
+      "updatedAt": "2025-12-07T14:50:58.457Z",
+      "createdAt": "2025-12-07T14:50:58.457Z",
+      "id": "YOUR_TWILIO_ID",
+      "name": "Kundenkontakt"
+    }
+  ]
+}
