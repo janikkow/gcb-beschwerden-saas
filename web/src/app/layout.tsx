@@ -50,6 +50,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/outag3-favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: ["/outag3-favicon.svg"],
+  },
 };
 
 export default function RootLayout({

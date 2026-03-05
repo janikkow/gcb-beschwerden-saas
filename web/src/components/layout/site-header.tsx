@@ -28,7 +28,7 @@ export default function SiteHeader() {
     <>
       <header className="sticky top-0 z-40 border-b border-white/10 bg-black/30 backdrop-blur-xl">
         <Container className="flex h-16 items-center justify-between gap-6">
-          <Link href="/" className="text-sm font-bold tracking-wide text-white">
+          <Link href="/" className="text-lg font-extrabold tracking-[0.06em] text-white sm:text-xl">
             OUTAG<span className="text-brand-400">3</span>
           </Link>
 

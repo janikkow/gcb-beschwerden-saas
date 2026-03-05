@@ -141,19 +141,7 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <div className="mt-20">
-            <div className="mx-auto max-w-3xl text-center mb-10">
-              <h2 className="text-balance text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                ROI-Rechner: Lohnt es sich?
-              </h2>
-              <p className="mt-3 text-pretty text-base text-zinc-400">
-                Berechne dein monatliches Sparpotenzial basierend auf deinen aktuellen Kosten.
-              </p>
-            </div>
-            <PricingCalculator />
-          </div>
-
-          <div className="mt-8 grid gap-5 lg:grid-cols-[2fr_1fr]">
+          <div className="mt-10 grid gap-5 lg:grid-cols-[2fr_1fr]">
             <div className="glass-card rounded-2xl border border-white/15 p-6">
               <h2 className="text-xl font-semibold text-white">In jedem Plan inklusive</h2>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-300">
@@ -182,6 +170,18 @@ export default function PricingPage() {
                 Fragen klären
               </Button>
             </aside>
+          </div>
+
+          <div className="mt-20">
+            <div className="mx-auto max-w-3xl text-center mb-10">
+              <h2 className="text-balance text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                ROI-Rechner: Lohnt es sich?
+              </h2>
+              <p className="mt-3 text-pretty text-base text-zinc-400">
+                Berechne dein monatliches Sparpotenzial basierend auf deinen aktuellen Kosten.
+              </p>
+            </div>
+            <PricingCalculator />
           </div>
         </div>
       </section>

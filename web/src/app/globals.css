@@ -133,7 +133,7 @@ body {
   background-color: #fbfdff;
   background-image: url('/background.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: 30% 20%;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
@@ -141,7 +141,16 @@ body {
 .bg-site-gradient {
   position: relative;
   z-index: 1;
-  background: rgba(6, 10, 20, 0.58);
+  background: rgba(6, 10, 20, 0.40);
+}
+
+@media (min-width: 640px) {
+  body {
+    background-position: center;
+  }
+  .bg-site-gradient {
+    background: rgba(6, 10, 20, 0.58);
+  }
 }
 
 /* Glassmorphism utilities for dark background */

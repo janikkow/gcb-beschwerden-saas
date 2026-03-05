@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OUTAG3 — Logo Entwurf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-100: #edffd6;
+      --brand-300: #a8ff60;
+      --brand-400: #ccff00;
+      --brand-500: #00e5ff;
+      --brand-600: #d400ff;
+      --brand-700: #5b00d4;
+      --ink-900:   #0f1a2b;
+      --ink-700:   #2d3b51;
+      --sand-50:   #f9f7f3;
+      --font-display: 'Share Tech Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--ink-900);
+      font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Page header ─────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brand-400);
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 0.8125rem;
+      color: #71717a;
+    }
+
+    /* ── Grid ────────────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── Card ────────────────────────────────────────── */
+    .card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      backdrop-filter: blur(24px);
+      border-radius: 18px;
+      padding: 36px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .card-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--brand-400);
+    }
+    .canvas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 160px;
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .card-note {
+      font-size: 0.75rem;
+      color: #71717a;
+      line-height: 1.6;
+    }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V1  Wordmark — dunkles BG (primär)               */
+    /* ────────────────────────────────────────────────── */
+    .v1-canvas { background: var(--ink-900); }
+    .v1-wordmark {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+      user-select: none;
+    }
+    .v1-wordmark .accent { color: var(--brand-400); }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V2  Wordmark + Subline                            */
+    /* ────────────────────────────────────────────────── */
+    .v2-canvas { background: var(--ink-900); flex-direction: column; gap: 10px; }
+    .v2-wordmark {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .v2-wordmark .accent { color: var(--brand-400); }
+    .v2-sub {
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brand-500);
+    }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V3  Icon + Wordmark (horizontal)                  */
+    /* ────────────────────────────────────────────────── */
+    .v3-canvas { background: var(--ink-900); gap: 18px; }
+    .v3-icon {
+      width: 52px; height: 52px;
+      background: var(--brand-400);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .v3-icon svg { width: 28px; height: 28px; }
+    .v3-wordmark {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .v3-wordmark .accent { color: var(--brand-400); }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V4  Glow / Neon Effekt                            */
+    /* ────────────────────────────────────────────────── */
+    .v4-canvas { background: #06080f; }
+    .v4-wordmark {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-shadow:
+        0 0 10px rgba(204,255,0,0.7),
+        0 0 30px rgba(204,255,0,0.4),
+        0 0 60px rgba(204,255,0,0.15);
+    }
+    .v4-wordmark .accent {
+      color: var(--brand-400);
+      text-shadow:
+        0 0 12px rgba(204,255,0,1),
+        0 0 40px rgba(204,255,0,0.6),
+        0 0 80px rgba(204,255,0,0.2);
+    }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V5  Gradient Wordmark (Retro)                     */
+    /* ────────────────────────────────────────────────── */
+    .v5-canvas { background: var(--ink-900); }
+    .v5-wordmark {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #ccff00 0%, #00e5ff 55%, #d400ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V6  Icon-only (App-Icon / Favicon)                */
+    /* ────────────────────────────────────────────────── */
+    .v6-canvas { background: var(--ink-900); gap: 28px; }
+    .icon-variants { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .app-icon {
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 20%;
+      flex-shrink: 0;
+    }
+    .app-icon svg { display: block; }
+    .icon-lg { width: 80px; height: 80px; background: var(--brand-400); }
+    .icon-md { width: 56px; height: 56px; background: var(--brand-400); }
+    .icon-sm { width: 32px; height: 32px; background: var(--brand-400); border-radius: 6px; }
+    .icon-dark { background: var(--ink-700); border: 1px solid rgba(255,255,255,0.15); }
+    .icon-dark svg path { fill: var(--brand-400); }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V7  Helles BG (für Dokumente, Print)              */
+    /* ────────────────────────────────────────────────── */
+    .v7-canvas { background: var(--sand-50); }
+    .v7-wordmark {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      letter-spacing: -0.02em;
+      color: var(--ink-900);
+    }
+    .v7-wordmark .accent { color: #5b00d4; }
+
+    /* ────────────────────────────────────────────────── */
+    /*  V8  Navbar Größe (real-world preview)             */
+    /* ────────────────────────────────────────────────── */
+    .v8-canvas { background: rgba(10,15,28,0.92); border: 1px solid rgba(255,255,255,0.08); flex-direction: column; align-items: flex-start; gap: 0; padding: 0; overflow: hidden; min-height: auto; }
+    .v8-nav { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
+    .v8-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+      color: #fff;
+    }
+    .v8-logo .accent { color: var(--brand-400); }
+    .v8-links { display: flex; gap: 20px; }
+    .v8-link { font-size: 0.8125rem; color: #a1a1aa; letter-spacing: 0.025em; }
+    .v8-cta {
+      font-size: 0.8125rem; font-weight: 600;
+      background: var(--brand-400); color: var(--ink-900);
+      border-radius: 999px; padding: 6px 16px;
+      font-family: var(--font-display);
+    }
+
+    /* ────────────────────────────────────────────────── */
+    /*  Color Swatches                                    */
+    /* ────────────────────────────────────────────────── */
+    .swatches-card { grid-column: 1 / -1; }
+    .swatches { display: flex; flex-wrap: wrap; gap: 12px; }
+    .swatch {
+      display: flex; flex-direction: column; gap: 8px; align-items: center;
+    }
+    .swatch-dot {
+      width: 48px; height: 48px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .swatch-label { font-size: 0.625rem; letter-spacing: 0.06em; color: #71717a; text-align: center; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>OUTAG3 — Logo Entwurf</h1>
+    <p>Alle Varianten basieren auf der brandstrategy.md · Share Tech Mono · #ccff00 Lime</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- V1: Wordmark primär -->
+    <div class="card">
+      <span class="card-label">V1 — Wordmark (Dark, primär)</span>
+      <div class="canvas v1-canvas">
+        <div class="v1-wordmark">OUTAG<span class="accent">3</span></div>
+      </div>
+      <p class="card-note">Standard-Wordmark. Share Tech Mono, weiß auf Ink-900. Die "3" immer in Lime #ccff00. Für Navbar, Dokumente, Dark-UI.</p>
+    </div>
+
+    <!-- V2: Wordmark + Tagline -->
+    <div class="card">
+      <span class="card-label">V2 — Wordmark + Subline</span>
+      <div class="canvas v2-canvas">
+        <div class="v2-wordmark">OUTAG<span class="accent">3</span></div>
+        <div class="v2-sub">Incident Management</div>
+      </div>
+      <p class="card-note">Erweiterte Variante mit Subline in Cyan #00e5ff. Für Pitchdecks, Landing Hero, Onboarding-Screens.</p>
+    </div>
+
+    <!-- V3: Icon + Wordmark -->
+    <div class="card">
+      <span class="card-label">V3 — Icon + Wordmark (horizontal)</span>
+      <div class="canvas v3-canvas">
+        <div class="v3-icon">
+          <!-- Pixel-Blitz SVG -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L6 16h8l-2 10 12-14h-8l2-10z" fill="#0f1a2b"/>
+          </svg>
+        </div>
+        <div class="v3-wordmark">OUTAG<span class="accent">3</span></div>
+      </div>
+      <p class="card-note">App-Icon (Lime-Quadrat + Pixel-Blitz in Ink-900) links vom Wordmark. Gleiche Ikonografie wie das bestehende Favicon.</p>
+    </div>
+
+    <!-- V4: Neon Glow -->
+    <div class="card">
+      <span class="card-label">V4 — Neon / Glow Effekt</span>
+      <div class="canvas v4-canvas">
+        <div class="v4-wordmark">OUTAG<span class="accent">3</span></div>
+      </div>
+      <p class="card-note">Intensiver Glow in Lime. Für Hero-Sections, Events, Social-Media-Grafiken wo maximale Aufmerksamkeit gefragt ist.</p>
+    </div>
+
+    <!-- V5: Gradient (Retro) -->
+    <div class="card">
+      <span class="card-label">V5 — Retro-Gradient</span>
+      <div class="canvas v5-canvas">
+        <div class="v5-wordmark">OUTAG3</div>
+      </div>
+      <p class="card-note">Gradient: Lime → Cyan → Magenta. Entspricht dem retro-border-Gradient der Website. Sparsam einsetzen — nur für spezielle Akzente.</p>
+    </div>
+
+    <!-- V6: App-Icon Varianten -->
+    <div class="card">
+      <span class="card-label">V6 — App-Icon / Favicon Varianten</span>
+      <div class="canvas v6-canvas">
+        <div class="icon-variants">
+          <!-- Groß, Lime BG -->
+          <div class="app-icon icon-lg">
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none">
+              <path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#0f1a2b"/>
+            </svg>
+          </div>
+          <!-- Mittel, Lime BG -->
+          <div class="app-icon icon-md">
+            <svg viewBox="0 0 48 48" width="26" height="26" fill="none">
+              <path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#0f1a2b"/>
+            </svg>
+          </div>
+          <!-- Klein (Favicon), Lime BG -->
+          <div class="app-icon icon-sm">
+            <svg viewBox="0 0 48 48" width="18" height="18" fill="none">
+              <path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#0f1a2b"/>
+            </svg>
+          </div>
+          <!-- Dark BG Variante -->
+          <div class="app-icon icon-lg icon-dark">
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none">
+              <path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#ccff00"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <p class="card-note">Von links: 80px, 56px, 32px (Favicon) — alle Lime BG + dunkler Blitz. Ganz rechts: Dark-BG-Variante (Lime Blitz auf Ink-700).</p>
+    </div>
+
+    <!-- V7: Hell / Print -->
+    <div class="card">
+      <span class="card-label">V7 — Hell (Print / Dokumente)</span>
+      <div class="canvas v7-canvas">
+        <div class="v7-wordmark">OUTAG<span class="accent">3</span></div>
+      </div>
+      <p class="card-note">Ink-900 auf Sand-50 Hintergrund. Die "3" in Violet #5b00d4 (Lime funktioniert auf hellem BG nicht). Für Rechnungen, PDFs, Briefbogen.</p>
+    </div>
+
+    <!-- V8: Navbar real-world -->
+    <div class="card">
+      <span class="card-label">V8 — Navbar (Real-World Preview)</span>
+      <div class="canvas v8-canvas">
+        <nav class="v8-nav">
+          <span class="v8-logo">OUTAG<span class="accent">3</span></span>
+          <div class="v8-links">
+            <span class="v8-link">Preise</span>
+            <span class="v8-link">FAQ</span>
+            <span class="v8-link">Blog</span>
+          </div>
+          <span class="v8-cta">Demo anfragen</span>
+        </nav>
+      </div>
+      <p class="card-note">Logo in tatsächlicher Navbar-Größe (1.25rem). Zeigt wie das Wordmark im Kontext der Navigation aussieht.</p>
+    </div>
+
+    <!-- Farbpalette -->
+    <div class="card swatches-card">
+      <span class="card-label">Farbpalette — Brand Tokens</span>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-dot" style="background:#ccff00;"></div><div class="swatch-label">brand-400<br>#ccff00<br>Lime / CTA</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#a8ff60;"></div><div class="swatch-label">brand-300<br>#a8ff60<br>Hellgrün</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#edffd6;"></div><div class="swatch-label">brand-100<br>#edffd6<br>Lime Tint</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#00e5ff;"></div><div class="swatch-label">brand-500<br>#00e5ff<br>Cyan</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#d400ff;"></div><div class="swatch-label">brand-600<br>#d400ff<br>Magenta</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#5b00d4;"></div><div class="swatch-label">brand-700<br>#5b00d4<br>Violet</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#0f1a2b;"></div><div class="swatch-label">ink-900<br>#0f1a2b<br>Dark Navy</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#2d3b51;"></div><div class="swatch-label">ink-700<br>#2d3b51<br>Navy Mid</div></div>
+        <div class="swatch"><div class="swatch-dot" style="background:#f9f7f3; border-color: rgba(0,0,0,0.1);"></div><div class="swatch-label">sand-50<br>#f9f7f3<br>Off-White</div></div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="retro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ccff00" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#00e5ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#d400ff" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="border-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ccff00"/>
+      <stop offset="50%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#d400ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0f1a2b"/>
+  <rect width="1200" height="630" fill="url(#retro)"/>
+
+  <!-- Scanlines overlay -->
+  <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+    <rect width="4" height="2" fill="transparent"/>
+    <rect y="2" width="4" height="2" fill="rgba(0,0,0,0.04)"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#scanlines)"/>
+
+  <!-- Top gradient border -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#border-grad)"/>
+
+  <!-- Logo -->
+  <text x="80" y="110" font-family="'Courier New', monospace" font-size="64" font-weight="bold" fill="#ffffff" letter-spacing="4">OUTAG</text>
+  <text x="355" y="110" font-family="'Courier New', monospace" font-size="64" font-weight="bold" fill="#ccff00" letter-spacing="4">3</text>
+
+  <!-- Tagline -->
+  <text x="80" y="150" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#a1a1aa" letter-spacing="1">Voice-basiertes Incident Management für autonome Standorte</text>
+
+  <!-- Divider -->
+  <rect x="80" y="175" width="120" height="2" fill="#ccff00" opacity="0.6"/>
+  <rect x="208" y="175" width="8" height="2" fill="transparent"/>
+  <rect x="224" y="175" width="60" height="2" fill="#00e5ff" opacity="0.4"/>
+  <rect x="292" y="175" width="8" height="2" fill="transparent"/>
+  <rect x="308" y="175" width="40" height="2" fill="#d400ff" opacity="0.3"/>
+
+  <!-- Color Palette Section -->
+  <text x="80" y="225" font-family="'Courier New', monospace" font-size="11" fill="#ccff00" letter-spacing="3" text-transform="uppercase">FARBSYSTEM</text>
+
+  <!-- Color swatches -->
+  <rect x="80" y="245" width="80" height="50" rx="8" fill="#ccff00"/>
+  <text x="120" y="316" font-family="'Courier New', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">Lime</text>
+  <text x="120" y="330" font-family="'Courier New', monospace" font-size="9" fill="#71717a" text-anchor="middle">#ccff00</text>
+
+  <rect x="180" y="245" width="80" height="50" rx="8" fill="#a8ff60"/>
+  <text x="220" y="316" font-family="'Courier New', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">Grün</text>
+  <text x="220" y="330" font-family="'Courier New', monospace" font-size="9" fill="#71717a" text-anchor="middle">#a8ff60</text>
+
+  <rect x="280" y="245" width="80" height="50" rx="8" fill="#00e5ff"/>
+  <text x="320" y="316" font-family="'Courier New', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">Cyan</text>
+  <text x="320" y="330" font-family="'Courier New', monospace" font-size="9" fill="#71717a" text-anchor="middle">#00e5ff</text>
+
+  <rect x="380" y="245" width="80" height="50" rx="8" fill="#d400ff"/>
+  <text x="420" y="316" font-family="'Courier New', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">Magenta</text>
+  <text x="420" y="330" font-family="'Courier New', monospace" font-size="9" fill="#71717a" text-anchor="middle">#d400ff</text>
+
+  <rect x="480" y="245" width="80" height="50" rx="8" fill="#5b00d4"/>
+  <text x="520" y="316" font-family="'Courier New', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">Violet</text>
+  <text x="520" y="330" font-family="'Courier New', monospace" font-size="9" fill="#71717a" text-anchor="middle">#5b00d4</text>
+
+  <rect x="580" y="245" width="80" height="50" rx="8" fill="#0f1a2b" stroke="#3f3f46" stroke-width="1"/>
+  <text x="620" y="316" font-family="'Courier New', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">Navy</text>
+  <text x="620" y="330" font-family="'Courier New', monospace" font-size="9" fill="#71717a" text-anchor="middle">#0f1a2b</text>
+
+  <!-- Right side info panel -->
+  <rect x="740" y="80" width="390" height="260" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+  <text x="775" y="118" font-family="'Courier New', monospace" font-size="11" fill="#ccff00" letter-spacing="3">QUICK FACTS</text>
+
+  <text x="775" y="152" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#71717a">Typ</text>
+  <text x="775" y="170" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#e4e4e7">B2B SaaS — Incident Management</text>
+
+  <text x="775" y="200" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#71717a">Zielgruppe</text>
+  <text x="775" y="218" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#e4e4e7">Automatenladen · Parkhaus · Carwash</text>
+
+  <text x="775" y="248" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#71717a">Display Font</text>
+  <text x="775" y="266" font-family="'Courier New', monospace" font-size="14" fill="#e4e4e7">Share Tech Mono</text>
+
+  <text x="775" y="296" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#71717a">Kontakt</text>
+  <text x="775" y="314" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#e4e4e7">info@gcbavaria.com</text>
+
+  <!-- Bottom section — Core Promise -->
+  <rect x="80" y="370" width="1040" height="130" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+  <text x="115" y="408" font-family="'Courier New', monospace" font-size="11" fill="#00e5ff" letter-spacing="3">KERNVERSPRECHEN</text>
+
+  <text x="115" y="442" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#ffffff" font-weight="600">Kunden melden Probleme per Anruf.</text>
+  <text x="115" y="470" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#ffffff" font-weight="600">Du bekommst sofort eine klare Aufgabe mit Priorität.</text>
+
+  <!-- Bottom bar -->
+  <text x="80" y="560" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#52525b">Dutz Jonas, Kowalsky Janik, Then Philipp GbR</text>
+
+  <text x="80" y="580" font-family="'Courier New', monospace" font-size="10" fill="#3f3f46" letter-spacing="1">PILOT 2026 · WAITLIST OFFEN · MADE IN BAVARIA</text>
+
+  <!-- Bottom gradient border -->
+  <rect x="0" y="627" width="1200" height="3" fill="url(#border-grad)"/>
+</svg>

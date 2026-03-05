@@ -12,9 +12,9 @@ const inputClass =
 const labelClass = "block text-sm font-medium text-zinc-200";
 
 const planOptions = [
-  { value: "essentials", label: "Essentials – 89€" },
-  { value: "professional", label: "Professional – 249€" },
-  { value: "enterprise", label: "Enterprise – ab 799€" },
+  { value: "starter", label: "Starter - 89 EUR / Monat" },
+  { value: "professional", label: "Professional - 199 EUR / Monat" },
+  { value: "enterprise", label: "Enterprise - auf Anfrage" },
   { value: "", label: "Noch nicht sicher" },
 ];
 

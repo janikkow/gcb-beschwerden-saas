@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OUTAG3 — Brand Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ────────────────────────────────────────────── */
+    :root {
+      --brand-100: #edffd6;
+      --brand-300: #a8ff60;
+      --brand-400: #ccff00;
+      --brand-500: #00e5ff;
+      --brand-600: #d400ff;
+      --brand-700: #5b00d4;
+      --ink-900:   #0f1a2b;
+      --ink-700:   #2d3b51;
+      --sand-50:   #f9f7f3;
+      --mono: 'Share Tech Mono', monospace;
+      --sans: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
+      --serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--ink-900);
+      font-family: var(--sans);
+      color: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
+    }
+
+    /* ── Cover ──────────────────────────────────────────────── */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 400px at 80% 50%, rgba(204,255,0,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 300px at 10% 80%, rgba(0,229,255,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cover-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brand-400);
+      margin-bottom: 32px;
+    }
+    .cover-logo {
+      font-family: var(--mono);
+      font-size: clamp(4rem, 12vw, 8rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+    .cover-logo .accent { color: var(--brand-400); }
+    .cover-divider {
+      height: 2px;
+      width: 100%;
+      background: repeating-linear-gradient(90deg, var(--brand-400) 0px, var(--brand-400) 4px, transparent 4px, transparent 8px);
+      margin: 28px 0;
+      max-width: 480px;
+    }
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 600px;
+    }
+    .cover-meta-item {}
+    .cover-meta-label {
+      font-size: 0.625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--brand-400);
+      margin-bottom: 4px;
+    }
+    .cover-meta-value {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      color: #a1a1aa;
+    }
+
+    /* ── Section ────────────────────────────────────────────── */
+    .section {
+      padding: 80px 0 0;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      color: var(--brand-400);
+      letter-spacing: 0.12em;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #fff;
+    }
+
+    /* ── Logo Showcase ──────────────────────────────────────── */
+    .logo-showcase {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 64px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-showcase::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 500px 200px at 60% 50%, rgba(204,255,0,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .wordmark {
+      font-family: var(--mono);
+      font-size: 4.5rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+      user-select: none;
+    }
+    .wordmark .accent { color: var(--brand-400); }
+    .logo-caption {
+      font-size: 0.6875rem;
+      color: #52525b;
+      letter-spacing: 0.08em;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .logo-cell {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 40px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-cell.bg-dark { background: #06080f; }
+    .logo-cell.bg-mid  { background: var(--ink-700); }
+    .logo-cell.bg-light { background: var(--sand-50); }
+    .wordmark-light { font-family: var(--mono); font-size: 3rem; letter-spacing: -0.02em; color: var(--ink-900); }
+    .wordmark-light .accent { color: var(--brand-700); }
+    .wordmark-sm { font-family: var(--mono); font-size: 1.75rem; letter-spacing: -0.01em; color: #fff; }
+    .wordmark-sm .accent { color: var(--brand-400); }
+    .wordmark-glow {
+      font-family: var(--mono);
+      font-size: 3rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(204,255,0,0.6), 0 0 60px rgba(204,255,0,0.2);
+    }
+    .wordmark-glow .accent {
+      color: var(--brand-400);
+      text-shadow: 0 0 16px rgba(204,255,0,1), 0 0 50px rgba(204,255,0,0.5);
+    }
+    .logo-cell-label {
+      font-size: 0.5625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3f3f46;
+      margin-top: 6px;
+      text-align: center;
+    }
+    .logo-cell-wrap { display: flex; flex-direction: column; align-items: center; }
+
+    /* Spacing rule between logo grid rows */
+    .logo-rule {
+      font-size: 0.625rem;
+      color: #3f3f46;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 20px 0 8px;
+    }
+
+    /* ── Clearzone ──────────────────────────────────────────── */
+    .clearzone-wrap {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .clearzone-inner {
+      position: relative;
+      display: inline-block;
+    }
+    .clearzone-mark {
+      font-family: var(--mono);
+      font-size: 3rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .clearzone-mark .accent { color: var(--brand-400); }
+    /* dashed box = clear zone */
+    .clearzone-box {
+      position: absolute;
+      inset: -18px;
+      border: 1px dashed rgba(204,255,0,0.35);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .clearzone-box::before,
+    .clearzone-box::after {
+      content: 'x';
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      color: rgba(204,255,0,0.5);
+      position: absolute;
+    }
+    .clearzone-box::before { top: -8px; left: -6px; }
+    .clearzone-box::after  { bottom: -8px; right: -6px; }
+
+    /* ── Color System ───────────────────────────────────────── */
+    .color-group { margin-bottom: 36px; }
+    .color-group-label {
+      font-size: 0.625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #52525b;
+      margin-bottom: 14px;
+    }
+    .swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .swatch { display: flex; flex-direction: column; gap: 8px; }
+    .swatch-block {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .swatch-name {
+      font-family: var(--mono);
+      font-size: 0.625rem;
+      color: #a1a1aa;
+    }
+    .swatch-hex {
+      font-family: var(--mono);
+      font-size: 0.5625rem;
+      color: #52525b;
+    }
+
+    /* ── Typography ─────────────────────────────────────────── */
+    .type-row {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .type-meta { }
+    .type-meta-label {
+      font-size: 0.625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #52525b;
+    }
+    .type-meta-spec {
+      font-family: var(--mono);
+      font-size: 0.5625rem;
+      color: #3f3f46;
+      margin-top: 4px;
+      line-height: 1.7;
+    }
+
+    /* ── Spacing ────────────────────────────────────────────── */
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .spacing-bar { background: var(--brand-400); height: 6px; border-radius: 2px; flex-shrink: 0; }
+    .spacing-label { font-family: var(--mono); font-size: 0.6875rem; color: #a1a1aa; width: 100px; flex-shrink: 0; }
+    .spacing-value { font-size: 0.625rem; color: #52525b; }
+
+    /* ── Components ─────────────────────────────────────────── */
+    .comp-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      align-items: center;
+    }
+    .comp-row-label {
+      font-size: 0.625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #52525b;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center;
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid rgba(163,209,85,0.6);
+      background: #2f84ff;
+      color: #fff;
+      padding: 10px 24px;
+      cursor: default;
+      box-shadow: 0 0 32px rgba(47,132,255,0.45);
+    }
+    .btn-ghost {
+      display: inline-flex; align-items: center;
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: rgba(255,255,255,0.10);
+      color: #e4e4e7;
+      padding: 10px 20px;
+      cursor: default;
+    }
+    .btn-cta-hero {
+      display: inline-flex; align-items: center;
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid rgba(168,255,96,0.7);
+      background: var(--brand-400);
+      color: var(--ink-900);
+      padding: 10px 28px;
+      cursor: default;
+      box-shadow: 0 10px 30px rgba(98,164,255,0.4);
+    }
+
+    /* Glass card */
+    .glass-demo {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      backdrop-filter: blur(24px);
+      border-radius: 18px;
+      padding: 20px 22px;
+      max-width: 260px;
+    }
+    .glass-demo-title { font-size: 0.875rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .glass-demo-body { font-size: 0.75rem; color: #a1a1aa; line-height: 1.6; }
+
+    /* Badge/chip */
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.10);
+      padding: 4px 12px;
+      font-size: 0.6875rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: #d4d4d8;
+    }
+    .chip-live .dot-outer {
+      position: relative; display: inline-flex; width: 10px; height: 10px;
+    }
+    .chip-live .dot-ping {
+      position: absolute; inset: 0;
+      border-radius: 50%; background: rgba(52,211,153,0.8);
+      animation: ping 1.2s ease-in-out infinite;
+    }
+    .chip-live .dot-solid {
+      position: relative; width: 10px; height: 10px;
+      border-radius: 50%; background: #34d399;
+    }
+    @keyframes ping {
+      0% { transform: scale(1); opacity: 0.6; }
+      80% { transform: scale(2); opacity: 0; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    .chip-early {
+      color: #bbf7d0;
+      border-color: rgba(163,230,53,0.3);
+      background: rgba(163,230,53,0.08);
+    }
+
+    /* Status badges */
+    .status { display: inline-flex; align-items: center; gap: 6px; font-size: 0.6875rem; font-weight: 600; border-radius: 999px; padding: 3px 10px; }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .status-high   { background: rgba(251,113,133,0.15); color: #fda4af; border: 1px solid rgba(251,113,133,0.3); }
+    .status-high .status-dot { background: #f43f5e; }
+    .status-mid    { background: rgba(251,191,36,0.12); color: #fcd34d; border: 1px solid rgba(251,191,36,0.3); }
+    .status-mid .status-dot { background: #f59e0b; }
+    .status-low    { background: rgba(52,211,153,0.10); color: #6ee7b7; border: 1px solid rgba(52,211,153,0.25); }
+    .status-low .status-dot { background: #10b981; }
+    .status-review { background: rgba(139,92,246,0.12); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+    .status-review .status-dot { background: #8b5cf6; }
+
+    /* pixel divider */
+    .pixel-div {
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--brand-400) 0px, var(--brand-400) 4px, transparent 4px, transparent 8px);
+      margin: 4px 0 12px;
+    }
+
+    /* ── Voice waveform ─────────────────────────────────────── */
+    .waveform {
+      display: flex; align-items: center; gap: 3px; height: 28px;
+    }
+    .wave-bar {
+      width: 3px; border-radius: 2px; background: var(--brand-400);
+      transform-origin: bottom;
+      animation: wave-bar 1s ease-in-out infinite;
+    }
+    @keyframes wave-bar {
+      0%, 100% { transform: scaleY(0.2); }
+      50%       { transform: scaleY(1); }
+    }
+
+    /* ── Eyebrow pattern ────────────────────────────────────── */
+    .eyebrow {
+      font-size: 0.6875rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--brand-400);
+    }
+
+    /* ── Do / Don't ─────────────────────────────────────────── */
+    .do-dont {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .do-cell, .dont-cell {
+      border-radius: 12px; padding: 20px 22px;
+    }
+    .do-cell { background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.2); }
+    .dont-cell { background: rgba(244,63,94,0.06); border: 1px solid rgba(244,63,94,0.2); }
+    .do-label { font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #34d399; margin-bottom: 10px; }
+    .dont-label { font-size: 0.625rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #fb7185; margin-bottom: 10px; }
+    .do-cell ul, .dont-cell ul { list-style: none; padding: 0; }
+    .do-cell li, .dont-cell li { font-size: 0.75rem; color: #a1a1aa; padding: 3px 0; line-height: 1.6; }
+    .do-cell li::before { content: '→ '; color: #34d399; }
+    .dont-cell li::before { content: '✕ '; color: #fb7185; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .doc-footer {
+      margin-top: 100px;
+      padding: 32px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .doc-footer-logo { font-family: var(--mono); font-size: 1rem; color: #fff; }
+    .doc-footer-logo .accent { color: var(--brand-400); }
+    .doc-footer-meta { font-family: var(--mono); font-size: 0.5625rem; color: #3f3f46; letter-spacing: 0.08em; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .logo-grid { grid-template-columns: 1fr; }
+      .type-row { grid-template-columns: 1fr; }
+      .do-dont { grid-template-columns: 1fr; }
+      .wordmark { font-size: 3rem; }
+      .cover-logo { font-size: 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ── Cover ─────────────────────────────────────────────── -->
+  <div class="cover">
+    <p class="cover-eyebrow">Brand Strategy Document · 2026</p>
+    <div class="cover-logo">OUTAG<span class="accent">3</span></div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Produkt</div>
+        <div class="cover-meta-value">Voice Incident Management</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Zielgruppe</div>
+        <div class="cover-meta-value">Automaten · Parkhäuser · Carwash</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Display Font</div>
+        <div class="cover-meta-value">Share Tech Mono</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Primary Color</div>
+        <div class="cover-meta-value" style="color: var(--brand-400)">#ccff00 — Lime</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 01 Logo ────────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Logo & Wordmark</span>
+    </div>
+
+    <!-- Primary -->
+    <div class="logo-showcase">
+      <div class="wordmark">OUTAG<span class="accent">3</span></div>
+    </div>
+    <p class="logo-caption">Primäre Variante — Share Tech Mono · Weiß auf Ink-900 · Akzent #ccff00</p>
+
+    <!-- Varianten Grid -->
+    <div class="logo-grid">
+      <div class="logo-cell bg-dark">
+        <div class="logo-cell-wrap">
+          <div class="wordmark-glow">OUTAG<span class="accent">3</span></div>
+          <div class="logo-cell-label">Glow / Hero</div>
+        </div>
+      </div>
+      <div class="logo-cell bg-light">
+        <div class="logo-cell-wrap">
+          <div class="wordmark-light">OUTAG<span class="accent">3</span></div>
+          <div class="logo-cell-label" style="color:#9ca3af">Hell / Print</div>
+        </div>
+      </div>
+      <div class="logo-cell bg-mid" style="flex-direction:column; gap:8px;">
+        <div class="logo-cell-wrap">
+          <div class="wordmark-sm">OUTAG<span class="accent">3</span></div>
+          <div class="logo-cell-label">Navbar (1.25rem)</div>
+        </div>
+      </div>
+      <div class="logo-cell" style="background:rgba(255,255,255,0.04); flex-direction:column; gap:16px; align-items:center; justify-content:center;">
+        <!-- Icon only variants -->
+        <div style="display:flex; gap:14px; align-items:center;">
+          <div style="width:56px;height:56px;background:var(--brand-400);border-radius:11px;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 48 48" width="30" height="30" fill="none"><path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#0f1a2b"/></svg>
+          </div>
+          <div style="width:40px;height:40px;background:var(--brand-400);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 48 48" width="22" height="22" fill="none"><path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#0f1a2b"/></svg>
+          </div>
+          <div style="width:28px;height:28px;background:var(--brand-400);border-radius:6px;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 48 48" width="16" height="16" fill="none"><path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#0f1a2b"/></svg>
+          </div>
+          <div style="width:28px;height:28px;background:var(--ink-700);border:1px solid rgba(255,255,255,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 48 48" width="16" height="16" fill="none"><path d="M27 4L9 27h12l-3 17L39 21H27l3-17z" fill="#ccff00"/></svg>
+          </div>
+        </div>
+        <div class="logo-cell-label">App-Icon · 56 · 40 · 32px · Dark</div>
+      </div>
+    </div>
+
+    <!-- Clear zone -->
+    <p class="logo-rule">Schutzzone (Clear Zone)</p>
+    <div class="clearzone-wrap">
+      <div class="clearzone-inner">
+        <div class="clearzone-mark">OUTAG<span class="accent">3</span></div>
+        <div class="clearzone-box"></div>
+      </div>
+    </div>
+    <p class="logo-caption">Mindest-Abstand = Höhe des Buchstabens "O" auf allen Seiten</p>
+
+    <!-- Do / Don't -->
+    <div class="do-dont" style="margin-top:24px;">
+      <div class="do-cell">
+        <div class="do-label">Korrekt</div>
+        <ul>
+          <li>Die "3" immer in #ccff00</li>
+          <li>Auf dunklem Hintergrund (Standard)</li>
+          <li>Share Tech Mono ausschließlich</li>
+          <li>Proportionen nie verzerren</li>
+        </ul>
+      </div>
+      <div class="dont-cell">
+        <div class="dont-label">Nicht erlaubt</div>
+        <ul>
+          <li>Gradient auf der gesamten Wortmarke</li>
+          <li>Andere Farbe für die "3"</li>
+          <li>Andere Schriftfamilie</li>
+          <li>Schatten direkt am Wordmark (nur Glow bei V4)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 02 Farben ──────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Farbsystem</span>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-label">Brand Palette</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#ccff00;"></div>
+          <div class="swatch-name">Lime</div>
+          <div class="swatch-hex">--brand-400<br>#ccff00</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#a8ff60;"></div>
+          <div class="swatch-name">Hellgrün</div>
+          <div class="swatch-hex">--brand-300<br>#a8ff60</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#edffd6; border-color:rgba(0,0,0,0.08)"></div>
+          <div class="swatch-name">Lime Tint</div>
+          <div class="swatch-hex">--brand-100<br>#edffd6</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#00e5ff;"></div>
+          <div class="swatch-name">Cyan</div>
+          <div class="swatch-hex">--brand-500<br>#00e5ff</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#d400ff;"></div>
+          <div class="swatch-name">Magenta</div>
+          <div class="swatch-hex">--brand-600<br>#d400ff</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#5b00d4;"></div>
+          <div class="swatch-name">Violet</div>
+          <div class="swatch-hex">--brand-700<br>#5b00d4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-label">Neutral / Hintergründe</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0f1a2b;"></div>
+          <div class="swatch-name">Dark Navy</div>
+          <div class="swatch-hex">--ink-900<br>#0f1a2b</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#2d3b51;"></div>
+          <div class="swatch-name">Navy Mid</div>
+          <div class="swatch-hex">--ink-700<br>#2d3b51</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#f9f7f3; border-color:rgba(0,0,0,0.08)"></div>
+          <div class="swatch-name">Off-White</div>
+          <div class="swatch-hex">--sand-50<br>#f9f7f3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-label">Semantische Status-Farben</div>
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <span class="status status-high"><span class="status-dot"></span>Kritisch / Hoch</span>
+        <span class="status status-mid"><span class="status-dot"></span>Warnung / Mittel</span>
+        <span class="status status-low"><span class="status-dot"></span>OK / Niedrig</span>
+        <span class="status status-review"><span class="status-dot"></span>Review / Offen</span>
+      </div>
+    </div>
+
+    <!-- Retro Gradient -->
+    <div class="color-group">
+      <div class="color-group-label">Retro-Gradient (sparsam einsetzen)</div>
+      <div style="height:10px; border-radius:999px; background:linear-gradient(90deg,#ccff00,#00e5ff,#d400ff); max-width:360px; margin-bottom:6px;"></div>
+      <div style="font-family:var(--mono); font-size:0.5625rem; color:#52525b;">#ccff00 → #00e5ff → #d400ff · retro-border · pixel-divider</div>
+    </div>
+
+    <!-- Glassmorphismus -->
+    <div class="color-group">
+      <div class="color-group-label">Glassmorphismus-Tiers</div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(16px);border-radius:10px;padding:14px 18px;">
+          <div style="font-family:var(--mono);font-size:0.5625rem;color:var(--brand-400)">.glass</div>
+          <div style="font-size:0.625rem;color:#71717a;margin-top:4px">bg 5% · blur 16px</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);backdrop-filter:blur(24px);border-radius:10px;padding:14px 18px;">
+          <div style="font-family:var(--mono);font-size:0.5625rem;color:var(--brand-400)">.glass-card</div>
+          <div style="font-size:0.625rem;color:#71717a;margin-top:4px">bg 7% · blur 24px</div>
+        </div>
+        <div style="background:rgba(204,255,0,0.10);border:1px solid rgba(204,255,0,0.25);backdrop-filter:blur(24px);border-radius:10px;padding:14px 18px;">
+          <div style="font-family:var(--mono);font-size:0.5625rem;color:var(--brand-400)">.glass-highlight</div>
+          <div style="font-size:0.625rem;color:#71717a;margin-top:4px">lime bg 10% · blur 24px</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 03 Typografie ──────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Typografie</span>
+    </div>
+
+    <!-- Font families -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin-bottom:40px;">
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 22px;">
+        <div style="font-size:0.5625rem;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Display · Headings</div>
+        <div style="font-family:var(--mono);font-size:1.75rem;color:#fff;margin-bottom:6px;">Share Tech Mono</div>
+        <div style="font-family:var(--mono);font-size:0.625rem;color:#52525b;">--font-display · Google Fonts<br>Einzige externe Schrift</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 22px;">
+        <div style="font-size:0.5625rem;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Body · UI · Navigation</div>
+        <div style="font-family:var(--sans);font-size:1.75rem;color:#fff;margin-bottom:6px;">Avenir Next</div>
+        <div style="font-family:var(--mono);font-size:0.625rem;color:#52525b;">Avenir Next → Segoe UI<br>→ Helvetica Neue · System</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 22px;">
+        <div style="font-size:0.5625rem;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Blog · Longform</div>
+        <div style="font-family:var(--serif);font-size:1.75rem;color:#fff;margin-bottom:6px;">Iowan Old Style</div>
+        <div style="font-family:var(--mono);font-size:0.625rem;color:#52525b;">→ Palatino Linotype<br>--font-serif · System-Serif</div>
+      </div>
+    </div>
+
+    <!-- Scale -->
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-label">Hero H1</div>
+        <div class="type-meta-spec">font-display · semibold<br>4xl → 5xl → 6xl<br>leading-[1.12]</div>
+      </div>
+      <div style="font-family:var(--mono);font-size:2.25rem;font-weight:600;line-height:1.12;color:#fff;">Beschwerden in klare Aufgaben.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-label">Page H1</div>
+        <div class="type-meta-spec">semibold · 3xl → 4xl<br>tracking-tight</div>
+      </div>
+      <div style="font-size:1.875rem;font-weight:600;letter-spacing:-0.025em;color:#fff;">Preise & Rentabilität</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-label">Section H2</div>
+        <div class="type-meta-spec">semibold · 3xl → 4xl<br>tracking-tight</div>
+      </div>
+      <div style="font-size:1.5rem;font-weight:600;letter-spacing:-0.025em;color:#fff;">So funktioniert es in 5 Schritten.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-label">Eyebrow Label</div>
+        <div class="type-meta-spec">xs · semibold · uppercase<br>tracking-[0.14em]<br>brand-400</div>
+      </div>
+      <div class="eyebrow">So funktioniert es</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-label">Body (groß)</div>
+        <div class="type-meta-spec">text-lg · normal<br>zinc-300 · leading-relaxed</div>
+      </div>
+      <div style="font-size:1.125rem;color:#d4d4d8;line-height:1.625;max-width:440px;">OUTAG3 erfasst Beschwerden, ordnet sie einer Kategorie zu und liefert deinem Team eine verwertbare Aufgabe — ohne Rückfragen.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-label">Body (standard)</div>
+        <div class="type-meta-spec">text-base · normal<br>zinc-400</div>
+      </div>
+      <div style="font-size:1rem;color:#a1a1aa;line-height:1.625;max-width:440px;">Meldung rein, KI priorisiert, dein Team arbeitet gezielt ab.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-label">Micro / Caption</div>
+        <div class="type-meta-spec">text-xs · semibold<br>zinc-400</div>
+      </div>
+      <div style="font-size:0.75rem;color:#71717a;">Sichere dir Sonderkonditionen als einer der ersten Partner.</div>
+    </div>
+    <div class="type-row" style="border-bottom:none;">
+      <div class="type-meta">
+        <div class="type-meta-label">Pixel-Divider</div>
+        <div class="type-meta-spec">brand-400 · dashed<br>4px on / 4px off</div>
+      </div>
+      <div style="width:240px;">
+        <div class="pixel-div"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 04 Komponenten ─────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Komponenten</span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="comp-row">
+      <div class="comp-row-label">Buttons</div>
+      <button class="btn-cta-hero">Interesse bekunden</button>
+      <button class="btn-primary">Demo anfragen</button>
+      <button class="btn-ghost">Jetzt anrufen</button>
+    </div>
+
+    <!-- Chips / Badges -->
+    <div class="comp-row">
+      <div class="comp-row-label">Chips & Badges</div>
+      <span class="chip chip-live">
+        <span class="dot-outer"><span class="dot-ping"></span><span class="dot-solid"></span></span>
+        Early Adopter Programm
+      </span>
+      <span class="chip chip-early">Early Adopter</span>
+      <span class="chip">KI sortiert automatisch</span>
+    </div>
+
+    <!-- Status Badges -->
+    <div class="comp-row">
+      <div class="comp-row-label">Status-Badges (Ticket Priorität)</div>
+      <span class="status status-high"><span class="status-dot"></span>Kritisch</span>
+      <span class="status status-mid"><span class="status-dot"></span>Mittel</span>
+      <span class="status status-low"><span class="status-dot"></span>Niedrig</span>
+      <span class="status status-review"><span class="status-dot"></span>Review</span>
+    </div>
+
+    <!-- Glass Card -->
+    <div class="comp-row" style="align-items:flex-start;">
+      <div class="comp-row-label">Glass-Card (.glass-card · rounded-2xl)</div>
+      <div class="glass-demo">
+        <div class="glass-demo-title">Ticket #0042</div>
+        <div class="glass-demo-body">Kartenzahlung funktioniert nicht. Standort: München-Ost. Priorität: Mittel.</div>
+      </div>
+    </div>
+
+    <!-- Waveform -->
+    <div class="comp-row">
+      <div class="comp-row-label">Voice Waveform (brand-400)</div>
+      <div class="waveform">
+        <div class="wave-bar" style="height:24px; animation-delay:0.0s;"></div>
+        <div class="wave-bar" style="height:20px; animation-delay:0.1s;"></div>
+        <div class="wave-bar" style="height:26px; animation-delay:0.2s;"></div>
+        <div class="wave-bar" style="height:14px; animation-delay:0.3s;"></div>
+        <div class="wave-bar" style="height:28px; animation-delay:0.4s;"></div>
+        <div class="wave-bar" style="height:18px; animation-delay:0.5s;"></div>
+        <div class="wave-bar" style="height:22px; animation-delay:0.6s;"></div>
+        <div class="wave-bar" style="height:12px; animation-delay:0.7s;"></div>
+        <div class="wave-bar" style="height:26px; animation-delay:0.8s;"></div>
+        <div class="wave-bar" style="height:20px; animation-delay:0.9s;"></div>
+        <div class="wave-bar" style="height:16px; animation-delay:1.0s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 05 Spacing & Layout ────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Spacing & Layout</span>
+    </div>
+
+    <div style="margin-bottom:32px;">
+      <div class="color-group-label" style="margin-bottom:16px;">Border-Radius Hierarchie</div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end;">
+        <div style="text-align:center;">
+          <div style="width:32px;height:32px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:999px;margin:0 auto 6px;"></div>
+          <div style="font-family:var(--mono);font-size:0.5rem;color:#52525b;">full<br>Buttons</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:44px;height:44px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:22px;margin:0 auto 6px;"></div>
+          <div style="font-family:var(--mono);font-size:0.5rem;color:#52525b;">3xl<br>Hero CTA</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:18px;margin:0 auto 6px;"></div>
+          <div style="font-family:var(--mono);font-size:0.5rem;color:#52525b;">2xl<br>Cards</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:44px;height:44px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:14px;margin:0 auto 6px;"></div>
+          <div style="font-family:var(--mono);font-size:0.5rem;color:#52525b;">xl<br>Aside</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:36px;height:36px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:10px;margin:0 auto 6px;"></div>
+          <div style="font-family:var(--mono);font-size:0.5rem;color:#52525b;">lg<br>Alert</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:28px;height:28px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:6px;margin:0 auto 6px;"></div>
+          <div style="font-family:var(--mono);font-size:0.5rem;color:#52525b;">md<br>Input</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="color-group-label" style="margin-bottom:12px;">Vertikal-Rhythmus (Sektionen)</div>
+      <div class="spacing-row"><span class="spacing-label">Section</span><div class="spacing-bar" style="width:128px;"></div><span class="spacing-value">py-16 sm:py-20 · 64–80px</span></div>
+      <div class="spacing-row"><span class="spacing-label">Section Hero</span><div class="spacing-bar" style="width:160px;"></div><span class="spacing-value">py-16 sm:py-24 · 64–96px</span></div>
+      <div class="spacing-row"><span class="spacing-label">Card padding</span><div class="spacing-bar" style="width:48px;"></div><span class="spacing-value">p-6 · 24px</span></div>
+      <div class="spacing-row"><span class="spacing-label">Large card</span><div class="spacing-bar" style="width:64px;"></div><span class="spacing-value">p-8 · 32px</span></div>
+      <div class="spacing-row"><span class="spacing-label">Grid gap</span><div class="spacing-bar" style="width:20px;"></div><span class="spacing-value">gap-4 / gap-5 · 16–20px</span></div>
+      <div class="spacing-row"><span class="spacing-label">Button gap</span><div class="spacing-bar" style="width:12px;"></div><span class="spacing-value">gap-3 · 12px</span></div>
+    </div>
+
+    <div style="margin-top:28px;">
+      <div class="color-group-label" style="margin-bottom:6px;">Container</div>
+      <div style="font-family:var(--mono);font-size:0.6875rem;color:#a1a1aa;">max-w-6xl · 1152px · px-5 sm:px-6 lg:px-8</div>
+    </div>
+  </div>
+
+  <!-- ── 06 Messaging ───────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Messaging & Tonalität</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px;">
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px 22px;">
+        <div style="font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-400);margin-bottom:8px;">Kernversprechen</div>
+        <div style="font-size:0.875rem;color:#d4d4d8;line-height:1.65;">"Kunden melden Probleme per Anruf. Du bekommst sofort eine klare Aufgabe mit Priorität — ohne Papierchaos."</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px 22px;">
+        <div style="font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-400);margin-bottom:8px;">Tonalität</div>
+        <div style="font-size:0.75rem;color:#a1a1aa;line-height:1.7;">Direkt · Operativ · Keine Floskeln<br>Technikaffin ohne Fachjargon<br>Du-Form · Konkrete Zahlen</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px 22px;">
+        <div style="font-size:0.5625rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand-400);margin-bottom:8px;">Early Adopter CTA</div>
+        <div style="font-size:0.75rem;color:#a1a1aa;line-height:1.7;">Primary: "Interesse bekunden"<br>Sub: "Jetzt anrufen"<br>Micro: "Sichere dir Sonderkonditionen."</div>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-cell">
+        <div class="do-label">Sprache — Richtig</div>
+        <ul>
+          <li>Klare, priorisierte Aufgabe</li>
+          <li>Dein Team handelt sofort</li>
+          <li>Kein Setup, keine IT</li>
+          <li>Beschwerden strukturiert erfassen</li>
+        </ul>
+      </div>
+      <div class="dont-cell">
+        <div class="dont-label">Sprache — Vermeiden</div>
+        <ul>
+          <li>"Revolutionäre KI-Lösung"</li>
+          <li>"Antwort in unter 1 Werktag"</li>
+          <li>"Best-in-class Platform"</li>
+          <li>Technische Fachbegriffe ohne Kontext</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <div class="doc-footer-logo">OUTAG<span class="accent">3</span></div>
+    <div class="doc-footer-meta">Brand Strategy · 2026 · info@gcbavaria.com · Share Tech Mono</div>
+  </div>
+
+</div><!-- /wrap -->
+</body>
+</html>
