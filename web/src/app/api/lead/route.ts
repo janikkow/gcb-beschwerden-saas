@@ -8,6 +8,7 @@ type LeadPayload = {
   email: string;
   phone?: string;
   vertical: string;
+  plan?: string;
   message?: string;
   website?: string; // honeypot
 };
@@ -18,6 +19,7 @@ type LeadEntry = {
   email: string;
   phone: string;
   vertical: string;
+  plan: string;
   message: string;
   createdAt: string;
   ip: string;
@@ -105,6 +107,7 @@ export async function POST(request: NextRequest) {
     company: payload.company.trim(),
     email: payload.email.trim().toLowerCase(),
     vertical: payload.vertical.trim(),
+    plan: payload.plan?.trim() ?? "",
     message: payload.message?.trim() ?? "",
     phone: payload.phone?.trim() ?? "",
     createdAt: new Date().toISOString(),

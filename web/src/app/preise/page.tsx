@@ -14,6 +14,21 @@ export const metadata: Metadata = buildMetadata({
 
 const plans = [
   {
+    key: "light",
+    name: "Light",
+    price: "39 EUR / Monat",
+    note: "Für kleine Volumina und den schnellen Einstieg",
+    featured: false,
+    cta: "Light wählen",
+    points: [
+      "1 Standort inklusive",
+      "40 Voice-Minuten / Monat",
+      "Webformular für Beschwerden",
+      "KI-Basiskategorisierung",
+      "E-Mail Zusammenfassung",
+    ],
+  },
+  {
     key: "starter",
     name: "Starter",
     price: "89 EUR / Monat",
@@ -95,11 +110,11 @@ export default function PricingPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {plans.map((plan) => (
               <article
                 key={plan.name}
-                className={`glass-card rounded-2xl p-6 ${
+                className={`glass-card flex h-full flex-col rounded-2xl p-6 ${
                   plan.featured
                     ? "border-white/25 ring-1 ring-white/10"
                     : "border-white/15"
@@ -129,7 +144,7 @@ export default function PricingPage() {
 
                 <Button
                   href={`/demo?plan=${plan.key}`}
-                  className={`mt-8 w-full justify-center rounded-full ${
+                  className={`mt-auto pt-8 w-full justify-center rounded-full ${
                     plan.featured
                       ? "bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all"
                       : "border border-white/15 bg-white/5 text-zinc-100 hover:bg-white/10"
@@ -160,7 +175,7 @@ export default function PricingPage() {
                 Preise inkl. MwSt. Mehr-Minuten für Voice werden fair zum Selbstkostenpreis abgerechnet.
               </p>
               <p className="mt-4 text-xs text-zinc-400">
-                Setup-Fee einmalig ab 490 EUR (Essentials 0 EUR Setup).
+                Setup-Fee einmalig ab 490 EUR (Light ohne Setup-Fee).
               </p>
               <Button
                 href={`tel:${siteConfig.phoneTel}`}

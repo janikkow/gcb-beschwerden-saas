@@ -12,6 +12,7 @@ const inputClass =
 const labelClass = "block text-sm font-medium text-zinc-200";
 
 const planOptions = [
+  { value: "light", label: "Light - 39 EUR / Monat" },
   { value: "starter", label: "Starter - 89 EUR / Monat" },
   { value: "professional", label: "Professional - 199 EUR / Monat" },
   { value: "enterprise", label: "Enterprise - auf Anfrage" },
