@@ -1,9 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import { Share_Tech_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import SiteFooter from "@/components/layout/site-footer";
 import SiteHeader from "@/components/layout/site-header";
 import StructuredData from "@/components/structured-data";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
+
+const shareTechMono = Share_Tech_Mono({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -49,8 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
-      <body>
+    <html lang="de" className={shareTechMono.variable}>
+      <body className="scanlines">
         <StructuredData
           data={{
             "@context": "https://schema.org",
@@ -74,6 +83,7 @@ export default function RootLayout({
           {children}
           <SiteFooter />
         </div>
+        <Analytics />
       </body>
     </html>
   );

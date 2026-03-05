@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "NODEZERO",
+  name: "OUTAG3",
   legalName: "Dutz Jonas, Kowalsky Janik, Then Philipp GbR",
   description:
     "Kunden melden Probleme am Automaten per Anruf. Du bekommst sofort eine klare Aufgabe mit Priorität – ohne Papierchaos und ohne IT-Kenntnisse.",
@@ -11,6 +11,7 @@ export const siteConfig = {
   email: "info@gcbavaria.com",
   nav: [
     { href: "/", label: "Start" },
+    { href: "/preise", label: "Preise" },
     { href: "/faq", label: "FAQ" },
     { href: "/blog", label: "Blog" },
   ],

@@ -29,7 +29,7 @@ export default function SiteHeader() {
       <header className="sticky top-0 z-40 border-b border-white/10 bg-black/30 backdrop-blur-xl">
         <Container className="flex h-16 items-center justify-between gap-6">
           <Link href="/" className="text-sm font-bold tracking-wide text-white">
-            NODE<span className="text-brand-400">ZERO</span>
+            OUTAG<span className="text-brand-400">3</span>
           </Link>
 
           {/* Desktop nav */}
@@ -46,8 +46,11 @@ export default function SiteHeader() {
           </nav>
 
           {/* Desktop CTA */}
-          <Button href="/demo" className="hidden md:inline-flex">
-            Demo anfragen
+          <Button
+            href="/demo"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-brand-300/70 bg-brand-400 px-5 text-sm font-semibold text-zinc-950 shadow-[0_8px_26px_rgba(98,164,255,0.35)] transition-all hover:scale-[1.02] hover:bg-white hover:text-zinc-950 active:scale-[0.98]"
+          >
+            Auf die Waitlist
           </Button>
 
           {/* Hamburger button */}
@@ -116,10 +119,10 @@ export default function SiteHeader() {
           <div className="px-6 pt-6">
             <Button
               href="/demo"
-              className="w-full justify-center"
+              className="w-full justify-center rounded-full border border-brand-300/70 bg-brand-400 text-sm font-semibold text-zinc-950 shadow-[0_8px_26px_rgba(98,164,255,0.35)] transition-all hover:bg-white hover:text-zinc-950"
               onClick={() => setOpen(false)}
             >
-              Demo anfragen
+              Auf die Waitlist
             </Button>
           </div>
 

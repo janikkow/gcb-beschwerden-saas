@@ -18,6 +18,9 @@ export default function SiteFooter() {
             <h3 className="text-sm font-semibold text-zinc-400">Navigation</h3>
             <ul className="mt-2 space-y-2 text-sm text-zinc-500">
               <li>
+                <Link href="/preise" className="transition hover:text-zinc-200">Preise</Link>
+              </li>
+              <li>
                 <Link href="/faq" className="transition hover:text-zinc-200">FAQ</Link>
               </li>
               <li>
@@ -27,7 +30,7 @@ export default function SiteFooter() {
                 <Link href="/glossar" className="transition hover:text-zinc-200">Glossar</Link>
               </li>
               <li>
-                <Link href="/demo" className="transition hover:text-zinc-200">Demo anfragen</Link>
+                <Link href="/demo" className="transition hover:text-zinc-200">Auf die Waitlist</Link>
               </li>
             </ul>
           </section>

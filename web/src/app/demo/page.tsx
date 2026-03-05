@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import DemoForm from "@/components/forms/demo-form";
 import { buildMetadata } from "@/lib/seo";
 
@@ -15,19 +16,27 @@ export default function DemoPage() {
       <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-2xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
-            Demo
+            Waitlist
           </p>
           <h1 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Demo anfragen
+            Platz auf der Waitlist sichern
           </h1>
           <p className="mt-3 text-pretty text-base text-zinc-400">
-            Erzähle uns kurz eure Situation im Automatenladen und wir zeigen
-            dir einen passenden Pilot-Flow.
+            Wähle deinen Plan und hinterlasse deine Daten.
+            Wir melden uns, sobald der Pilot startet.
           </p>
         </div>
 
         <div className="grid items-start gap-6 lg:grid-cols-[2fr_1fr]">
-          <DemoForm />
+          <Suspense
+            fallback={
+              <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-6 text-sm text-zinc-400">
+                Formular wird geladen...
+              </div>
+            }
+          >
+            <DemoForm />
+          </Suspense>
 
           <div className="space-y-4">
             <div
@@ -38,8 +47,8 @@ export default function DemoPage() {
                 Was passiert nach Absenden?
               </p>
               <p className="text-sm leading-relaxed text-zinc-400">
-                Deine Anfrage landet direkt bei uns. Wir melden uns innerhalb
-                eines Werktags mit einem konkreten Vorschlag für deinen Pilot.
+                Deine Daten werden gespeichert. Sobald der Pilot startet,
+                bist du als Erster dabei.
               </p>
             </div>
             <div

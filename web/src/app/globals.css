@@ -7,12 +7,12 @@
 :root {
   --ink-900: #0f1a2b;
   --ink-700: #2d3b51;
-  --brand-700: #0c4db7;
-  --brand-600: #1371ff;
-  --brand-500: #2f84ff;
-  --brand-400: #62a4ff;
-  --brand-300: #94c2ff;
-  --brand-100: #e7f1ff;
+  --brand-700: #5b00d4;
+  --brand-600: #d400ff;
+  --brand-500: #00e5ff;
+  --brand-400: #ccff00;
+  --brand-300: #a8ff60;
+  --brand-100: #edffd6;
   --sand-50: #f9f7f3;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -139,6 +139,8 @@ body {
 }
 
 .bg-site-gradient {
+  position: relative;
+  z-index: 1;
   background: rgba(6, 10, 20, 0.58);
 }
 
@@ -158,14 +160,47 @@ body {
 }
 
 .glass-highlight {
-  background: rgba(19, 113, 255, 0.14);
-  border: 1px solid rgba(47, 132, 255, 0.32);
+  background: rgba(204, 255, 0, 0.10);
+  border: 1px solid rgba(204, 255, 0, 0.25);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 }
 
 .font-display {
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-display, var(--font-serif)), monospace;
+}
+
+/* CRT Scanline overlay — sits between background and content */
+.scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+}
+
+/* Pixelated divider */
+.pixel-divider {
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--brand-400) 0px,
+    var(--brand-400) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Retro gradient border */
+.retro-border {
+  border-image: linear-gradient(90deg, #ccff00, #00e5ff, #d400ff) 1;
 }
 
 /* Voice waveform bar animation */
@@ -184,6 +219,16 @@ body {
   0%   { transform: scale(1);   opacity: 0.55; }
   80%  { transform: scale(2);   opacity: 0; }
   100% { transform: scale(2);   opacity: 0; }
+}
+
+/* Typewriter blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 0.85s step-end infinite;
 }
 
 /* Touch feedback for mobile */

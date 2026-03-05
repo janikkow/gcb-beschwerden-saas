@@ -1,24 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  PixelPhone,
+  PixelRobot,
+  PixelFilter,
+  PixelEmail,
+  PixelUser,
+  PixelList,
+  PixelTrophy,
+} from "@/components/pixel-icons";
 import StructuredData from "@/components/structured-data";
 import TicketPreviewShowcase from "@/components/ticket-preview-showcase";
+import TypewriterHeading from "@/components/typewriter-heading";
 import VoiceDemoCard from "@/components/voice-demo-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/seo";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Beschwerden für Automatenläden einfach bearbeiten",
+  title: "Beschwerdemanagement für Automatenläden",
   description:
-    "Kundinnen und Kunden melden Probleme per Telefon oder Webformular. Die KI sortiert Beschwerden vor und dein Team erhält sofort eine klare Aufgabe.",
+    "Beschwerden kommen per Telefon oder Webformular rein. OUTAG3 priorisiert automatisch und erstellt eine klare Aufgabe (Kategorie, Priorität, Kontakt) – damit dein Team ohne Nachfragen handeln kann.",
   path: "/",
   keywords: [
     "beschwerdemanagement automatenläden",
+    "beschwerden automatenladen",
     "webformular beschwerde",
     "beschwerdemanagement",
     "automatenladen",
     "ki support",
+    "priorisierung support",
   ],
 });
 
@@ -27,34 +39,38 @@ const steps = [
     number: "01",
     title: "Beschwerde kommt rein",
     body: "Kundinnen und Kunden melden sich per Telefon oder Webformular.",
+    icon: PixelPhone,
   },
   {
     number: "02",
     title: "KI sortiert automatisch",
     body: "Die KI erkennt Problemart und Dringlichkeit direkt aus der Meldung.",
+    icon: PixelRobot,
   },
   {
     number: "03",
     title: "Daten werden strukturiert",
     body: "Name, Kontakt und Problem werden sauber aufbereitet und gespeichert.",
+    icon: PixelFilter,
   },
   {
     number: "04",
     title: "Team bekommt klare Aufgabe",
     body: "Automatisch entsteht eine verständliche E-Mail oder ein Ticket mit Referenz.",
+    icon: PixelEmail,
   },
   {
     number: "05",
     title: "Mensch prüft nur Sonderfälle",
     body: "Unklare oder sensible Meldungen werden für Review markiert.",
+    icon: PixelUser,
   },
 ];
 
-const useCases = [
+const useCases: Array<{ title: string; description: string; href?: string }> = [
   {
     title: "Typische Beschwerden",
     description: "Geld geschluckt, Produkt bleibt hängen, Kartenzahlung geht nicht.",
-    href: "/use-cases/automaten",
   },
   {
     title: "Meldung ohne App",
@@ -73,10 +89,24 @@ export default function HomePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "GCB Incident Management",
+          name: `${siteConfig.name} – Beschwerdemanagement für Automatenläden`,
           url: absoluteUrl("/"),
           description:
-            "Beschwerden für Automatenläden per Telefon oder Webformular erfassen und durch KI vorsortieren.",
+            "Beschwerden per Telefon oder Webformular erfassen, automatisch priorisieren und als klare Aufgabe an das Team weitergeben.",
+        }}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Beschwerdemanagement für Automatenläden",
+          serviceType: "Beschwerde- und Incident Intake mit KI-Priorisierung",
+          areaServed: "DE",
+          provider: {
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+          },
         }}
       />
 
@@ -85,17 +115,49 @@ export default function HomePage() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <Badge variant="default">Beschwerdemanagement für Automatenläden</Badge>
-            <h1 className="mt-5 text-balance font-display text-4xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-6xl">
-              Weniger Support-Chaos bei Beschwerden aus dem Automatenladen.
-            </h1>
+            <TypewriterHeading
+              text="Beschwerden aus Automatenläden in klare, priorisierte Aufgaben verwandeln."
+              className="mt-5 text-balance font-display text-4xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-6xl"
+            />
             <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-300">
-              Ob per Telefon oder Webformular: Beschwerden werden automatisch
-              aufgenommen, von KI vorsortiert und als klare Aufgabe an dein Team
-              weitergegeben.
+              Ob per Telefon oder Webformular: OUTAG3 erfasst Beschwerden, ordnet sie einer
+              Kategorie zu, setzt die Priorität und liefert deinem Team alle nötigen
+              Informationen für die Problembehebung.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/demo">Demo anfragen</Button>
+          </div>
+
+          <div className="glass-card mx-auto w-full max-w-5xl rounded-3xl border border-brand-400/40 px-6 py-7 text-center shadow-[0_24px_60px_rgba(10,20,40,0.5)] sm:px-8 sm:py-9">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">
+              Pilot 2026
+            </p>
+            <h2 className="mt-2 text-balance text-2xl font-semibold text-white sm:text-3xl">
+              Starte jetzt mit der Waitlist für automatisiertes Beschwerdemanagement.
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-300 sm:text-base">
+              Für Automatenläden mit klarer Priorisierung, schnellerer Bearbeitung und weniger
+              Rückfragen im Team.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <Button
+                href="/demo"
+                size="lg"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-brand-300/70 bg-brand-400 px-8 py-3.5 text-sm font-semibold text-zinc-950 shadow-[0_10px_30px_rgba(98,164,255,0.4)] transition-all hover:scale-[1.02] hover:bg-white hover:text-zinc-950 active:scale-[0.98]"
+              >
+                <PixelList className="h-4 w-4 text-zinc-950" />
+                Auf die Waitlist
+              </Button>
+              <Button
+                href="/preise"
+                size="lg"
+                variant="secondary"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
+              >
+                Preise ansehen
+              </Button>
             </div>
+            <p className="mt-3 text-xs text-zinc-500">
+              Unverbindlich. Begrenzte Plätze.
+            </p>
           </div>
 
           {/* Feature chips */}
@@ -125,30 +187,38 @@ export default function HomePage() {
               So funktioniert es
             </p>
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Ein klarer Ablauf für den Alltag im Automatenladen
+              Vom Anruf zum Ticket: in 5 Schritten zur klaren Aufgabe
             </h2>
             <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Meldung rein, KI sortiert, Team arbeitet gezielt ab.
+              Meldung rein, KI priorisiert, dein Team arbeitet gezielt ab. Antworten auf typische Fragen findest du in den{" "}
+              <Link href="/faq" className="text-brand-300 hover:text-brand-200 hover:underline">
+                FAQs
+              </Link>
+              .
             </p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {steps.map((step) => (
-              <div
-                key={step.number}
-                className="glass-card group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:border-white/20"
-              >
-                <span className="absolute right-4 top-4 select-none font-mono text-3xl font-bold text-white/5">
-                  {step.number}
-                </span>
-                <h3 className="text-base font-semibold text-white">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                  {step.body}
-                </p>
-              </div>
-            ))}
+            {steps.map((step) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.number}
+                  className="glass-card group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:border-white/20"
+                >
+                  <span className="absolute right-4 top-4 select-none font-mono text-3xl font-bold text-white/5">
+                    {step.number}
+                  </span>
+                  <Icon className="mb-3 h-7 w-7 text-brand-400" />
+                  <h3 className="text-base font-semibold text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                    {step.body}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -161,11 +231,11 @@ export default function HomePage() {
               Live Demo
             </p>
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Demo-Anruf und Ticket-Vorschau
+              Ruf an und sieh die fertige Meldung, die dein Team bekommt
             </h2>
             <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Starte ein Gespräch im Browser oder ruf direkt an. Danach siehst du,
-              welche Meldung dein Team konkret erhält.
+              Starte ein Gespräch im Browser oder ruf direkt an. Direkt danach siehst du,
+              wie Kategorie, Priorität und Kontaktdaten strukturiert ankommen.
             </p>
           </div>
 
@@ -184,10 +254,11 @@ export default function HomePage() {
               Fokus
             </p>
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Zunächst nur für Automatenläden
+              Optimiert für Automatenläden (und eure typischen Fälle)
             </h2>
             <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Die ersten Prozesse sind auf typische Beschwerden in Automatenläden ausgerichtet.
+              Wir starten bewusst schlank: Beschwerden, die im Alltag wirklich passieren — und
+              die sofort eine klare Aktion auslösen sollen.
             </p>
           </div>
 
@@ -212,6 +283,39 @@ export default function HomePage() {
                 ) : null}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Final CTA ───────────────────────────────────────────────── */}
+      <section className="pb-24">
+        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-balance text-2xl font-semibold text-white sm:text-3xl">
+              Fragen offen? Wir zeigen dir den Ablauf live.
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+              In 20 Minuten siehst du, wie Beschwerden per Telefon und Webformular als klare
+              Aufgaben bei deinem Team landen.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Button
+                href="/demo"
+                size="lg"
+                className="group inline-flex items-center gap-2 rounded-full border border-brand-300/70 bg-brand-400 px-7 text-sm font-semibold text-zinc-950 shadow-[0_8px_26px_rgba(98,164,255,0.35)] transition-all hover:scale-[1.02] hover:bg-white hover:text-zinc-950 active:scale-[0.98]"
+              >
+                <PixelList className="h-4 w-4 text-zinc-950" />
+                Auf die Waitlist
+              </Button>
+              <Button
+                href="/preise"
+                size="lg"
+                variant="secondary"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
+              >
+                Preise ansehen
+              </Button>
+            </div>
           </div>
         </div>
       </section>
