@@ -6,10 +6,18 @@ import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "FAQ",
+  title: "FAQ – Häufige Fragen zum Beschwerdemanagement",
   description:
     "Einfache Antworten zu Beschwerdemanagement für Automatenläden: Meldung, KI-Unterstützung, Datenschutz und Start.",
   path: "/faq",
+  keywords: [
+    "beschwerdemanagement faq",
+    "automatenläden fragen",
+    "ki beschwerdemanagement",
+    "voice intake faq",
+    "incident management fragen",
+    "datenschutz beschwerden",
+  ],
 });
 
 export default function FaqPage() {

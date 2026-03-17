@@ -5,7 +5,7 @@ export const siteConfig = {
     "Kunden melden Probleme am Automaten per Anruf. Du bekommst sofort eine klare Aufgabe mit Priorität – ohne Papierchaos und ohne IT-Kenntnisse.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
-    "https://gcb-incident.example",
+    "https://outag3.com",
   phoneDisplay: "+49 89 1234 5678",
   phoneTel: "+498912345678",
   email: "info@gcbavaria.com",

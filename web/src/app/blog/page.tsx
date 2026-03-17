@@ -1,16 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/ui/container";
+import StructuredData from "@/components/structured-data";
 import { Card } from "@/components/ui/card";
 import { getAllPosts } from "@/lib/blog";
 import { buildMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Blog",
+  title: "Blog – Incident Management & Voice Intake Insights",
   description:
-    "Pillar- und Support-Artikel zu Incident Management, Voice Intake und Priorisierung im Betrieb.",
+    "Pillar- und Support-Artikel zu Incident Management, Voice Intake und Priorisierung im Betrieb autonomer Standorte.",
   path: "/blog",
+  keywords: [
+    "incident management blog",
+    "voice intake artikel",
+    "beschwerdemanagement insights",
+    "automatenläden priorisierung",
+    "ki support blog",
+  ],
 });
 
 const editorialAccents = [
@@ -30,6 +39,16 @@ export default async function BlogPage() {
 
   return (
     <main className="py-14 sm:py-20">
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Start", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+          ],
+        }}
+      />
       <Container>
         <header className="mb-10 max-w-3xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">

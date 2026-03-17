@@ -6,10 +6,17 @@ import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Preise & Rentabilität",
+  title: "Preise & Rentabilität – Beschwerdemanagement ab 39 EUR/Monat",
   description:
-    "Transparente Preise und ROI-Rechner für Beschwerdemanagement in Automatenläden.",
+    "Transparente Preise und ROI-Rechner für Beschwerdemanagement in Automatenläden. Ab 39 EUR/Monat mit Voice Intake und KI-Priorisierung.",
   path: "/preise",
+  keywords: [
+    "beschwerdemanagement preise",
+    "incident management kosten",
+    "automatenläden software preise",
+    "roi beschwerdemanagement",
+    "voice intake kosten",
+  ],
 });
 
 const plans = [
@@ -142,16 +149,19 @@ export default function PricingPage() {
                   ))}
                 </ul>
 
-                <Button
-                  href={`/demo?plan=${plan.key}`}
-                  className={`mt-auto pt-8 w-full justify-center rounded-full ${
-                    plan.featured
-                      ? "bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all"
-                      : "border border-white/15 bg-white/5 text-zinc-100 hover:bg-white/10"
-                  }`}
-                >
-                  {plan.cta}
-                </Button>
+                <div className="mt-auto pt-8">
+                  <Button
+                    href={`/demo?plan=${plan.key}`}
+                    size="lg"
+                    className={`w-full justify-center rounded-full text-sm font-semibold ${
+                      plan.featured
+                        ? "bg-white text-zinc-950 hover:bg-zinc-200 transition-all"
+                        : "border border-white/15 bg-white/5 text-zinc-100 hover:bg-white/10"
+                    }`}
+                  >
+                    {plan.cta}
+                  </Button>
+                </div>
               </article>
             ))}
           </div>

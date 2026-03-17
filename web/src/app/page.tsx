@@ -15,6 +15,7 @@ import TypewriterHeading from "@/components/typewriter-heading";
 import VoiceDemoCard from "@/components/voice-demo-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { GradientButton } from "@/components/ui/gradient-button";
 import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
@@ -93,6 +94,80 @@ export default function HomePage() {
           url: absoluteUrl("/"),
           description:
             "Beschwerden per Telefon oder Webformular erfassen, automatisch priorisieren und als klare Aufgabe an das Team weitergeben.",
+          inLanguage: "de-DE",
+          dateModified: "2026-03-17",
+          publisher: {
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+          },
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: ["h1", ".hero-description", "h2"],
+          },
+        }}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: siteConfig.name,
+          description:
+            "KI-gestütztes Beschwerdemanagement für Automatenläden. Beschwerden per Telefon oder Webformular erfassen, automatisch kategorisieren und priorisieren.",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web-basiert",
+          url: absoluteUrl("/"),
+          offers: [
+            {
+              "@type": "Offer",
+              name: "Light",
+              price: "39",
+              priceCurrency: "EUR",
+              priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price: "39",
+                priceCurrency: "EUR",
+                unitText: "Monat",
+              },
+            },
+            {
+              "@type": "Offer",
+              name: "Starter",
+              price: "89",
+              priceCurrency: "EUR",
+              priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price: "89",
+                priceCurrency: "EUR",
+                unitText: "Monat",
+              },
+            },
+            {
+              "@type": "Offer",
+              name: "Professional",
+              price: "199",
+              priceCurrency: "EUR",
+              priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price: "199",
+                priceCurrency: "EUR",
+                unitText: "Monat",
+              },
+            },
+          ],
+          featureList: [
+            "Voice Intake per Telefon (24/7 KI-Agent)",
+            "Webformular für Beschwerden",
+            "Automatische Kategorisierung und Priorisierung",
+            "Strukturierte Ticket-Erstellung",
+            "E-Mail- und SMS-Benachrichtigungen",
+            "Multi-Standort-Unterstützung",
+          ],
+          provider: {
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+          },
         }}
       />
       <StructuredData
@@ -100,12 +175,26 @@ export default function HomePage() {
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Beschwerdemanagement für Automatenläden",
+          description:
+            "Automatisiertes Beschwerde- und Incident Intake mit KI-Priorisierung. Meldungen per Telefon oder Webformular werden strukturiert erfasst und als priorisierte Aufgaben an das Team weitergegeben.",
           serviceType: "Beschwerde- und Incident Intake mit KI-Priorisierung",
-          areaServed: "DE",
+          areaServed: {
+            "@type": "Country",
+            name: "DE",
+          },
           provider: {
             "@type": "Organization",
             name: siteConfig.name,
             url: siteConfig.url,
+          },
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "OUTAG3 Tarife",
+            itemListElement: [
+              { "@type": "Offer", name: "Light", price: "39", priceCurrency: "EUR" },
+              { "@type": "Offer", name: "Starter", price: "89", priceCurrency: "EUR" },
+              { "@type": "Offer", name: "Professional", price: "199", priceCurrency: "EUR" },
+            ],
           },
         }}
       />
@@ -119,7 +208,7 @@ export default function HomePage() {
               text="Beschwerden aus Automatenläden in klare, priorisierte Aufgaben verwandeln."
               className="mt-5 text-balance font-display text-4xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-6xl"
             />
-            <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-300">
+            <p className="hero-description mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-300">
               Ob per Telefon oder Webformular: OUTAG3 erfasst Beschwerden, ordnet sie einer
               Kategorie zu, setzt die Priorität und liefert deinem Team alle nötigen
               Informationen für die Problembehebung.
@@ -137,20 +226,19 @@ export default function HomePage() {
               Für Automatenläden mit klarer Priorisierung, schnellerer Bearbeitung und weniger
               Rückfragen im Team.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <Button
-                href="/demo"
-                size="lg"
-                className="group inline-flex items-center justify-center gap-2 rounded-full border border-brand-300/70 bg-brand-400 px-8 py-3.5 text-sm font-semibold text-zinc-950 shadow-[0_10px_30px_rgba(98,164,255,0.4)] transition-all hover:scale-[1.02] hover:bg-white hover:text-zinc-950 active:scale-[0.98]"
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <GradientButton
+                asChild
+                className="h-12 rounded-full px-10"
               >
-                <PixelList className="h-4 w-4 text-zinc-950" />
-                Auf die Waitlist
-              </Button>
+                <Link href="/demo" className="inline-flex items-center justify-center gap-2.5">
+                  <PixelList className="h-5 w-5 text-white" />
+                  Auf die Waitlist
+                </Link>
+              </GradientButton>
               <Button
                 href="/preise"
-                size="lg"
-                variant="secondary"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 text-base font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
               >
                 Preise ansehen
               </Button>
@@ -298,20 +386,19 @@ export default function HomePage() {
               In 20 Minuten siehst du, wie Beschwerden per Telefon und Webformular als klare
               Aufgaben bei deinem Team landen.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button
-                href="/demo"
-                size="lg"
-                className="group inline-flex items-center gap-2 rounded-full border border-brand-300/70 bg-brand-400 px-7 text-sm font-semibold text-zinc-950 shadow-[0_8px_26px_rgba(98,164,255,0.35)] transition-all hover:scale-[1.02] hover:bg-white hover:text-zinc-950 active:scale-[0.98]"
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <GradientButton
+                asChild
+                className="h-12 rounded-full px-10"
               >
-                <PixelList className="h-4 w-4 text-zinc-950" />
-                Auf die Waitlist
-              </Button>
+                <Link href="/demo" className="inline-flex items-center gap-2.5">
+                  <PixelList className="h-5 w-5 text-white" />
+                  Auf die Waitlist
+                </Link>
+              </GradientButton>
               <Button
                 href="/preise"
-                size="lg"
-                variant="secondary"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 text-base font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
               >
                 Preise ansehen
               </Button>

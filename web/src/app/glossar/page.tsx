@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/ui/container";
+import StructuredData from "@/components/structured-data";
 import { buildMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Glossar",
+  title: "Glossar – Fachbegriffe im Incident Management",
   description:
-    "Begriffe wie Incident, Impact-Matrix, Tenant, Voice Intake und Control/Data Plane.",
+    "Begriffe wie Incident, Impact-Matrix, Tenant, Voice Intake und Control/Data Plane verständlich erklärt für Betreiber autonomer Standorte.",
   path: "/glossar",
+  keywords: [
+    "incident management glossar",
+    "impact matrix definition",
+    "voice intake bedeutung",
+    "tenant definition",
+    "control plane data plane",
+    "beschwerdemanagement fachbegriffe",
+  ],
 });
 
 const terms = [
@@ -41,6 +51,31 @@ const terms = [
 export default function GlossarPage() {
   return (
     <main className="py-14 sm:py-20">
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Start", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Glossar", item: absoluteUrl("/glossar") },
+          ],
+        }}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "DefinedTermSet",
+          name: "Incident Management Glossar",
+          description:
+            "Fachbegriffe rund um Störungsmeldungen, Priorisierung und Datentrennung für Betreiber autonomer Standorte.",
+          inLanguage: "de-DE",
+          hasDefinedTerm: terms.map((item) => ({
+            "@type": "DefinedTerm",
+            name: item.term,
+            description: item.definition,
+          })),
+        }}
+      />
       <Container>
         <header className="mb-10 max-w-3xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">

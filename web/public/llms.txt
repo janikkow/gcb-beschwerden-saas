@@ -1,24 +1,34 @@
-# GCB Incident Management
+# OUTAG3 – Beschwerdemanagement für Automatenläden
 
 Kurzbeschreibung:
-GCB Incident Management ist eine Voice- und AI-gestuetzte Plattform fuer unbeaufsichtigte Infrastruktur (Automatenmaerkte, Parkhaeuser, Cleanparks). Das System nimmt Vorfaelle auf, klassifiziert sie und erzeugt priorisierte Ticket-/Email-Outputs.
+OUTAG3 ist eine Voice- und KI-gestützte Plattform für Beschwerdemanagement in Automatenläden und unbeaufsichtigter Infrastruktur (Parkhäuser, Cleanparks). Das System nimmt Beschwerden per Telefon oder Webformular auf, kategorisiert und priorisiert sie automatisch mittels KI und erzeugt strukturierte Aufgaben für das Betriebsteam.
+
+Hauptfunktionen:
+- Voice Intake: KI-gestützter Telefonagent nimmt Beschwerden 24/7 entgegen
+- Webformular: Digitale Beschwerdeerfassung ohne App-Download
+- KI-Kategorisierung: Automatische Erkennung von Problemart und Dringlichkeit
+- Priorisierung: Impact-Matrix-basierte Priorisierung nach Schweregrad
+- Strukturierte Tickets: Kontaktdaten, Kategorie und Priorität in einem klaren Format
+- Multi-Standort: Verwaltung mehrerer Standorte über ein System
+- Benachrichtigungen: E-Mail und SMS-Eskalation bei kritischen Vorfällen
+
+Preise:
+- Light: 39 EUR/Monat (1 Standort, 40 Voice-Minuten)
+- Starter: 89 EUR/Monat (2 Standorte, 150 Voice-Minuten)
+- Professional: 199 EUR/Monat (10 Standorte, 500 Voice-Minuten, SMS-Eskalation)
+- Enterprise: Auf Anfrage (unbegrenzte Standorte, Voice-Cloning, WhatsApp)
 
 Wichtige URLs:
-- https://gcb-incident.example/
-- https://gcb-incident.example/produkt
-- https://gcb-incident.example/security
-- https://gcb-incident.example/use-cases/automaten
-- https://gcb-incident.example/use-cases/parkhaus
-- https://gcb-incident.example/use-cases/cleanpark
-- https://gcb-incident.example/faq
-- https://gcb-incident.example/glossar
-- https://gcb-incident.example/demo
-- https://gcb-incident.example/blog
+- https://outag3.com/
+- https://outag3.com/preise
+- https://outag3.com/faq
+- https://outag3.com/blog
+- https://outag3.com/glossar
+- https://outag3.com/demo
 
-Glossar-Links:
-- https://gcb-incident.example/glossar
-- https://gcb-incident.example/security
+Glossar:
+- https://outag3.com/glossar
 
 Kontakt:
-- Demo: https://gcb-incident.example/demo
+- Demo: https://outag3.com/demo
 - E-Mail: info@gcbavaria.com

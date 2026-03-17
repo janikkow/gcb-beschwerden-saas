@@ -4,11 +4,6 @@ import { absoluteUrl } from "@/lib/site";
 
 const staticPaths = [
   "/",
-  "/produkt",
-  "/use-cases/automaten",
-  "/use-cases/parkhaus",
-  "/use-cases/cleanpark",
-  "/security",
   "/preise",
   "/faq",
   "/demo",

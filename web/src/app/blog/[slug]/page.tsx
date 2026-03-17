@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Container from "@/components/ui/container";
+import StructuredData from "@/components/structured-data";
 import { Card } from "@/components/ui/card";
 import {
   extractHeadings,
@@ -10,6 +11,7 @@ import {
   mdxLikeToHtml,
 } from "@/lib/blog";
 import { buildMetadata } from "@/lib/seo";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type BlogDetailPageProps = {
@@ -60,6 +62,49 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <main className="py-14 sm:py-20">
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Start", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+            { "@type": "ListItem", position: 3, name: post.title, item: absoluteUrl(`/blog/${slug}`) },
+          ],
+        }}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: post.description,
+          url: absoluteUrl(`/blog/${slug}`),
+          datePublished: post.date,
+          dateModified: post.date,
+          inLanguage: "de-DE",
+          author: {
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            logo: {
+              "@type": "ImageObject",
+              url: absoluteUrl("/og-default.svg"),
+            },
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/blog/${slug}`),
+          },
+          keywords: post.tags,
+          wordCount: post.body.trim().split(/\s+/).length,
+        }}
+      />
       <Container>
         <header className="mb-8 max-w-4xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">

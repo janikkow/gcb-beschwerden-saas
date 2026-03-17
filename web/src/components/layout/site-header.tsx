@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { GradientButton } from "@/components/ui/gradient-button";
 import { siteConfig } from "@/lib/site";
 
 export default function SiteHeader() {
@@ -46,12 +47,12 @@ export default function SiteHeader() {
           </nav>
 
           {/* Desktop CTA */}
-          <Button
-            href="/demo"
-            className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-brand-300/70 bg-brand-400 px-5 text-sm font-semibold text-zinc-950 shadow-[0_8px_26px_rgba(98,164,255,0.35)] transition-all hover:scale-[1.02] hover:bg-white hover:text-zinc-950 active:scale-[0.98]"
+          <GradientButton
+            asChild
+            className="hidden md:inline-flex min-w-0 rounded-full px-5 py-2 text-sm"
           >
-            Auf die Waitlist
-          </Button>
+            <Link href="/demo">Auf die Waitlist</Link>
+          </GradientButton>
 
           {/* Hamburger button */}
           <button
