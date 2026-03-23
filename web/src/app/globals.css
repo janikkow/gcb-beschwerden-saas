@@ -559,3 +559,15 @@ body {
     --border-color-2: hsla(320, 50%, 90%, 0.75);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-bar {
+    animation: none !important;
+    transform: scaleY(0.6);
+  }
+
+  .animate-blink {
+    animation: none !important;
+    opacity: 1;
+  }
+}

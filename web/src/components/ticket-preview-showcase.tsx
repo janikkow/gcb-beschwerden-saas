@@ -23,7 +23,7 @@ export default function TicketPreviewShowcase() {
   if (!scenario) return null;
 
   return (
-    <div className="space-y-4">
+    <div className="flex h-full flex-col gap-4">
       {/* Scenario selector */}
       <div className="flex flex-wrap gap-2">
         {ticketScenarios.map((item) => {
@@ -34,15 +34,15 @@ export default function TicketPreviewShowcase() {
               type="button"
               onClick={() => setSelectedId(item.id)}
               className={cn(
-                "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-200",
+                "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-200 active:scale-95",
                 active
-                  ? "border-brand-400/50 bg-brand-500/20 text-brand-300"
+                  ? "border-brand-400/50 bg-brand-500/20 text-brand-300 shadow-[0_0_15px_rgba(204,255,0,0.15)]"
                   : "border-white/10 bg-white/[0.05] text-zinc-400 hover:border-white/20 hover:text-zinc-200",
               )}
             >
               <span
                 className={cn(
-                  "h-1.5 w-1.5 rounded-full",
+                  "h-2 w-2 rounded-full",
                   impactDot[item.impact] ?? "bg-zinc-500",
                 )}
               />
@@ -52,7 +52,9 @@ export default function TicketPreviewShowcase() {
         })}
       </div>
 
-      <TicketEmailPreview scenario={scenario} />
+      <div className="flex-1 min-h-0">
+        <TicketEmailPreview scenario={scenario} />
+      </div>
     </div>
   );
 }

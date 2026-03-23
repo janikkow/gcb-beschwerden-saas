@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "OUTAG3",
   legalName: "Dutz Jonas, Kowalsky Janik, Then Philipp GbR",
   description:
-    "Kunden melden Probleme am Automaten per Anruf. Du bekommst sofort eine klare Aufgabe mit Priorität – ohne Papierchaos und ohne IT-Kenntnisse.",
+    "Der digitale Front-Desk für deine Automaten. Wir verwandeln unstrukturierte Frust-Anrufe in klare, priorisierte Aufgaben – damit du 24/7 ruhig schlafen kannst.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
     "https://outag3.com",

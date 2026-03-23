@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 interface TypewriterHeadingProps {
   text: string;
@@ -19,8 +20,18 @@ export default function TypewriterHeading({
 }: TypewriterHeadingProps) {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) {
+      setDisplayed(text);
+      setDone(true);
+      return;
+    }
+
+    setDisplayed("");
+    setDone(false);
+
     let i = 0;
     let timeout: ReturnType<typeof setTimeout>;
 
@@ -36,7 +47,7 @@ export default function TypewriterHeading({
 
     timeout = setTimeout(type, delay);
     return () => clearTimeout(timeout);
-  }, [text, speed, delay]);
+  }, [text, speed, delay, reduceMotion]);
 
   return (
     <h1 className={className} aria-label={text}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 
 const Preloader = dynamic(() => import("@/components/preloader"), {
@@ -13,23 +13,11 @@ export default function PreloaderWrapper({
   children: React.ReactNode;
 }) {
   const [loading, setLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Before hydration: show nothing (body bg is black via CSS)
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <>
+      {children}
       {loading && <Preloader onComplete={() => setLoading(false)} />}
-      {/* Only mount children after preloader is done — this ensures
-          TypewriterHeading starts fresh */}
-      {!loading && children}
     </>
   );
 }

@@ -18,7 +18,6 @@ const shareTechMono = Share_Tech_Mono({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export const metadata: Metadata = {

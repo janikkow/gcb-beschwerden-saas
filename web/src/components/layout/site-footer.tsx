@@ -9,14 +9,14 @@ export default function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-3">
           <section>
             <h3 className="text-sm font-semibold text-white">{siteConfig.name}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-500">
+            <p className="mt-2 text-sm leading-relaxed text-zinc-300">
               {siteConfig.description}
             </p>
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold text-zinc-400">Navigation</h3>
-            <ul className="mt-2 space-y-2 text-sm text-zinc-500">
+            <h3 className="text-sm font-semibold text-zinc-200">Navigation</h3>
+            <ul className="mt-2 space-y-2 text-sm text-zinc-300">
               <li>
                 <Link href="/preise" className="transition hover:text-zinc-200">Preise</Link>
               </li>
@@ -30,14 +30,14 @@ export default function SiteFooter() {
                 <Link href="/glossar" className="transition hover:text-zinc-200">Glossar</Link>
               </li>
               <li>
-                <Link href="/demo" className="transition hover:text-zinc-200">Auf die Waitlist</Link>
+                <Link href="/demo" className="transition hover:text-zinc-200">Demo sichern</Link>
               </li>
             </ul>
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold text-zinc-400">Rechtliches</h3>
-            <ul className="mt-2 space-y-2 text-sm text-zinc-500">
+            <h3 className="text-sm font-semibold text-zinc-200">Rechtliches</h3>
+            <ul className="mt-2 space-y-2 text-sm text-zinc-300">
               <li>
                 <Link href="/legal/impressum" className="transition hover:text-zinc-200">Impressum</Link>
               </li>
@@ -53,7 +53,7 @@ export default function SiteFooter() {
           </section>
         </div>
 
-        <p className="mt-8 text-xs text-zinc-600">
+        <p className="mt-8 text-xs text-zinc-400">
           © {new Date().getFullYear()} {siteConfig.legalName}. Alle Rechte vorbehalten.
         </p>
       </Container>

@@ -16,12 +16,12 @@ export default function DemoPage() {
       <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-2xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
-            Waitlist
+            Demo
           </p>
           <h1 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Platz auf der Waitlist sichern
+            Demo sichern
           </h1>
-          <p className="mt-3 text-pretty text-base text-zinc-400">
+          <p className="mt-3 text-pretty text-base text-zinc-300">
             Wähle deinen Plan und hinterlasse deine Daten.
             Wir melden uns, sobald der Pilot startet.
           </p>
@@ -46,7 +46,7 @@ export default function DemoPage() {
               <p className="mb-1 text-sm font-semibold text-white">
                 Was passiert nach Absenden?
               </p>
-              <p className="text-sm leading-relaxed text-zinc-400">
+              <p className="text-sm leading-relaxed text-zinc-300">
                 Deine Daten werden gespeichert. Sobald der Pilot startet,
                 bist du als Erster dabei.
               </p>
@@ -58,7 +58,7 @@ export default function DemoPage() {
               <p className="mb-1 text-sm font-semibold text-emerald-300">
                 Spam-Schutz aktiv
               </p>
-              <p className="text-sm leading-relaxed text-zinc-400">
+              <p className="text-sm leading-relaxed text-zinc-300">
                 Honeypot-Feld und serverseitiges Rate-Limit schützen das
                 Formular automatisch.
               </p>

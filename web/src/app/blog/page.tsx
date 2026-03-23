@@ -158,7 +158,7 @@ export default async function BlogPage() {
               href="/demo"
               className="inline-flex items-center gap-1 text-sm font-semibold text-brand-300 hover:text-brand-200"
             >
-              Kostenlose Demo anfragen
+              Demo sichern
               <span aria-hidden>→</span>
             </Link>
           </div>

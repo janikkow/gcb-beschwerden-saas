@@ -6,6 +6,13 @@ import { usePathname } from "next/navigation";
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { GradientButton } from "@/components/ui/gradient-button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { siteConfig } from "@/lib/site";
 
 export default function SiteHeader() {
@@ -16,14 +23,6 @@ export default function SiteHeader() {
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
-
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
 
   return (
     <>
@@ -51,87 +50,82 @@ export default function SiteHeader() {
             asChild
             className="hidden md:inline-flex min-w-0 rounded-full px-5 py-2 text-sm"
           >
-            <Link href="/demo">Auf die Waitlist</Link>
+            <Link href="/demo">Demo sichern</Link>
           </GradientButton>
 
-          {/* Hamburger button */}
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 md:hidden"
-            aria-label={open ? "Menü schließen" : "Menü öffnen"}
-          >
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-white transition-all duration-300 ${
-                open ? "translate-y-0 rotate-45" : "-translate-y-1.5"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-white transition-all duration-300 ${
-                open ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-white transition-all duration-300 ${
-                open ? "translate-y-0 -rotate-45" : "translate-y-1.5"
-              }`}
-            />
-          </button>
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <button
+                type="button"
+                className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 md:hidden"
+                aria-label={open ? "Menü schließen" : "Menü öffnen"}
+                aria-expanded={open}
+                aria-controls="mobile-menu-sheet"
+                aria-haspopup="dialog"
+              >
+                <span
+                  className={`absolute h-0.5 w-4 rounded-full bg-white transition-all duration-300 ${
+                    open ? "translate-y-0 rotate-45" : "-translate-y-1.5"
+                  }`}
+                />
+                <span
+                  className={`absolute h-0.5 w-4 rounded-full bg-white transition-all duration-300 ${
+                    open ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`absolute h-0.5 w-4 rounded-full bg-white transition-all duration-300 ${
+                    open ? "translate-y-0 -rotate-45" : "translate-y-1.5"
+                  }`}
+                />
+              </button>
+            </SheetTrigger>
+
+            <SheetContent
+              id="mobile-menu-sheet"
+              side="top"
+              showCloseButton={false}
+              className="mt-16 border-t border-white/10 bg-black/80 p-0 backdrop-blur-2xl md:hidden"
+            >
+              <SheetTitle className="sr-only">Navigation</SheetTitle>
+              <SheetDescription className="sr-only">
+                Hauptnavigation und Demo-Call-to-Action.
+              </SheetDescription>
+              <nav className="flex flex-col px-6 pt-8">
+                {siteConfig.nav.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`border-b border-white/5 py-4 text-lg font-medium transition ${
+                      pathname === item.href
+                        ? "text-brand-300"
+                        : "text-zinc-200 active:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="px-6 pt-6">
+                <Button
+                  href="/demo"
+                  variant="cta"
+                  className="w-full justify-center"
+                  onClick={() => setOpen(false)}
+                >
+                  Demo sichern
+                </Button>
+              </div>
+
+              <p className="mt-auto px-6 pb-8 text-xs text-zinc-500">
+                {siteConfig.legalName}
+              </p>
+            </SheetContent>
+          </Sheet>
         </Container>
       </header>
-
-      {/* Mobile overlay menu */}
-      <div
-        className={`fixed inset-0 z-50 flex flex-col transition-all duration-300 md:pointer-events-none md:hidden ${
-          open
-            ? "visible opacity-100"
-            : "invisible opacity-0"
-        }`}
-      >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/70 backdrop-blur-md"
-          onClick={() => setOpen(false)}
-        />
-
-        {/* Menu content */}
-        <div
-          className={`relative mt-16 flex flex-1 flex-col border-t border-white/10 bg-black/80 backdrop-blur-2xl transition-transform duration-300 ${
-            open ? "translate-y-0" : "-translate-y-4"
-          }`}
-        >
-          <nav className="flex flex-col px-6 pt-8">
-            {siteConfig.nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={`border-b border-white/5 py-4 text-lg font-medium transition ${
-                  pathname === item.href
-                    ? "text-brand-300"
-                    : "text-zinc-200 active:text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="px-6 pt-6">
-            <Button
-              href="/demo"
-              className="w-full justify-center rounded-full border border-brand-300/70 bg-brand-400 text-sm font-semibold text-zinc-950 shadow-[0_8px_26px_rgba(98,164,255,0.35)] transition-all hover:bg-white hover:text-zinc-950"
-              onClick={() => setOpen(false)}
-            >
-              Auf die Waitlist
-            </Button>
-          </div>
-
-          <p className="mt-auto px-6 pb-8 text-xs text-zinc-600">
-            {siteConfig.legalName}
-          </p>
-        </div>
-      </div>
     </>
   );
 }

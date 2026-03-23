@@ -6,80 +6,75 @@ import {
   PixelFilter,
   PixelEmail,
   PixelUser,
-  PixelList,
-  PixelTrophy,
 } from "@/components/pixel-icons";
 import StructuredData from "@/components/structured-data";
 import TicketPreviewShowcase from "@/components/ticket-preview-showcase";
 import TypewriterHeading from "@/components/typewriter-heading";
 import VoiceDemoCard from "@/components/voice-demo-card";
+import HomeCtaActions from "@/components/home-cta-actions";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { GradientButton } from "@/components/ui/gradient-button";
 import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Beschwerdemanagement für Automatenläden",
+  title: "Digitaler Front-Desk für Automatenbetreiber",
   description:
-    "Beschwerden kommen per Telefon oder Webformular rein. OUTAG3 priorisiert automatisch und erstellt eine klare Aufgabe (Kategorie, Priorität, Kontakt) – damit dein Team ohne Nachfragen handeln kann.",
+    "Schluss mit 24/7 Support-Stress: OUTAG3 filtert Frust-Anrufe, bereitet Auszahlungslisten vor und alarmiert dich bei Ausfällen in Stoßzeiten – damit du nachts ruhig schlafen kannst.",
   path: "/",
   keywords: [
-    "beschwerdemanagement automatenläden",
-    "beschwerden automatenladen",
-    "webformular beschwerde",
-    "beschwerdemanagement",
-    "automatenladen",
-    "ki support",
-    "priorisierung support",
+    "automatenladen support",
+    "beschwerdemanagement automaten",
+    "vending support automation",
+    "ki voice agent vending",
+    "umsatzsicherung automaten",
   ],
 });
 
 const steps = [
   {
     number: "01",
-    title: "Beschwerde kommt rein",
-    body: "Kundinnen und Kunden melden sich per Telefon oder Webformular.",
+    title: "Frust-Anruf geht ein",
+    body: "Kunden rufen 24/7 an – doch du musst nicht mehr selbst abheben.",
     icon: PixelPhone,
   },
   {
     number: "02",
-    title: "KI sortiert automatisch",
-    body: "Die KI erkennt Problemart und Dringlichkeit direkt aus der Meldung.",
+    title: "KI-Triage in Echtzeit",
+    body: "Die KI erkennt sofort, ob nur 2€ fehlen oder die Schranke im Stoßbetrieb klemmt.",
     icon: PixelRobot,
   },
   {
     number: "03",
     title: "Daten werden strukturiert",
-    body: "Name, Kontakt und Problem werden sauber aufbereitet und gespeichert.",
+    body: "Name, Standort und IBAN/PayPal für die Erstattung sind sofort erfasst.",
     icon: PixelFilter,
   },
   {
     number: "04",
-    title: "Team bekommt klare Aufgabe",
-    body: "Automatisch entsteht eine verständliche E-Mail oder ein Ticket mit Referenz.",
+    title: "Fertige Auszahlungsliste",
+    body: "Kein Nachtelefonieren mehr: Du bekommst eine fertige Liste aller offenen Erstattungen.",
     icon: PixelEmail,
   },
   {
     number: "05",
-    title: "Mensch prüft nur Sonderfälle",
-    body: "Unklare oder sensible Meldungen werden für Review markiert.",
+    title: "Umsatz in Stoßzeiten gesichert",
+    body: "Kritische Fehler lösen sofort Alarm aus, wenn es in deinem Laden gerade brennt.",
     icon: PixelUser,
   },
 ];
 
 const useCases: Array<{ title: string; description: string; href?: string }> = [
   {
-    title: "Typische Beschwerden",
-    description: "Geld geschluckt, Produkt bleibt hängen, Kartenzahlung geht nicht.",
+    title: "Schutz in Stoßzeiten",
+    description: "Kartenleser-Ausfall am Samstagabend? OUTAG3 alarmiert dich sofort, bevor der Umsatz wegbricht.",
   },
   {
-    title: "Meldung ohne App",
-    description: "Kundinnen und Kunden nutzen einfach Telefon oder Webformular.",
+    title: "Nie wieder 2€-Ping-Pong",
+    description: "Statt jedem Kunden einzeln wegen Kleinstbeträgen nachzulaufen, erledigst du alles gesammelt per Liste.",
   },
   {
-    title: "KI übernimmt Vorarbeit",
-    description: "Kategorie und Priorität werden automatisch vorbereitet.",
+    title: "Wachsen ohne Stress",
+    description: "Betreue mehr Standorte mit dem gleichen Aufwand, weil dein Support-Filter alles für dich vorarbeitet.",
   },
 ];
 
@@ -90,12 +85,12 @@ export default function HomePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: `${siteConfig.name} – Beschwerdemanagement für Automatenläden`,
+          name: `${siteConfig.name} – Digitaler Front-Desk für Automatenläden`,
           url: absoluteUrl("/"),
           description:
-            "Beschwerden per Telefon oder Webformular erfassen, automatisch priorisieren und als klare Aufgabe an das Team weitergeben.",
+            "Dein digitaler Front-Desk: 24/7 Erreichbarkeit ohne Stress. OUTAG3 filtert Anrufe und bereitet deine To-Do-Liste automatisch vor.",
           inLanguage: "de-DE",
-          dateModified: "2026-03-17",
+          dateModified: "2026-03-23",
           publisher: {
             "@type": "Organization",
             name: siteConfig.name,
@@ -113,7 +108,7 @@ export default function HomePage() {
           "@type": "SoftwareApplication",
           name: siteConfig.name,
           description:
-            "KI-gestütztes Beschwerdemanagement für Automatenläden. Beschwerden per Telefon oder Webformular erfassen, automatisch kategorisieren und priorisieren.",
+            "KI-gestütztes Incident Management für Automaten. Filtert Support-Anrufe und alarmiert bei kritischen Ausfällen.",
           applicationCategory: "BusinessApplication",
           operatingSystem: "Web-basiert",
           url: absoluteUrl("/"),
@@ -156,12 +151,12 @@ export default function HomePage() {
             },
           ],
           featureList: [
-            "Voice Intake per Telefon (24/7 KI-Agent)",
-            "Webformular für Beschwerden",
-            "Automatische Kategorisierung und Priorisierung",
-            "Strukturierte Ticket-Erstellung",
-            "E-Mail- und SMS-Benachrichtigungen",
-            "Multi-Standort-Unterstützung",
+            "24/7 Voice-Agent (Digitaler Front-Desk)",
+            "Fertige Auszahlungslisten (Kein Nachtelefonieren)",
+            "Intelligente Triage (Bagatelle vs. Notfall)",
+            "Sofort-Alarm bei Ausfällen in Stoßzeiten",
+            "Keine App für Kunden nötig",
+            "Multi-Standort Dashboard",
           ],
           provider: {
             "@type": "Organization",
@@ -174,10 +169,10 @@ export default function HomePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Beschwerdemanagement für Automatenläden",
+          name: "Digitaler Front-Desk für Automatenbetreiber",
           description:
-            "Automatisiertes Beschwerde- und Incident Intake mit KI-Priorisierung. Meldungen per Telefon oder Webformular werden strukturiert erfasst und als priorisierte Aufgaben an das Team weitergegeben.",
-          serviceType: "Beschwerde- und Incident Intake mit KI-Priorisierung",
+            "KI-Support-Automation für Automatenbetreiber. Verwandelt unstrukturierte Anrufe in eine klare To-Do-Liste.",
+          serviceType: "Customer Support Automation",
           areaServed: {
             "@type": "Country",
             name: "DE",
@@ -187,15 +182,6 @@ export default function HomePage() {
             name: siteConfig.name,
             url: siteConfig.url,
           },
-          hasOfferCatalog: {
-            "@type": "OfferCatalog",
-            name: "OUTAG3 Tarife",
-            itemListElement: [
-              { "@type": "Offer", name: "Light", price: "39", priceCurrency: "EUR" },
-              { "@type": "Offer", name: "Starter", price: "89", priceCurrency: "EUR" },
-              { "@type": "Offer", name: "Professional", price: "199", priceCurrency: "EUR" },
-            ],
-          },
         }}
       />
 
@@ -203,58 +189,43 @@ export default function HomePage() {
       <section className="pb-16 pt-16 sm:pt-24">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <Badge variant="default">Beschwerdemanagement für Automatenläden</Badge>
+            <Badge variant="default">Dein digitaler Front-Desk</Badge>
             <TypewriterHeading
-              text="Beschwerden aus Automatenläden in klare, priorisierte Aufgaben verwandeln."
+              text="Schluss mit 24/7 Support-Stress: Wir filtern deine Anrufe."
               className="mt-5 text-balance font-display text-4xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-6xl"
             />
             <p className="hero-description mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-300">
-              Ob per Telefon oder Webformular: OUTAG3 erfasst Beschwerden, ordnet sie einer
-              Kategorie zu, setzt die Priorität und liefert deinem Team alle nötigen
-              Informationen für die Problembehebung.
+              Deine Automaten laufen rund um die Uhr – dein Handy muss das nicht. 
+              OUTAG3 nimmt Beschwerden entgegen, sammelt alle Daten für Erstattungen 
+              und alarmiert dich nur, wenn es wirklich brennt.
             </p>
           </div>
 
           <div className="glass-card mx-auto w-full max-w-5xl rounded-3xl border border-brand-400/40 px-6 py-7 text-center shadow-[0_24px_60px_rgba(10,20,40,0.5)] sm:px-8 sm:py-9">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">
-              Pilot 2026
+              Early Adopter Programm 2026
             </p>
             <h2 className="mt-2 text-balance text-2xl font-semibold text-white sm:text-3xl">
-              Starte jetzt mit der Waitlist für automatisiertes Beschwerdemanagement.
+              Sichere dir 90% mehr Zeit für dein Kerngeschäft.
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-300 sm:text-base">
-              Für Automatenläden mit klarer Priorisierung, schnellerer Bearbeitung und weniger
-              Rückfragen im Team.
+              Werde einer der ersten Partner und verabschiede dich von Support-Chaos, 
+              ewigem Nachtelefonieren und unentdeckten Ausfällen.
             </p>
-            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <GradientButton
-                asChild
-                className="h-12 rounded-full px-10"
-              >
-                <Link href="/demo" className="inline-flex items-center justify-center gap-2.5">
-                  <PixelList className="h-5 w-5 text-white" />
-                  Auf die Waitlist
-                </Link>
-              </GradientButton>
-              <Button
-                href="/preise"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 text-base font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
-              >
-                Preise ansehen
-              </Button>
+            <div className="mt-6">
+              <HomeCtaActions />
             </div>
             <p className="mt-3 text-xs text-zinc-500">
-              Unverbindlich. Begrenzte Plätze.
+              Exklusive Sonderkonditionen für die ersten 10 Standorte.
             </p>
           </div>
 
-          {/* Feature chips */}
-          <div className="flex flex-wrap gap-3">
+          <div className="mt-2 flex flex-wrap gap-3 opacity-85 sm:mt-4">
             {[
-              "Telefon und Webformular als Eingang",
-              "KI sortiert Beschwerden automatisch",
-              "Klare Meldung statt unstrukturiertem Text",
-              "Menschlicher Review nur wenn nötig",
+              "Digitaler Front-Desk (24/7 KI-Agent)",
+              "Triage: Bagatelle vs. Notfall",
+              "Sofort-Alarm in Stoßzeiten",
+              "Fertige Auszahlungslisten (PayPal/IBAN)",
             ].map((feat) => (
               <span
                 key={feat}
@@ -272,18 +243,15 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
-              So funktioniert es
+              Der Support-Filter
             </p>
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Vom Anruf zum Ticket: in 5 Schritten zur klaren Aufgabe
+              In 5 Schritten vom Stress-Anruf zur fertigen Liste
             </h2>
-            <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Meldung rein, KI priorisiert, dein Team arbeitet gezielt ab. Antworten auf typische Fragen findest du in den{" "}
-              <Link href="/faq" className="text-brand-300 hover:text-brand-200 hover:underline">
-                FAQs
-              </Link>
-              .
-            </p>
+              <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-300">
+                Wir fangen den Frust ab, sammeln die Fakten und bereiten alles für dich vor.
+                So sicherst du deinen Umsatz und deinen Schlaf.
+              </p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -312,23 +280,32 @@ export default function HomePage() {
       </section>
 
       {/* ── Voice Demo + Ticket Preview ──────────────────────────────── */}
-      <section className="py-16 sm:py-20">
+      <section className="relative py-24 sm:py-32 overflow-hidden">
+        {/* Subtiler Brand-Glow Hintergrund */}
+        <div className="absolute left-1/2 top-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 bg-brand-500/10 blur-[120px] rounded-full" />
+        <div className="absolute right-0 top-0 -z-10 h-[300px] w-[300px] bg-brand-600/5 blur-[80px] rounded-full" />
+
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-12 max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
               Live Demo
             </p>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Ruf an und sieh die fertige Meldung, die dein Team bekommt
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Teste deinen neuen digitalen Mitarbeiter
             </h2>
-            <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Starte ein Gespräch im Browser oder ruf direkt an. Direkt danach siehst du,
-              wie Kategorie, Priorität und Kontaktdaten strukturiert ankommen.
+            <p className="mt-4 max-w-2xl text-pretty text-lg text-zinc-300">
+              Sprich jetzt im Browser mit unserem KI-Agenten. Direkt danach siehst du,
+              wie aus dem unstrukturierten Gespräch eine fertige Aufgabe für dich wird.
             </p>
           </div>
 
-          <div className="grid items-start gap-8 lg:grid-cols-2">
-            <VoiceDemoCard />
+          <div className="grid items-stretch gap-12 lg:grid-cols-2">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-brand-400/20 to-brand-500/20 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500" />
+              <div className="relative z-10 h-full">
+                <VoiceDemoCard />
+              </div>
+            </div>
             <TicketPreviewShowcase />
           </div>
         </div>
@@ -339,14 +316,14 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
-              Fokus
+              Warum OUTAG3?
             </p>
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Optimiert für Automatenläden (und eure typischen Fälle)
+              Gebaut für Betreiber, die skalieren wollen
             </h2>
-            <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-400">
-              Wir starten bewusst schlank: Beschwerden, die im Alltag wirklich passieren — und
-              die sofort eine klare Aktion auslösen sollen.
+            <p className="mt-3 max-w-2xl text-pretty text-base text-zinc-300">
+              Wir wissen: Support ist der größte Flaschenhals, wenn du wachsen willst. 
+              Wir lösen dieses Problem, damit du den Kopf für neue Standorte frei hast.
             </p>
           </div>
 
@@ -380,28 +357,14 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-balance text-2xl font-semibold text-white sm:text-3xl">
-              Fragen offen? Wir zeigen dir den Ablauf live.
+              Bereit für echtes Wachstum ohne Support-Wahnsinn?
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
-              In 20 Minuten siehst du, wie Beschwerden per Telefon und Webformular als klare
-              Aufgaben bei deinem Team landen.
+            <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">
+              Verpasse nie wieder einen Ausfall in Stoßzeiten und gewinne deinen Feierabend zurück. 
+              Wir zeigen dir den Ablauf in einer 20-minütigen Live-Demo.
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <GradientButton
-                asChild
-                className="h-12 rounded-full px-10"
-              >
-                <Link href="/demo" className="inline-flex items-center gap-2.5">
-                  <PixelList className="h-5 w-5 text-white" />
-                  Auf die Waitlist
-                </Link>
-              </GradientButton>
-              <Button
-                href="/preise"
-                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 text-base font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
-              >
-                Preise ansehen
-              </Button>
+            <div className="mt-6">
+              <HomeCtaActions />
             </div>
           </div>
         </div>

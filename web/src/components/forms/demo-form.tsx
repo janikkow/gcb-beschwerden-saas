@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
@@ -24,6 +24,7 @@ export default function DemoForm() {
   const [status, setStatus] = useState<State>("idle");
   const [error, setError] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("");
+  const errorRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     const planFromUrl = searchParams.get("plan");
@@ -34,6 +35,20 @@ export default function DemoForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!form.checkValidity()) {
+      const firstInvalid = form.querySelector<HTMLElement>(
+        "input:not([type='hidden']):invalid, textarea:invalid, select:invalid",
+      );
+      firstInvalid?.focus();
+      firstInvalid?.scrollIntoView({ block: "center", behavior: "smooth" });
+      form.reportValidity();
+      setStatus("error");
+      setError("Bitte korrigiere die markierten Pflichtfelder.");
+      return;
+    }
+
     setStatus("loading");
     setError("");
 
@@ -49,7 +64,6 @@ export default function DemoForm() {
       website: String(formData.get("website") ?? ""),
     };
 
-    const form = event.currentTarget;
     try {
       const response = await fetch("/api/lead", {
         method: "POST",
@@ -67,6 +81,12 @@ export default function DemoForm() {
       setError(err instanceof Error ? err.message : "Unbekannter Fehler.");
     }
   }
+
+  useEffect(() => {
+    if (status === "error") {
+      errorRef.current?.focus();
+    }
+  }, [status]);
 
   if (status === "success") {
     return (
@@ -87,6 +107,7 @@ export default function DemoForm() {
   return (
     <form
       onSubmit={onSubmit}
+      noValidate
       className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-2xl"
       style={{ WebkitBackdropFilter: "blur(24px)" }}
     >
@@ -127,6 +148,8 @@ export default function DemoForm() {
             required
             className={inputClass}
             placeholder="Max Mustermann"
+            autoComplete="name"
+            aria-describedby={status === "error" ? "demo-form-error" : undefined}
           />
         </label>
         <label>
@@ -136,6 +159,8 @@ export default function DemoForm() {
             required
             className={inputClass}
             placeholder="Muster GmbH"
+            autoComplete="organization"
+            aria-describedby={status === "error" ? "demo-form-error" : undefined}
           />
         </label>
       </div>
@@ -149,11 +174,22 @@ export default function DemoForm() {
             required
             className={inputClass}
             placeholder="max@beispiel.de"
+            autoComplete="email"
+            spellCheck={false}
+            aria-describedby={status === "error" ? "demo-form-error" : undefined}
           />
         </label>
         <label>
           <span className={labelClass}>Telefon (optional)</span>
-          <input name="phone" className={inputClass} placeholder="+49 ..." />
+          <input
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            className={inputClass}
+            placeholder="+49 ..."
+            aria-describedby={status === "error" ? "demo-form-error" : undefined}
+          />
         </label>
       </div>
 
@@ -170,6 +206,7 @@ export default function DemoForm() {
           rows={3}
           className={inputClass}
           placeholder="Wie viele Standorte betreibt ihr? Welche Beschwerden treten am häufigsten auf?"
+          aria-describedby={status === "error" ? "demo-form-error" : undefined}
         />
       </label>
 
@@ -183,17 +220,37 @@ export default function DemoForm() {
       />
 
       {status === "error" && (
-        <p className="rounded-lg border border-rose-400/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+        <p
+          id="demo-form-error"
+          ref={errorRef}
+          tabIndex={-1}
+          role="alert"
+          className="rounded-lg border border-rose-400/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300"
+        >
           {error}
         </p>
       )}
 
+      <p
+        className="sr-only"
+        role={status === "error" ? "alert" : "status"}
+        aria-live={status === "error" ? "assertive" : "polite"}
+        aria-atomic="true"
+      >
+        {status === "loading"
+          ? "Anfrage wird gesendet."
+          : status === "error"
+            ? error
+            : ""}
+      </p>
+
       <Button
         type="submit"
+        variant="cta"
         disabled={status === "loading"}
-        className="w-full rounded-full border border-brand-300/70 bg-brand-400 text-sm font-semibold text-zinc-950 shadow-[0_8px_26px_rgba(98,164,255,0.35)] transition-all hover:bg-white hover:text-zinc-950 sm:w-auto"
+        className="w-full sm:w-auto"
       >
-        {status === "loading" ? "Wird gesendet..." : "Auf die Waitlist"}
+        {status === "loading" ? "Wird gesendet..." : "Demo sichern"}
       </Button>
     </form>
   );
