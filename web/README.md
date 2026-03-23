@@ -4,6 +4,18 @@
 Die Produktseite liegt im bestehenden Repository unter `web/`.
 Damit bleiben Skalierungsdokumente und Workflow-Referenzen im selben Workspace.
 
+## Mirror-Repo Sync (wichtig)
+Das `web/` Verzeichnis wird in ein separates Repository gespiegelt:
+
+- Ziel: `https://github.com/janikkow/gcb-beschwerden-saas-web.git`
+- Monorepo-Remote: `web-origin`
+
+Nach Aenderungen an `web/` im Monorepo den Mirror-Stand synchronisieren:
+
+```bash
+git subtree push --prefix web web-origin main
+```
+
 ## Lokale Entwicklung
 ```bash
 npm run dev

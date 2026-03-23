@@ -39,6 +39,22 @@ jq empty "saas/workflows/Twillio zu Ultravox.json"
 
 Next.js 16 App (TypeScript, Tailwind, App Router). Deployment-Ziel: Vercel.
 
+### Mirror Repository (wichtig)
+
+Das `web/` Subprojekt wird zusaetzlich in ein eigenes Repository gespiegelt:
+
+- Ziel-Repo: `https://github.com/janikkow/gcb-beschwerden-saas-web.git`
+- Remote im Monorepo: `web-origin`
+
+Fuer Agenten/CLI-Workflows gilt:
+
+```bash
+# web/ als eigenes Repo (Branch main) pushen
+git subtree push --prefix web web-origin main
+```
+
+Hinweis: Aenderungen im Monorepo an `web/` muessen nach relevanten Updates per `git subtree push` in das Mirror-Repo veroeffentlicht werden.
+
 ### Befehle
 
 ```bash
