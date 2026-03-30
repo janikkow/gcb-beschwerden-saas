@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Share_Tech_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
+import CookieConsent from "@/components/cookie-consent";
 import SiteFooter from "@/components/layout/site-footer";
 import SiteHeader from "@/components/layout/site-header";
 import PreloaderWrapper from "@/components/preloader-wrapper";
@@ -123,7 +123,7 @@ export default function RootLayout({
             <SiteFooter />
           </div>
         </PreloaderWrapper>
-        <Analytics />
+        <CookieConsent />
       </body>
     </html>
   );

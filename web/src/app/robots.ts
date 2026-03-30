@@ -47,6 +47,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: isProd ? "" : "/",
       },
     ],
+    host: absoluteUrl("/"),
     sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

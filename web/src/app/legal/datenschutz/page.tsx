@@ -173,10 +173,14 @@ export default function DatenschutzPage() {
           {/* 5. Cookies */}
           <Block title="5. Cookies und lokale Speicherung">
             <p>
-              Diese Website setzt keine Tracking-Cookies und verwendet keine
-              Analyse- oder Werbedienste. Es werden ausschließlich technisch
-              notwendige Funktionen des Browsers genutzt, die für den Betrieb
-              der Seite erforderlich sind (z. B. Session-Daten der Voice-Demo).
+              Diese Website setzt standardmäßig nur technisch notwendige
+              Browserfunktionen ein. Optionale Analyse-Cookies werden erst nach
+              ausdrücklicher Einwilligung über das Cookie-Banner aktiviert.
+            </p>
+            <p>
+              Wenn Sie nur notwendige Cookies auswählen, werden optionale
+              Analyse-Cookies nicht gesetzt bzw. bereits gesetzte nicht
+              notwendige Cookies nach Möglichkeit entfernt.
             </p>
           </Block>
 

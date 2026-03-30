@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "@/components/ui/container";
@@ -18,11 +18,6 @@ import { siteConfig } from "@/lib/site";
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  // Close menu on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <>
