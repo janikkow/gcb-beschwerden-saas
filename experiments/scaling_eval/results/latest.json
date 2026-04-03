@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-03-31T20:16:23.556766Z",
+  "metric": "scaling_readiness_score",
+  "unit": "points",
+  "direction": "higher-is-better",
+  "score": 100,
+  "subscores": {
+    "control_plane": 20,
+    "data_plane": 20,
+    "scaling_mechanics": 20,
+    "operability": 20,
+    "paper_alignment": 20,
+    "workflow_bonus": 5
+  },
+  "hits": {
+    "control_plane": [
+      "control_plane",
+      "tenant_provisioning",
+      "deployment_rollback",
+      "monitoring",
+      "tenant_registry"
+    ],
+    "data_plane": [
+      "data_plane",
+      "tenant_resolution",
+      "schema_isolation",
+      "db_user_isolation",
+      "llm_firewall"
+    ],
+    "scaling_mechanics": [
+      "queue_mode",
+      "redis",
+      "worker",
+      "webhook_processors_lb",
+      "multi_main_or_ha"
+    ],
+    "operability": [
+      "health_checks",
+      "alerts",
+      "retry_dlq",
+      "acceptance_criteria",
+      "security_hardening"
+    ],
+    "paper_alignment": [
+      "matched_paper",
+      "official_n8n_docs",
+      "evidence_vs_inference",
+      "phased_plan",
+      "source_links"
+    ]
+  },
+  "workflow_stats": {
+    "files": 4,
+    "valid_json": 4,
+    "nodes": 62,
+    "has_webhook": 4
+  },
+  "inputs": {
+    "docs": [
+      "saas/Planung Umsetzung/masterplan.md",
+      "saas/skalierungsansätze/Skalierung Beschwerdemanagement A.md",
+      "saas/skalierungsansätze/Skalierung Beschwerdemanagement B.md",
+      "saas/skalierungsansätze/Skalierung Beschwerdemanagement C.md",
+      "saas/skalierungsansätze/Skalierung Beschwerdemanagement D.md"
+    ],
+    "workflows": [
+      "saas/workflows/Beschwerden Analyse Test.json",
+      "saas/workflows/Twillio zu Ultravox.json",
+      "saas/workflows/Waitlist Lead Onboarding.json",
+      "saas/workflows/Zusammenfassung Daten Auswahl.json"
+    ],
+    "brief": "outputs/scale-research/scaling-strategy-brief.md"
+  }
+}

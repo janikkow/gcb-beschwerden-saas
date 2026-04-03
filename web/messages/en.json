@@ -127,6 +127,44 @@
       "footer": "Microphone access required • Demo budget limited"
     }
   },
+  "ticketPreview": {
+    "kicker": "Ticket preview",
+    "title": "New report received",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "time": "Time",
+    "message": "Message",
+    "referencePrefix": "Reference:",
+    "impact": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "review": "Review"
+    },
+    "scenarios": {
+      "geld-hoch": {
+        "chip": "Money retained (high)",
+        "category": "Money retained",
+        "body": "The machine charged €8 but did not dispense a product. Please investigate urgently."
+      },
+      "ausgabe-mittel": {
+        "chip": "Dispense error (medium)",
+        "category": "Dispense error",
+        "body": "A snack got stuck in the chute. After a second attempt, dispensing worked."
+      },
+      "karte-niedrig": {
+        "chip": "Card payment (low)",
+        "category": "Card payment failed",
+        "body": "The first card attempt was declined; the second went through. Please monitor."
+      },
+      "alkohol-review": {
+        "chip": "Alcohol vending (review)",
+        "category": "Alcohol vending machine",
+        "body": "Unclear age verification at the alcohol vending machine. Please review manually and follow up."
+      }
+    }
+  },
   "cta": {
     "demoButton": "Get a Demo",
     "demoSecondary": "Call now"
@@ -197,32 +235,32 @@
     "pageHeadline": "Frequently Asked Questions",
     "pageBody": "Short and clear answers for operators and support teams of vending machine businesses.",
     "items": [
-      { "q": "How can a complaint be reported?", "a": "By phone or via web form. Both channels feed into the same processing workflow." },
-      { "q": "What happens after a report is submitted?", "a": "The AI pre-sorts the report, sets a priority and automatically creates a clear email or ticket." },
-      { "q": "What information is captured immediately?", "a": "Name, contact, location, problem type, timestamp and priority are captured as standard so your team can act right away." },
-      { "q": "What does the AI handle?", "a": "It handles pre-sorting: recognizing the problem type, assessing urgency and preparing the data." },
-      { "q": "What stays with the team?", "a": "Decisions about refunds, callbacks and final actions always stay with the team. OUTAG3 prepares but does not replace operational decisions." },
-      { "q": "Does my team need to be technical?", "a": "No. The team works with clear, understandable reports and does not need to operate any AI tools." },
-      { "q": "What problems are relevant for vending machine operators?", "a": "For example: money swallowed, product stuck, card payment failed or unclear age verification." },
-      { "q": "How is priority determined?", "a": "Priority is based on the problem type and report content. Important cases can be flagged immediately." },
-      { "q": "Can I define my own priority rules?", "a": "Yes. You can set rules per incident type and location, e.g. card reader failure as high and small amounts as normal." },
-      { "q": "Can I customize categories?", "a": "Yes. Categories and rules can be adapted to your operation." },
-      { "q": "When is a human brought in?", "a": "If a case is unclear or sensitive it is flagged for manual review." },
-      { "q": "How quickly can a pilot go live for vending machines?", "a": "A focused pilot is usually possible within a few days once the phone number and forwarding are set up." },
-      { "q": "How does the pilot work in practice?", "a": "The pilot starts with one location, clear categories and fixed escalation rules. After 2–4 weeks it is optimized based on real reports." },
-      { "q": "How are leads processed?", "a": "Demo requests go through a protected form and are forwarded via API to email or webhook." },
-      { "q": "Can OUTAG3 integrate with existing tools?", "a": "Yes. Handoffs are possible via webhook, email and API so existing ticket or CRM processes can continue to be used." },
-      { "q": "Can customer data be stored separately?", "a": "Yes. Separate data storage per customer is possible." },
-      { "q": "How is data privacy handled?", "a": "Data minimization, access control and traceable processing are standard. Retention periods per data type can be defined on request." },
-      { "q": "Can OUTAG3 be used in a GDPR-compliant way?", "a": "Yes. With correct configuration of roles, retention periods and data processing agreements, GDPR-compliant use is generally possible." },
-      { "q": "Where is data processed?", "a": "Processing depends on the chosen infrastructure and connected services. Only necessary data is processed for operation." },
-      { "q": "How are critical incidents escalated?", "a": "Critical cases are flagged immediately and escalated via the defined alert channel so outages during peak hours are never missed." },
-      { "q": "Is there analysis of recurring problems?", "a": "Yes. Recurring patterns such as card reader or product dispensing faults can be grouped to resolve root causes faster." },
-      { "q": "How stable is the system under high request volumes?", "a": "Technical safeguards such as rate limiting and clear fallbacks are used for peaks so the system stays stable under load." },
-      { "q": "Can I start with one location and scale later?", "a": "Yes. The typical path is a pilot for one location followed by a gradual rollout to additional locations using the same core processes." },
-      { "q": "How do I measure success after launch?", "a": "Typical metrics are response time, share of automatically pre-sorted cases, number of critical escalations and time saved in support." },
-      { "q": "Can I continue using existing processes?", "a": "Yes. Existing ticket and email processes can continue to be used." },
-      { "q": "What is the fastest way to get started?", "a": "The fastest path is a 20-minute demo, followed by pilot scoping and a clear go-live date for the first location." }
+      { "q": "How can a complaint be reported?", "a": "Customers can reach the voice agent by phone or submit a report through a web form. Both channels feed into the same structured flow, so your team receives consistent information either way. That keeps the experience flexible for end users without forcing you to maintain two separate processes." },
+      { "q": "What happens after a report is submitted?", "a": "The report is pre-sorted automatically: problem type and urgency are detected and turned into a clear summary. A structured email or ticket is generated with the key facts so your team can prioritize and respond immediately. Critical cases can be highlighted so nothing gets lost during busy periods." },
+      { "q": "What information is captured immediately?", "a": "We typically capture name and contact details, the affected location or machine, problem type, a timestamp and an assessed priority. Where refunds are involved, payment details such as IBAN or PayPal can be added. The goal is to give support everything they need without chasing the customer for basics." },
+      { "q": "What does the AI handle?", "a": "The AI acts as the digital front desk: it structures unstructured calls and form entries, maps them to useful categories and estimates urgency. It prepares data so your inbox or ticketing system shows at a glance what happened. It deliberately does not decide refunds or on-site actions, those remain with you." },
+      { "q": "What stays with the team?", "a": "All commercial and customer-facing decisions stay with you: whether to refund, call back, offer goodwill and what action to take on site. OUTAG3 delivers solid preparation with context and priority but does not replace operational or compliance judgment. You stay in control and use AI as an accelerator, not a substitute for responsibility." },
+      { "q": "Does my team need to be technical?", "a": "No. Day to day your team works with normal emails or tickets written in plain language about what happened. Nobody needs to write prompts or operate a special AI tool. Technical topics like webhooks or APIs mainly come up during setup and can be clarified in onboarding." },
+      { "q": "What problems are relevant for vending machine operators?", "a": "Typical cases fit well: money taken without product, product stuck in the chute, card payment failures or unclear age verification. Recurring reader or dispensing issues at one site map cleanly too. If your scenario does not match standard categories, we can tailor categories and rules to your operation." },
+      { "q": "How is priority determined?", "a": "Priority combines problem type and report content, for example how much revenue or customer satisfaction is at stake. That separates minor issues from real emergencies without your team rating every call manually. Especially important cases can be highlighted or marked for immediate handling." },
+      { "q": "Can I define my own priority rules?", "a": "Yes. You define how urgent each incident type is at each location, e.g. card reader outage as high and small amounts as normal priority. Rules can reflect your real operations and be refined after the pilot. Automatic triage then matches your internal escalation logic." },
+      { "q": "Can I customize categories?", "a": "Yes. Categories, labels and mappings can match your machines, product groups and internal reporting. That also helps later analysis because reports land in your language, not generic defaults. Together with priority rules you get a picture that fits your business." },
+      { "q": "When is a human brought in?", "a": "Whenever a case is unclear in content, touches sensitive topics or automatic classification seems uncertain, it is flagged for manual review. Your team then sees explicitly that human judgment is needed. That keeps quality high without hand-checking every small item." },
+      { "q": "How quickly can a pilot go live for vending machines?", "a": "A focused pilot can often go live within a few days once basics are in place, such as phone number, forwarding and initial categories. Exact timing depends on whether you start with web form, phone or both and how quickly approvals happen on your side. In the demo we align the fastest path for your first location." },
+      { "q": "How does the pilot work in practice?", "a": "You start with one location, agreed categories and fixed escalation rules so everyone knows when and how to react. Over two to four weeks you collect real reports; we tune recognition, priority and output wording from that data. At the end you have evidence whether the flow fits your day-to-day and what to adjust before wider rollout." },
+      { "q": "How are leads processed?", "a": "This refers to website demo requests: they go through a protected form and are delivered reliably via API to your email or a webhook. Requests arrive in a structured way without maintaining a parallel mandatory CRM field. Technical protections reduce spam and abuse." },
+      { "q": "Can OUTAG3 integrate with existing tools?", "a": "Yes. Incoming reports can be handed off by email, webhook or API into your existing ticketing, mail or CRM stack. Many teams start with email and deepen integration once the process is stable. The idea is that OUTAG3 handles first contact while your established workflows keep running." },
+      { "q": "Can customer data be stored separately?", "a": "Yes. For operators with multiple brands, franchise structures or strict internal rules, separate storage per customer or tenant is supported. Configuration and data stay logically isolated. We align details with your requirements in the project." },
+      { "q": "How is data privacy handled?", "a": "We follow data minimization, purpose limitation and traceable processing, with controlled access to data. On request, retention periods can be defined per data type so you can meet deletion and documentation duties. Full detail is in our privacy policy." },
+      { "q": "Can OUTAG3 be used in a GDPR-compliant way?", "a": "Privacy-compliant use is generally possible when roles, retention and data processing agreements are set correctly and you meet your obligations as controller. OUTAG3 supports this with clear processes and configuration options but is not a substitute for legal advice. Involve your privacy specialist when in doubt." },
+      { "q": "Where is data processed?", "a": "Specific processing locations and subprocessors depend on the chosen infrastructure and connected partners, e.g. for hosting or telephony. Only data needed for intake, classification and handoff to you is processed. Regions and subprocessors are described in the privacy policy." },
+      { "q": "How are critical incidents escalated?", "a": "Critical reports are marked immediately and delivered through the alert channel you define, e.g. in addition to normal email or by SMS depending on setup. That makes it visible when a card reader fails during peak hours or another revenue-critical incident occurs. You set the exact escalation chain in the pilot." },
+      { "q": "Is there analysis of recurring problems?", "a": "Yes. Reports can be analyzed by category, location and time window to spot patterns like repeated dispensing faults or reader issues. That helps fix root causes before the same machine consumes support every week. Depending on your plan, reporting, history or regular summaries are available." },
+      { "q": "How stable is the system under high request volumes?", "a": "For spikes we use technical safeguards such as rate limiting and clear fallbacks so the system stays controlled under many parallel requests. That discourages abuse and protects handling quality. Legitimate customers usually notice no difference in normal operation." },
+      { "q": "Can I start with one location and scale later?", "a": "Yes. The usual path is a pilot at one site followed by rollout to more locations without reinventing the core process each time. Categories and rules can be reused across sites or customized per location. Support scales with you instead of starting from scratch." },
+      { "q": "How do I measure success after launch?", "a": "Useful metrics include response time to reports, share of cases pre-sorted without follow-up, frequency of critical escalations and time saved in support. Comparing before and after makes the impact obvious. In the pilot we can define which metrics matter most for you." },
+      { "q": "Can I continue using existing processes?", "a": "Yes. OUTAG3 sits at the front and structures incoming complaints while your existing ticket, email or CRM processes continue unchanged or with light adaptation behind it. You do not need to overhaul everything to benefit from automated intake. You deepen integration once the flow is proven." },
+      { "q": "What is the fastest way to get started?", "a": "Book a short live demo of about twenty minutes where we tie the flow to your situation. Right after, we clarify pilot scope, initial categories and a realistic go-live date for your first location. That gives you clarity quickly instead of a long conceptual phase." }
     ]
   },
   "blog": {
@@ -233,7 +271,7 @@
     "readArticle": "Read article",
     "newArticles": "New articles are published continuously from the repository and served statically.",
     "demoLink": "Get a Demo",
-    "author": "GCB Editorial",
+    "author": "DTK Workflows Editorial",
     "articleLabel": "Blog article",
     "tocTitle": "Table of contents",
     "tocEmpty": "This article has no subheadings.",

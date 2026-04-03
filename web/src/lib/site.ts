@@ -1,12 +1,12 @@
 export const siteConfig = {
   name: "OUTAG3",
-  legalName: "Dutz Jonas, Kowalsky Janik, Then Philipp GbR",
+  legalName: "DTK Workflows",
   description:
     "Der digitale Front-Desk für deine Automaten. Wir verwandeln unstrukturierte Frust-Anrufe in klare, priorisierte Aufgaben – damit du 24/7 ruhig schlafen kannst.",
   url: "https://outag3.com",
   phoneDisplay: "+49 89 1234 5678",
   phoneTel: "+498912345678",
-  email: "info@gcbavaria.com",
+  email: "ai@outag3.com",
   nav: [
     { href: "/", label: "Start" },
     { href: "/preise", label: "Preise" },

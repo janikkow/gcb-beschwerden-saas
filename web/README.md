@@ -27,6 +27,7 @@ App unter `http://localhost:3000`.
 - `src/components/` UI- und Feature-Komponenten
 - `src/lib/` SEO-, Blog- und Site-Utilities
 - `content/blog/` MDX-Posts mit Frontmatter
+- `docs/faq-kontextsammlung.md` Rohkontext & Redaktionsbasis für Live-FAQs (`messages/*.json`)
 - `public/llms.txt` AISO-Datei
 
 ## Lead-Flow

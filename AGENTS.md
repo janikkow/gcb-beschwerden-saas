@@ -1,115 +1,147 @@
 # AGENTS.md
 
-Agent operating guide for `beschwerden_SaaS` (Monorepo).
+Operational guide for coding agents working in `beschwerden_SaaS`.
 
-## Repository Structure
-
+## 1) Repository Overview
+Monorepo with two active subprojects:
 ```
 beschwerden_SaaS/
-|-- saas/                 SaaS-Backend: n8n Workflows, Architektur, Planung
-|   |-- workflows/        Exportierte n8n-Workflows (*.json)
-|   |-- skalierungsansaetze/   Architekturvarianten A-D
-|   |-- Planung Umsetzung/    Umsetzungsplaene + Masterplan
-|   '-- AGENTS/           Agent-Guides, CLAUDE.md, GEMINI.md
+|-- saas/                  n8n workflow exports, architecture docs, rollout plans
+|   |-- workflows/         n8n JSON workflows (runtime artifacts)
+|   |-- skalierungsansaetze/
+|   |-- Planung Umsetzung/
+|   '-- AGENTS/
 |
-|-- web/                  Vercel-Webapp: Next.js Early-Adopter Landing Page
-|   |-- src/app/          App Router (page, layout, API routes)
-|   |-- src/app/api/      Backend API (signup etc.)
-|   '-- src/app/components/  React-Komponenten
+|-- web/                   Next.js 16 marketing web app (TypeScript, Tailwind)
+|   |-- src/app/           App Router pages and API routes
+|   |-- src/components/    UI and feature components
+|   '-- src/lib/           shared utils, SEO, blog/site helpers
 |
-'-- .claude/              Lokale Tool-Settings
+'-- .claude/               local tooling settings
 ```
+Use the root guide for monorepo-level behavior.
+Use `saas/AGENTS/AGENTS.md` for deep workflow-specific conventions.
 
-## Subproject: saas/
+## 2) Rule Files (Cursor / Copilot)
+Checked locations:
+- `.cursor/rules/`
+- `.cursorrules`
+- `.github/copilot-instructions.md`
+Current status: no Cursor/Copilot rule files found.
+If these files are added later, treat them as higher-priority instructions.
 
-Workflow-zentrisch, kein Build-System. Validierung ueber `jq`.
-Detaillierter Guide: `saas/AGENTS/AGENTS.md`
-
-### Befehle
-
+## 3) Build, Lint, Test Commands
+### Root-level quick checks
 ```bash
-# Alle Workflows validieren
+# inspect changes
+git status --short
+git diff
+git diff --staged
+```
+### `web/` (Next.js)
+```bash
+# install dependencies
+npm install --prefix web
+
+# local development
+npm run dev --prefix web
+npm run dev:3000 --prefix web
+
+# lint and production build
+npm run lint --prefix web
+npm run build --prefix web
+
+# run production server locally (after build)
+npm run start --prefix web
+```
+### `saas/` (n8n workflows)
+```bash
+# validate all workflow JSON files
 for f in saas/workflows/*.json; do jq empty "$f"; done
 
-# Einzelnen Workflow validieren
+# validate one workflow JSON file
 jq empty "saas/workflows/Twillio zu Ultravox.json"
+
+# validate only changed workflows
+git diff --name-only -- saas/workflows/*.json | while read -r f; do jq empty "$f"; done
 ```
 
-## Subproject: web/
+## 4) Single-Test Guidance (Important)
+There is no dedicated test framework in this repository right now.
+Single-test equivalent for `web/`:
+1. Run `npm run build --prefix web`.
+2. Manually verify only the affected route/component in browser.
+3. For API changes, exercise the specific endpoint and inspect JSON/status.
+Single-test equivalent for `saas/`:
+1. Run `jq empty` against the single changed workflow file.
+2. Execute that workflow path in n8n test environment (manual runtime check).
 
-Next.js 16 App (TypeScript, Tailwind, App Router). Deployment-Ziel: Vercel.
+## 5) Web Code Style and Standards
+### TypeScript and types
+- Keep TypeScript strict-safe (`web/tsconfig.json` has `strict: true`).
+- Avoid `any`; prefer explicit `type` / `interface` and narrow unions.
+- Validate untrusted request data before use.
+- Keep API payload shapes stable; update callers when schema changes.
+### Imports and module structure
+- Keep imports grouped in this order: React/Next, third-party, internal `@/`, then type-only imports.
+- Prefer `@/*` path alias over deep relative paths.
+- Use `import type { ... }` for type-only imports.
+### Formatting and syntax
+- Follow ESLint (`npm run lint --prefix web`) as source of truth.
+- Use semicolons consistently.
+- Prefer `const`; use `let` only for reassignment.
+- Prefer small focused functions and early returns.
+- Keep comments minimal; only explain non-obvious logic.
+### Naming conventions
+- Component filenames: kebab-case (`demo-form.tsx`).
+- App routes: folder-based naming in `src/app/**`.
+- React components/types: PascalCase.
+- Variables/functions: camelCase.
+- Constants: UPPER_SNAKE_CASE only for true constants.
+### React / Next patterns
+- Default to Server Components; add `"use client"` only when needed.
+- Keep metadata/SEO in route files using shared helpers when available.
+- Keep UI styles in Tailwind utility classes; avoid extra CSS files except global styles.
 
-### Mirror Repository (wichtig)
+## 6) Web Error Handling Rules
+- API routes must validate input and return structured JSON errors.
+- Use explicit status codes (`400`, `401`, `403`, `404`, `409`, `429`, `500+`).
+- Wrap JSON parsing/network calls in `try/catch`.
+- Do not swallow errors silently; log actionable context server-side.
+- Client components should model clear states: `idle | loading | success | error`.
+- Always provide user-visible failure feedback for form/API actions.
 
-Das `web/` Subprojekt wird zusaetzlich in ein eigenes Repository gespiegelt:
+## 7) SaaS Workflow Editing Rules
+- Workflows in `saas/workflows/*.json` are source of truth.
+- Preserve n8n structure; avoid mass reformatting unrelated nodes.
+- Keep node IDs/connections stable unless change is intentional.
+- If changing embedded JS in Code nodes, validate required fields, fail fast on critical missing data, output structured error payloads, and avoid hidden side effects.
 
-- Ziel-Repo: `https://github.com/janikkow/gcb-beschwerden-saas-web.git`
-- Remote im Monorepo: `web-origin`
+## 8) Security and Data Hygiene
+- Never commit secrets, API keys, tokens, or credential IDs.
+- Redact PII in examples/docs (email, phone, tenant/customer data).
+- Keep secrets in environment variables (`.env*`), not in source.
+- Do not commit production webhook endpoints with live credentials.
 
-Fuer Agenten/CLI-Workflows gilt:
+## 9) Git and Commit Conventions
+- Commit format: `<type>(<scope>): <summary>`
+- Allowed types: `feat`, `fix`, `docs`, `chore`
+- Scope: `web`, `saas`, or empty for root-level change
+- Keep one logical change per commit.
+- Do not rewrite history (`--amend`, force push) unless explicitly requested.
 
+## 10) Web Mirror Repository Sync
+`web/` is mirrored to a separate repository:
+- target: `https://github.com/janikkow/gcb-beschwerden-saas-web.git`
+- remote in monorepo: `web-origin`
+After relevant changes to `web/`, sync mirror with:
 ```bash
-# web/ als eigenes Repo (Branch main) pushen
 git subtree push --prefix web web-origin main
 ```
 
-Hinweis: Aenderungen im Monorepo an `web/` muessen nach relevanten Updates per `git subtree push` in das Mirror-Repo veroeffentlicht werden.
-
-### Befehle
-
-```bash
-# Dependencies installieren
-npm install --prefix web
-
-# Dev-Server starten
-npm run dev --prefix web
-
-# Production Build
-npm run build --prefix web
-
-# Lint
-npm run lint --prefix web
-```
-
-### Einzeltest (wichtig)
-
-Es gibt bisher kein Testframework. "Einzeltest" bedeutet:
-1. `npm run build --prefix web` muss fehlerfrei durchlaufen.
-2. Manueller Browser-Test der betroffenen Seite/Route.
-
-### Code-Style (web/)
-
-- TypeScript strict mode (Next.js Default).
-- Imports: React/Next oben, dann lokale Module, dann Typen.
-- Prefer `const` und Arrow Functions in Komponenten.
-- Semicolons immer.
-- Komponenten-Dateien: kebab-case (`signup-form.tsx`).
-- API-Routes: Eingabe validieren, frueh mit strukturiertem JSON-Error antworten.
-- Tailwind fuer alles Visuelle — kein separates CSS ausser `globals.css`.
-- Keine `any`-Typen. Interfaces fuer API-Payloads definieren.
-
-### Error Handling (web/)
-
-- API-Routes: try/catch um JSON-Parsing, strukturierte Fehler-Responses (`{ error: "..." }`).
-- Client-Komponenten: Loading/Error/Success-States explizit modellieren.
-- Keine stillen Fehler — immer User-Feedback oder Console-Log.
-
-## Globale Regeln
-
-### Commits
-
-- Format: `<type>(<scope>): <summary>`
-- Typen: `feat`, `fix`, `docs`, `chore`
-- Scopes: `saas`, `web`, oder leer fuer Root-Aenderungen
-- Ein logischer Change pro Commit
-
-### Security
-
-- Keine API-Keys, Tokens oder Credentials committen.
-- PII (Telefonnummern, Emails, Tenant-Daten) in Beispielen redaktieren.
-- `.env*` ist in web/.gitignore — dort Secrets ablegen.
-
-### Cursor / Copilot Rules
-
-Geprueft: `.cursor/rules/`, `.cursorrules`, `.github/copilot-instructions.md` — keine vorhanden.
-Falls spaeter hinzugefuegt: als hoehere Prioritaet behandeln.
+## 11) Agent Completion Checklist
+Before finishing work, agents should:
+1. Run relevant lint/build/validation commands.
+2. Perform single-test equivalent for changed area.
+3. Confirm no secrets/PII were introduced.
+4. Document assumptions and manual verification steps in handoff.

@@ -1,18 +1,20 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import TicketEmailPreview from "@/components/ticket-email-preview";
-import { ticketScenarios } from "@/content/ticket-scenarios";
+import { ticketScenarios, type TicketImpact } from "@/content/ticket-scenarios";
 import { cn } from "@/lib/utils";
 
-const impactDot: Record<string, string> = {
-  Hoch:    "bg-rose-400",
-  Mittel:  "bg-amber-400",
-  Niedrig: "bg-emerald-400",
-  Review:  "bg-violet-400",
+const impactDot: Record<TicketImpact, string> = {
+  high: "bg-rose-400",
+  medium: "bg-amber-400",
+  low: "bg-emerald-400",
+  review: "bg-violet-400",
 };
 
 export default function TicketPreviewShowcase() {
+  const t = useTranslations("ticketPreview");
   const [selectedId, setSelectedId] = useState(ticketScenarios[0]?.id ?? "");
 
   const scenario = useMemo(
@@ -24,10 +26,10 @@ export default function TicketPreviewShowcase() {
 
   return (
     <div className="flex h-full flex-col gap-4">
-      {/* Scenario selector */}
       <div className="flex flex-wrap gap-2">
         {ticketScenarios.map((item) => {
           const active = item.id === scenario.id;
+          const chipLabel = t(`scenarios.${item.id}.chip`);
           return (
             <button
               key={item.id}
@@ -46,7 +48,7 @@ export default function TicketPreviewShowcase() {
                   impactDot[item.impact] ?? "bg-zinc-500",
                 )}
               />
-              {item.label}
+              {chipLabel}
             </button>
           );
         })}
