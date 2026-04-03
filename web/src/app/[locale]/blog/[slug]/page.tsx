@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import Container from "@/components/ui/container";
 import StructuredData from "@/components/structured-data";
 import { Card } from "@/components/ui/card";
@@ -10,12 +11,11 @@ import {
   getPostBySlug,
   mdxLikeToHtml,
 } from "@/lib/blog";
-import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type BlogDetailPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 const averageReadingTimeMinutes = (text: string): number => {
@@ -24,41 +24,55 @@ const averageReadingTimeMinutes = (text: string): number => {
 };
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  const [dePosts, enPosts] = await Promise.all([
+    getAllPosts("de"),
+    getAllPosts("en"),
+  ]);
+  const slugs = new Set([
+    ...dePosts.map((p) => p.slug),
+    ...enPosts.map((p) => p.slug),
+  ]);
+  return ["de", "en"].flatMap((locale) =>
+    [...slugs].map((slug) => ({ locale, slug })),
+  );
 }
 
-export async function generateMetadata({
-  params,
-}: BlogDetailPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
+  const post = await getPostBySlug(slug, locale);
 
   if (!post) {
-    return buildMetadata({
-      title: "Artikel nicht gefunden",
-      description: "Der angefragte Blogpost existiert nicht.",
-      path: `/blog/${slug}`,
-    });
+    return {
+      title: t("articleNotFound"),
+      description: t("articleNotFoundDesc"),
+    };
   }
 
-  return buildMetadata({
+  return {
     title: post.title,
     description: post.description,
-    path: `/blog/${slug}`,
-  });
+    alternates: {
+      canonical: absoluteUrl(`/${locale}/blog/${slug}`),
+      languages: {
+        de: absoluteUrl(`/de/blog/${slug}`),
+        en: absoluteUrl(`/en/blog/${slug}`),
+      },
+    },
+  };
 }
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const { locale, slug } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
+  const post = await getPostBySlug(slug, locale);
 
   if (!post) notFound();
 
   const headings = extractHeadings(post.body);
   const html = mdxLikeToHtml(post.body);
   const readingTime = averageReadingTimeMinutes(post.body);
-  const date = new Date(post.date).toLocaleDateString("de-DE");
+  const date = new Date(post.date).toLocaleDateString(locale === "en" ? "en-GB" : "de-DE");
 
   return (
     <main className="py-14 sm:py-20">
@@ -68,8 +82,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Start", item: absoluteUrl("/") },
-            { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
-            { "@type": "ListItem", position: 3, name: post.title, item: absoluteUrl(`/blog/${slug}`) },
+            { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl(`/${locale}/blog`) },
+            { "@type": "ListItem", position: 3, name: post.title, item: absoluteUrl(`/${locale}/blog/${slug}`) },
           ],
         }}
       />
@@ -79,28 +93,18 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           "@type": "Article",
           headline: post.title,
           description: post.description,
-          url: absoluteUrl(`/blog/${slug}`),
+          url: absoluteUrl(`/${locale}/blog/${slug}`),
           datePublished: post.date,
           dateModified: post.date,
-          inLanguage: "de-DE",
-          author: {
-            "@type": "Organization",
-            name: siteConfig.name,
-            url: siteConfig.url,
-          },
+          inLanguage: locale === "en" ? "en-US" : "de-DE",
+          author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
           publisher: {
             "@type": "Organization",
             name: siteConfig.name,
             url: siteConfig.url,
-            logo: {
-              "@type": "ImageObject",
-              url: absoluteUrl("/og-default.svg"),
-            },
+            logo: { "@type": "ImageObject", url: absoluteUrl("/og-default.svg") },
           },
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/blog/${slug}`),
-          },
+          mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(`/${locale}/blog/${slug}`) },
           keywords: post.tags,
           wordCount: post.body.trim().split(/\s+/).length,
         }}
@@ -108,19 +112,19 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       <Container>
         <header className="mb-8 max-w-4xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">
-            Blogartikel
+            {t("articleLabel")}
           </p>
-          <h1 className="text-balance font-display text-3xl font-semibold leading-tight text-white sm:text-5xl">
+          <h1 className="text-balance break-words font-display text-3xl font-semibold leading-tight text-white sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-4 max-w-3xl text-pretty text-base text-zinc-300 sm:text-lg">
+          <p className="mt-4 max-w-3xl text-pretty text-base text-zinc-300 break-words sm:text-lg">
             {post.description}
           </p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-zinc-400">
+          <div className="mt-5 flex flex-col gap-1 text-sm text-zinc-400 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-2">
             <span>{date}</span>
-            <span>ca. {readingTime} Min. Lesezeit</span>
-            <span>GCB Redaktion</span>
+            <span>{t("readingTime", { min: readingTime })}</span>
+            <span>{t("author")}</span>
           </div>
 
           <div className="mt-5 flex flex-wrap gap-2">
@@ -140,7 +144,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             {headings.length > 0 ? (
               <Card className="border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl lg:hidden">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-zinc-200">
-                  Inhaltsverzeichnis
+                  {t("tocTitle")}
                 </h2>
                 <ul className="mt-3 space-y-2">
                   {headings.map((heading) => (
@@ -148,7 +152,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                       <a
                         href={`#${heading.id}`}
                         className={cn(
-                          "text-sm text-zinc-300 hover:text-brand-300",
+                          "text-pretty break-words text-sm text-zinc-300 hover:text-brand-300",
                           heading.level === 3 && "pl-3 text-zinc-400",
                         )}
                       >
@@ -160,7 +164,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               </Card>
             ) : null}
 
-            <Card className="blog-prose border-white/10 bg-white/[0.05] p-6 backdrop-blur-xl sm:p-8">
+            <Card className="blog-prose border-white/10 bg-white/[0.05] p-5 backdrop-blur-xl sm:p-8">
               <article dangerouslySetInnerHTML={{ __html: html }} />
             </Card>
           </div>
@@ -169,7 +173,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <div className="sticky top-24 space-y-4">
               <Card className="border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-zinc-200">
-                  Inhaltsverzeichnis
+                  {t("tocTitle")}
                 </h2>
                 {headings.length ? (
                   <ul className="mt-3 space-y-2">
@@ -178,7 +182,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                         <a
                           href={`#${heading.id}`}
                           className={cn(
-                            "text-sm text-zinc-300 hover:text-brand-300",
+                            "text-pretty break-words text-sm text-zinc-300 hover:text-brand-300",
                             heading.level === 3 && "pl-3 text-zinc-400",
                           )}
                         >
@@ -188,21 +192,17 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-3 text-sm text-zinc-400">
-                    Dieser Artikel hat keine Zwischenüberschriften.
-                  </p>
+                  <p className="mt-3 text-sm text-zinc-400">{t("tocEmpty")}</p>
                 )}
               </Card>
 
               <Card className="border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
-                <p className="text-sm text-zinc-300">
-                  Weitere Artikel aus dem Incident-Management Hub.
-                </p>
+                <p className="text-sm text-zinc-300">{t("moreArticles")}</p>
                 <Link
                   href="/blog"
                   className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-300 hover:text-brand-200"
                 >
-                  Zur Blog-Übersicht
+                  {t("toBlogOverview")}
                   <span aria-hidden>{"->"}</span>
                 </Link>
               </Card>

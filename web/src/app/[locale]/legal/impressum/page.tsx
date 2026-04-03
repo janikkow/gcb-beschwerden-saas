@@ -1,23 +1,37 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/seo";
-import { siteConfig } from "@/lib/site";
+import { getTranslations } from "next-intl/server";
+import { siteConfig, absoluteUrl } from "@/lib/site";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Impressum",
-  description: "Rechtliche Anbieterkennzeichnung gemäß § 5 TMG.",
-  path: "/legal/impressum",
-});
+type PageProps = { params: Promise<{ locale: string }> };
 
-export default function ImpressumPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.impressum" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: {
+      languages: {
+        de: absoluteUrl("/de/legal/impressum"),
+        en: absoluteUrl("/en/legal/impressum"),
+      },
+    },
+  };
+}
+
+export default async function ImpressumPage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "impressum" });
+
   return (
     <section className="py-16 sm:py-24">
       <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
         <div className="mb-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
-            Rechtliches
+            {t("pageLabel")}
           </p>
-          <h1 className="text-3xl font-semibold text-white">Impressum</h1>
-          <p className="mt-2 text-sm text-zinc-500">Angaben gemäß § 5 TMG</p>
+          <h1 className="text-3xl font-semibold text-white">{t("pageHeadline")}</h1>
+          <p className="mt-2 text-sm text-zinc-500">{t("pageSubheadline")}</p>
         </div>
 
         <div
@@ -26,7 +40,7 @@ export default function ImpressumPage() {
         >
           <div>
             <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500">
-              Anbieter
+              {t("sectionProvider")}
             </p>
             <p className="text-zinc-200">
               Dutz Jonas, Kowalsky Janik, Then Philipp GbR
@@ -39,19 +53,19 @@ export default function ImpressumPage() {
 
           <div>
             <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500">
-              Vertreten durch
+              {t("sectionRepresentedBy")}
             </p>
             <p className="text-zinc-200">Janik Kowalsky</p>
           </div>
 
           <div>
             <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500">
-              Kontakt
+              {t("sectionContact")}
             </p>
             <p className="text-zinc-200">
-              Telefon: {siteConfig.phoneDisplay}
+              {t("phoneLabel")} {siteConfig.phoneDisplay}
               <br />
-              E-Mail:{" "}
+              {t("emailLabel")}{" "}
               <a
                 href={`mailto:${siteConfig.email}`}
                 className="text-brand-400 hover:text-brand-300 transition-colors"

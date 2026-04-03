@@ -282,6 +282,8 @@ body {
   margin-bottom: 0.9rem;
   line-height: 1.85;
   color: #a1a1aa;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .blog-prose ul {
@@ -293,6 +295,8 @@ body {
 .blog-prose li {
   margin: 0.45rem 0;
   line-height: 1.75;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .blog-prose strong {

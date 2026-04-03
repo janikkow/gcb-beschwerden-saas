@@ -11,7 +11,12 @@ type LeadPayload = {
   plan?: string;
   message?: string;
   website?: string; // honeypot
+  locale?: string;
+  discountCode?: string;
+  businessType?: string;
 };
+
+type Locale = "de" | "en";
 
 type LeadEntry = {
   name: string;
@@ -21,6 +26,9 @@ type LeadEntry = {
   vertical: string;
   plan: string;
   message: string;
+  locale: Locale;
+  discountCode: string;
+  businessType: string;
   createdAt: string;
   ip: string;
 };
@@ -28,6 +36,21 @@ type LeadEntry = {
 const ipHits = new Map<string, number[]>();
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_HITS = 6;
+
+const messages = {
+  de: {
+    invalidRequest: "Ungueltige Anfrage.",
+    requiredFields: "Name, Firma, E-Mail und Vertical sind Pflicht.",
+    invalidEmail: "Ungueltige E-Mail-Adresse.",
+    tooManyRequests: "Zu viele Anfragen. Bitte spaeter erneut versuchen.",
+  },
+  en: {
+    invalidRequest: "Invalid request.",
+    requiredFields: "Name, company, email, and vertical are required.",
+    invalidEmail: "Invalid email address.",
+    tooManyRequests: "Too many requests. Please try again later.",
+  },
+} as const;
 
 function isEmail(input: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input);
@@ -45,6 +68,26 @@ function isRateLimited(ip: string, now: number) {
   recent.push(now);
   ipHits.set(ip, recent);
   return recent.length > MAX_HITS;
+}
+
+function getLocale(request: NextRequest): Locale {
+  const localeHeader = request.headers.get("x-locale")?.toLowerCase() ?? "";
+  if (localeHeader.startsWith("en")) {
+    return "en";
+  }
+  if (localeHeader.startsWith("de")) {
+    return "de";
+  }
+
+  const acceptLanguage = request.headers.get("accept-language")?.toLowerCase() ?? "";
+  return acceptLanguage.includes("en") ? "en" : "de";
+}
+
+function normalizeLeadLocale(payloadLocale: unknown, request: NextRequest): Locale {
+  if (payloadLocale === "de" || payloadLocale === "en") {
+    return payloadLocale;
+  }
+  return getLocale(request);
 }
 
 async function persistLeadLocal(entry: LeadEntry) {
@@ -71,11 +114,13 @@ async function persistLeadLocal(entry: LeadEntry) {
 }
 
 export async function POST(request: NextRequest) {
+  const locale = getLocale(request);
+
   let payload: LeadPayload;
   try {
     payload = (await request.json()) as LeadPayload;
   } catch {
-    return NextResponse.json({ error: "Ungueltige Anfrage." }, { status: 400 });
+    return NextResponse.json({ error: messages[locale].invalidRequest }, { status: 400 });
   }
 
   if (payload.website) {
@@ -85,19 +130,19 @@ export async function POST(request: NextRequest) {
   const missing = !payload.name || !payload.company || !payload.email || !payload.vertical;
   if (missing) {
     return NextResponse.json(
-      { error: "Name, Firma, E-Mail und Vertical sind Pflicht." },
+      { error: messages[locale].requiredFields },
       { status: 400 },
     );
   }
 
   if (!isEmail(payload.email)) {
-    return NextResponse.json({ error: "Ungueltige E-Mail-Adresse." }, { status: 400 });
+    return NextResponse.json({ error: messages[locale].invalidEmail }, { status: 400 });
   }
 
   const ip = getIp(request);
   if (isRateLimited(ip, Date.now())) {
     return NextResponse.json(
-      { error: "Zu viele Anfragen. Bitte spaeter erneut versuchen." },
+      { error: messages[locale].tooManyRequests },
       { status: 429 },
     );
   }
@@ -110,6 +155,9 @@ export async function POST(request: NextRequest) {
     plan: payload.plan?.trim() ?? "",
     message: payload.message?.trim() ?? "",
     phone: payload.phone?.trim() ?? "",
+    locale: normalizeLeadLocale(payload.locale, request),
+    discountCode: payload.discountCode?.trim() ?? "",
+    businessType: payload.businessType?.trim() ?? "",
     createdAt: new Date().toISOString(),
     ip,
   };

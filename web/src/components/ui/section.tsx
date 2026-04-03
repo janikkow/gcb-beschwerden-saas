@@ -28,11 +28,11 @@ export function Section({
               {eyebrow}
             </p>
           ) : null}
-          <h2 className="text-balance text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
+          <h2 className="text-balance break-words text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-3 max-w-2xl text-pretty text-base text-slate-600">
+            <p className="mt-3 max-w-2xl text-pretty text-base leading-relaxed text-slate-600 break-words">
               {description}
             </p>
           ) : null}

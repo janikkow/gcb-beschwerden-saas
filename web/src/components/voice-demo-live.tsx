@@ -1,6 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { UltravoxSession } from "ultravox-client";
 import { cn } from "@/lib/utils";
 
@@ -10,29 +11,17 @@ type Transcript = {
   isFinal: boolean;
 };
 
-const statusLabel: Record<string, string> = {
-  idle: "Bereit",
-  connecting: "Verbinde ...",
-  listening: "Hört zu",
-  thinking: "Denkt nach",
-  speaking: "Antwortet",
-  disconnecting: "Beende ...",
-  disconnected: "Beendet",
-  error: "Fehler",
-};
+type VoiceStatus =
+  | "idle"
+  | "connecting"
+  | "listening"
+  | "thinking"
+  | "speaking"
+  | "disconnecting"
+  | "disconnected"
+  | "error";
 
-const statusHint: Record<string, string> = {
-  idle: "Tippe auf das Mikrofon, um zu starten",
-  connecting: "Session wird aufgebaut",
-  listening: "Sprich normal ins Mikrofon",
-  thinking: "Agent verarbeitet deine Anfrage",
-  speaking: "Agent gibt eine Antwort",
-  disconnecting: "Gespräch wird geschlossen",
-  disconnected: "Tippe auf das Mikrofon für einen neuen Versuch",
-  error: "Bitte erneut starten",
-};
-
-const barColor: Record<string, string> = {
+const barColor: Record<VoiceStatus, string> = {
   idle: "bg-white/20",
   connecting: "bg-amber-400",
   listening: "bg-brand-400",
@@ -43,7 +32,7 @@ const barColor: Record<string, string> = {
   error: "bg-rose-500",
 };
 
-const micButtonStyle: Record<string, string> = {
+const micButtonStyle: Record<VoiceStatus, string> = {
   idle: "bg-white/10 hover:bg-white/15 text-white",
   connecting: "bg-brand-500/30 text-brand-200 border border-brand-400/30",
   listening: "bg-brand-500/40 text-white border border-brand-400/50 shadow-[0_0_20px_rgba(204,255,0,0.2)]",
@@ -52,6 +41,10 @@ const micButtonStyle: Record<string, string> = {
   disconnecting: "bg-white/10 text-zinc-400",
   disconnected: "bg-white/10 hover:bg-white/15 text-white",
   error: "bg-rose-500/30 hover:bg-rose-500/40 text-rose-100 border border-rose-400/30",
+};
+
+const isVoiceStatus = (value: string): value is VoiceStatus => {
+  return value in barColor;
 };
 
 const BAR_COUNT = 48;
@@ -66,7 +59,16 @@ const formatDuration = (seconds: number) => {
 };
 
 // Vercel Best Practice: Extract expensive/frequent rendering sub-components
-const TranscriptItem = memo(({ transcript }: { transcript: Transcript }) => (
+const TranscriptItem = memo(
+  ({
+    transcript,
+    agentLabel,
+    userLabel,
+  }: {
+    transcript: Transcript;
+    agentLabel: string;
+    userLabel: string;
+  }) => (
   <div className={cn("flex w-full", transcript.speaker === "user" ? "justify-end" : "justify-start")}>
     <div
       className={cn(
@@ -78,7 +80,7 @@ const TranscriptItem = memo(({ transcript }: { transcript: Transcript }) => (
       )}
     >
       <span className="block text-[10px] font-bold uppercase tracking-wider opacity-50 mb-0.5">
-        {transcript.speaker === "agent" ? "OUTAG3 AI" : "Du"}
+        {transcript.speaker === "agent" ? agentLabel : userLabel}
       </span>
       {transcript.text}
     </div>
@@ -87,21 +89,45 @@ const TranscriptItem = memo(({ transcript }: { transcript: Transcript }) => (
 TranscriptItem.displayName = "TranscriptItem";
 
 export default function VoiceDemoLive() {
-  const [status, setStatus] = useState<string>("idle");
+  const [status, setStatus] = useState<VoiceStatus>("idle");
   const [transcripts, setTranscripts] = useState<Transcript[]>([]);
   const [muted, setMuted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [duration, setDuration] = useState(0);
 
+  const locale = useLocale();
+  const t = useTranslations("voiceDemo.live");
   const sessionRef = useRef<UltravoxSession | null>(null);
   const transcriptScrollRef = useRef<HTMLDivElement>(null);
 
   const isSessionActive = ["connecting", "listening", "thinking", "speaking", "disconnecting"].includes(status);
   const isRunningState = ["connecting", "listening", "thinking", "speaking"].includes(status);
 
+  const statusLabel: Record<VoiceStatus, string> = {
+    idle: t("status.idle"),
+    connecting: t("status.connecting"),
+    listening: t("status.listening"),
+    thinking: t("status.thinking"),
+    speaking: t("status.speaking"),
+    disconnecting: t("status.disconnecting"),
+    disconnected: t("status.disconnected"),
+    error: t("status.error"),
+  };
+
+  const statusHint: Record<VoiceStatus, string> = {
+    idle: t("hint.idle"),
+    connecting: t("hint.connecting"),
+    listening: t("hint.listening"),
+    thinking: t("hint.thinking"),
+    speaking: t("hint.speaking"),
+    disconnecting: t("hint.disconnecting"),
+    disconnected: t("hint.disconnected"),
+    error: t("hint.error"),
+  };
+
   // Vercel Best Practice: Derive state during render instead of useEffect where possible
-  const currentStatusLabel = statusLabel[status] || "Bereit";
-  const currentStatusHint = statusHint[status] || "";
+  const currentStatusLabel = statusLabel[status];
+  const currentStatusHint = statusHint[status];
 
   useEffect(() => {
     if (transcriptScrollRef.current) {
@@ -123,10 +149,13 @@ export default function VoiceDemoLive() {
     setDuration(0);
 
     try {
-      const response = await fetch("/api/voice-demo", { method: "POST" });
+      const response = await fetch("/api/voice-demo", {
+        method: "POST",
+        headers: { "x-locale": locale },
+      });
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
-        throw new Error(data.error ?? "Verbindungsfehler");
+        throw new Error(data.error ?? t("connectionError"));
       }
 
       const { joinUrl } = await response.json();
@@ -134,7 +163,8 @@ export default function VoiceDemoLive() {
       sessionRef.current = session;
 
       session.addEventListener("status", () => {
-        setStatus(session.status?.toLowerCase() || "idle");
+        const nextStatus = session.status?.toLowerCase() ?? "idle";
+        setStatus(isVoiceStatus(nextStatus) ? nextStatus : "idle");
       });
 
       session.addEventListener("transcripts", () => {
@@ -149,10 +179,10 @@ export default function VoiceDemoLive() {
 
       session.joinCall(joinUrl);
     } catch (error) {
-      setErrorMsg(error instanceof Error ? error.message : "Unbekannter Fehler");
+      setErrorMsg(error instanceof Error ? error.message : t("unknownError"));
       setStatus("error");
     }
-  }, []);
+  }, [locale, t]);
 
   const endCall = useCallback(() => {
     setStatus("disconnecting");
@@ -186,7 +216,7 @@ export default function VoiceDemoLive() {
               "group flex h-20 w-20 items-center justify-center rounded-3xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
               micButtonStyle[status] || micButtonStyle["idle"]
             )}
-            aria-label={isSessionActive ? "Gespräch beenden" : "Gespräch starten"}
+            aria-label={isSessionActive ? t("ariaEndCall") : t("ariaStartCall")}
           >
             {status === "connecting" ? (
               <svg className="h-6 w-6 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -247,7 +277,7 @@ export default function VoiceDemoLive() {
                   : "border-white/20 bg-white/10 text-white hover:bg-white/20"
               )}
             >
-              {muted ? "Mikrofon Aus" : "Stummschalten"}
+              {muted ? t("muteOff") : t("muteOn")}
             </button>
           </div>
         )}
@@ -261,23 +291,30 @@ export default function VoiceDemoLive() {
         >
           {transcripts.length === 0 ? (
             <div className="flex h-full items-center justify-center opacity-30 italic text-zinc-400 text-sm">
-              Kein Transkript vorhanden ...
+              {t("emptyTranscript")}
             </div>
           ) : (
-            transcripts.map((t, i) => <TranscriptItem key={i} transcript={t} />)
+            transcripts.map((transcript, index) => (
+              <TranscriptItem
+                key={index}
+                transcript={transcript}
+                agentLabel={t("speakerAgent")}
+                userLabel={t("speakerUser")}
+              />
+            ))
           )}
         </div>
       </div>
 
       {errorMsg && (
         <div role="alert" className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-xs font-medium text-rose-200 shadow-lg">
-          <span className="font-bold mr-2 uppercase tracking-tight">Fehler:</span>
+          <span className="font-bold mr-2 uppercase tracking-tight">{t("errorPrefix")}</span>
           {errorMsg}
         </div>
       )}
 
       <p className="text-center text-[10px] font-medium uppercase tracking-widest text-zinc-500 opacity-80">
-        Mikrofon-Zugriff erforderlich • Demo-Budget begrenzt
+        {t("footer")}
       </p>
     </div>
   );

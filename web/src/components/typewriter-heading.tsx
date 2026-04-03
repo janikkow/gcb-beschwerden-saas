@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface TypewriterHeadingProps {
   text: string;
@@ -50,7 +51,7 @@ export default function TypewriterHeading({
   }, [text, speed, delay, reduceMotion]);
 
   return (
-    <h1 className={className} aria-label={text}>
+    <h1 className={cn(className, "break-words")} aria-label={text}>
       {displayed}
       <span
         aria-hidden

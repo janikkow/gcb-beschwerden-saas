@@ -1,0 +1,42 @@
+---
+title: "Your data belongs to you – how we keep customer data separate"
+description: "Why no other customer can ever see your reports. Explained simply, without technical jargon."
+date: "2026-03-06"
+tags: ["data-security", "trust", "saas"]
+---
+
+# Your data belongs to you – how we keep customer data separate
+
+A fair question operators ask: "If multiple companies use the same system – can another customer see my data?"
+
+The short answer: No. Not because we are careful about it, but because it is technically impossible.
+
+## What data isolation means
+
+Imagine a large office building. Every company has its own locked room. The building manager has a master key for emergencies, but no tenant can enter another tenant's room. And tenants cannot even see which other companies are in the building.
+
+That is roughly how data isolation works in a multi-tenant SaaS system. Every customer operates in their own isolated environment. Reports, settings, contact data, histories – everything is stored separately and can only be accessed with the correct credentials.
+
+## Why this matters in practice
+
+When a customer reports an incident at your vending machine, that report only exists in your environment. It cannot appear in another operator's dashboard. It cannot be accessed by another company's support staff. It is not used for training a shared model.
+
+This is not just a promise. It is an architectural decision made before the first line of code was written.
+
+## What about the AI?
+
+A question that comes up regularly: "Does the AI that processes my reports learn from my data? And does it then use that knowledge for other customers?"
+
+No. The AI processes each report in isolation. Your customer conversations do not flow into a shared learning pool. Your incident patterns are not visible to other operators.
+
+## GDPR compliance
+
+Data isolation is also one of the prerequisites for GDPR-compliant use. Personal data – names, phone numbers, email addresses – must be stored and processed in a way that is traceable and separated per mandate.
+
+Our architecture makes exactly this possible. On request, we can also define individual retention periods per data type – so that data is automatically deleted when it is no longer needed.
+
+## The practical conclusion
+
+You do not need to take our word for it. Ask for a data processing agreement. Ask about the architecture. Ask which subprocessors are used. A serious provider answers these questions transparently.
+
+We do.

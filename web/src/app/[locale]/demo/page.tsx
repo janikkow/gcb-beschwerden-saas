@@ -1,29 +1,37 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { getTranslations } from "next-intl/server";
 import DemoForm from "@/components/forms/demo-form";
-import { buildMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Demo",
-  description:
-    "Demo-Anfrage für Beschwerdemanagement in Automatenläden. Einfaches Formular mit Spam-Schutz.",
-  path: "/demo",
-});
+type PageProps = { params: Promise<{ locale: string }> };
 
-export default function DemoPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.demo" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: { languages: { de: absoluteUrl("/de/demo"), en: absoluteUrl("/en/demo") } },
+  };
+}
+
+export default async function DemoPage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "demo" });
+
   return (
     <section className="py-16 sm:py-24">
       <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-2xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
-            Demo
+            {t("pageLabel")}
           </p>
           <h1 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Demo sichern
+            {t("pageHeadline")}
           </h1>
           <p className="mt-3 text-pretty text-base text-zinc-300">
-            Wähle deinen Plan und hinterlasse deine Daten.
-            Wir melden uns, sobald der Pilot startet.
+            {t("pageBody")}
           </p>
         </div>
 
@@ -31,7 +39,7 @@ export default function DemoPage() {
           <Suspense
             fallback={
               <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-6 text-sm text-zinc-400">
-                Formular wird geladen...
+                {t("formLoading")}
               </div>
             }
           >
@@ -43,25 +51,15 @@ export default function DemoPage() {
               className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-2xl"
               style={{ WebkitBackdropFilter: "blur(24px)" }}
             >
-              <p className="mb-1 text-sm font-semibold text-white">
-                Was passiert nach Absenden?
-              </p>
-              <p className="text-sm leading-relaxed text-zinc-300">
-                Deine Daten werden gespeichert. Sobald der Pilot startet,
-                bist du als Erster dabei.
-              </p>
+              <p className="mb-1 text-sm font-semibold text-white">{t("afterSubmitTitle")}</p>
+              <p className="text-pretty text-sm leading-relaxed text-zinc-300 break-words">{t("afterSubmitBody")}</p>
             </div>
             <div
               className="rounded-2xl border border-emerald-500/25 bg-emerald-500/10 p-5 backdrop-blur-2xl"
               style={{ WebkitBackdropFilter: "blur(24px)" }}
             >
-              <p className="mb-1 text-sm font-semibold text-emerald-300">
-                Spam-Schutz aktiv
-              </p>
-              <p className="text-sm leading-relaxed text-zinc-300">
-                Honeypot-Feld und serverseitiges Rate-Limit schützen das
-                Formular automatisch.
-              </p>
+              <p className="mb-1 text-sm font-semibold text-emerald-300">{t("spamTitle")}</p>
+              <p className="text-pretty text-sm leading-relaxed text-zinc-300 break-words">{t("spamBody")}</p>
             </div>
           </div>
         </div>

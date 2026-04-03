@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { GradientButton } from "@/components/ui/gradient-button";
+import LanguageSwitcher from "@/components/language-switcher";
 import {
   Sheet,
   SheetContent,
@@ -18,6 +19,14 @@ import { siteConfig } from "@/lib/site";
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("nav");
+
+  const navItems = [
+    { href: "/" as const, label: t("start") },
+    { href: "/preise" as const, label: t("preise") },
+    { href: "/faq" as const, label: t("faq") },
+    { href: "/blog" as const, label: t("blog") },
+  ];
 
   return (
     <>
@@ -29,7 +38,7 @@ export default function SiteHeader() {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-5 md:flex">
-            {siteConfig.nav.map((item) => (
+            {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -40,20 +49,23 @@ export default function SiteHeader() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <GradientButton
-            asChild
-            className="hidden md:inline-flex min-w-0 rounded-full px-5 py-2 text-sm"
-          >
-            <Link href="/demo">Demo sichern</Link>
-          </GradientButton>
+          {/* Desktop right: lang switcher + CTA */}
+          <div className="hidden items-center gap-3 md:flex">
+            <LanguageSwitcher />
+            <GradientButton
+              asChild
+              className="min-w-0 rounded-full px-5 py-2 text-sm"
+            >
+              <Link href="/demo">{t("demoButton")}</Link>
+            </GradientButton>
+          </div>
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <button
                 type="button"
                 className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 md:hidden"
-                aria-label={open ? "Menü schließen" : "Menü öffnen"}
+                aria-label={open ? t("menuClose") : t("menuOpen")}
                 aria-expanded={open}
                 aria-controls="mobile-menu-sheet"
                 aria-haspopup="dialog"
@@ -82,12 +94,12 @@ export default function SiteHeader() {
               showCloseButton={false}
               className="mt-16 border-t border-white/10 bg-black/80 p-0 backdrop-blur-2xl md:hidden"
             >
-              <SheetTitle className="sr-only">Navigation</SheetTitle>
+              <SheetTitle className="sr-only">{t("mainNav")}</SheetTitle>
               <SheetDescription className="sr-only">
-                Hauptnavigation und Demo-Call-to-Action.
+                {t("mainNavDesc")}
               </SheetDescription>
               <nav className="flex flex-col px-6 pt-8">
-                {siteConfig.nav.map((item) => (
+                {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -110,11 +122,15 @@ export default function SiteHeader() {
                   className="w-full justify-center"
                   onClick={() => setOpen(false)}
                 >
-                  Demo sichern
+                  {t("demoButton")}
                 </Button>
               </div>
 
-              <p className="mt-auto px-6 pb-8 text-xs text-zinc-500">
+              <div className="px-6 pt-4 flex justify-center">
+                <LanguageSwitcher />
+              </div>
+
+              <p className="mt-auto px-6 pb-8 text-center text-pretty text-xs leading-relaxed text-zinc-500 break-words">
                 {siteConfig.legalName}
               </p>
             </SheetContent>

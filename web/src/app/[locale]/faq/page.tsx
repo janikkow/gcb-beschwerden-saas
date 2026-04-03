@@ -1,26 +1,30 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import StructuredData from "@/components/structured-data";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
-import { faqItems } from "@/content/faqs";
-import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
-export const metadata: Metadata = buildMetadata({
-  title: "FAQ – Häufige Fragen zum Beschwerdemanagement",
-  description:
-    "Einfache Antworten zu Beschwerdemanagement für Automatenläden: Meldung, KI-Unterstützung, Datenschutz und Start.",
-  path: "/faq",
-  keywords: [
-    "beschwerdemanagement faq",
-    "automatenläden fragen",
-    "ki beschwerdemanagement",
-    "voice intake faq",
-    "incident management fragen",
-    "datenschutz beschwerden",
-  ],
-});
+type PageProps = { params: Promise<{ locale: string }> };
 
-export default function FaqPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.faq" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: { languages: { de: absoluteUrl("/de/faq"), en: absoluteUrl("/en/faq") } },
+  };
+}
+
+export default async function FaqPage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "faq" });
+
+  const faqItems = (t.raw("items") as Array<{ q: string; a: string }>).map((item) => ({
+    question: item.q,
+    answer: item.a,
+  }));
+
   return (
     <>
       <StructuredData
@@ -49,14 +53,13 @@ export default function FaqPage() {
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
           <div className="mb-10">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
-              FAQ
+              {t("pageLabel")}
             </p>
             <h1 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Häufige Fragen
+              {t("pageHeadline")}
             </h1>
             <p className="mt-3 text-pretty text-base text-zinc-400">
-              Kurz und verständlich erklärt für Betreiber und Support-Teams
-              von Automatenläden.
+              {t("pageBody")}
             </p>
           </div>
 

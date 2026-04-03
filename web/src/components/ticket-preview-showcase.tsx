@@ -34,7 +34,7 @@ export default function TicketPreviewShowcase() {
               type="button"
               onClick={() => setSelectedId(item.id)}
               className={cn(
-                "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all duration-200 active:scale-95",
+                "flex max-w-full items-center gap-1.5 rounded-full border px-3 py-1.5 text-left text-xs font-semibold transition-all duration-200 [text-wrap:balance] active:scale-95",
                 active
                   ? "border-brand-400/50 bg-brand-500/20 text-brand-300 shadow-[0_0_15px_rgba(204,255,0,0.15)]"
                   : "border-white/10 bg-white/[0.05] text-zinc-400 hover:border-white/20 hover:text-zinc-200",

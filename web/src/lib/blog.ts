@@ -16,7 +16,11 @@ export type BlogHeading = {
   level: 2 | 3;
 };
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+const BLOG_BASE = path.join(process.cwd(), "content", "blog");
+
+function blogDir(locale: string) {
+  return path.join(BLOG_BASE, locale);
+}
 
 function parseFrontmatter(raw: string): Omit<BlogPost, "slug" | "body"> & {
   body: string;
@@ -58,14 +62,22 @@ function parseFrontmatter(raw: string): Omit<BlogPost, "slug" | "body"> & {
   };
 }
 
-export async function getAllPosts(): Promise<BlogPost[]> {
-  const files = await fs.readdir(BLOG_DIR);
+export async function getAllPosts(locale = "de"): Promise<BlogPost[]> {
+  const dir = blogDir(locale);
+  let files: string[];
+  try {
+    files = await fs.readdir(dir);
+  } catch {
+    // fallback to DE if locale dir is missing
+    files = await fs.readdir(blogDir("de"));
+  }
+
   const posts = await Promise.all(
     files
       .filter((name) => name.endsWith(".mdx"))
       .map(async (name) => {
         const slug = name.replace(/\.mdx$/, "");
-        const fullPath = path.join(BLOG_DIR, name);
+        const fullPath = path.join(dir, name);
         const raw = await fs.readFile(fullPath, "utf-8");
         const parsed = parseFrontmatter(raw);
 
@@ -83,20 +95,18 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const fullPath = path.join(BLOG_DIR, `${slug}.mdx`);
+export async function getPostBySlug(slug: string, locale = "de"): Promise<BlogPost | null> {
+  const dir = blogDir(locale);
+  const fullPath = path.join(dir, `${slug}.mdx`);
   try {
     const raw = await fs.readFile(fullPath, "utf-8");
     const parsed = parseFrontmatter(raw);
-    return {
-      slug,
-      title: parsed.title,
-      description: parsed.description,
-      date: parsed.date,
-      tags: parsed.tags,
-      body: parsed.body,
-    };
+    return { slug, title: parsed.title, description: parsed.description, date: parsed.date, tags: parsed.tags, body: parsed.body };
   } catch {
+    // fallback to DE if EN article doesn't exist yet
+    if (locale !== "de") {
+      return getPostBySlug(slug, "de");
+    }
     return null;
   }
 }

@@ -32,19 +32,21 @@ export function FAQAccordion({ items }: FaqAccordionProps) {
           >
             <button
               type="button"
-              className="flex w-full items-center justify-between px-5 py-4 text-left"
+              className="flex w-full items-start gap-3 px-5 py-4 text-left"
               onClick={() => setOpenIndex(isOpen ? null : index)}
               aria-expanded={isOpen}
             >
-              <span className={cn(
-                "text-sm font-semibold sm:text-base transition-colors",
-                isOpen ? "text-white" : "text-zinc-200",
-              )}>
+              <span
+                className={cn(
+                  "min-w-0 flex-1 text-pretty break-words text-sm font-semibold sm:text-base transition-colors",
+                  isOpen ? "text-white" : "text-zinc-200",
+                )}
+              >
                 {item.question}
               </span>
               <span
                 className={cn(
-                  "ml-3 inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border text-sm font-light transition-all duration-300",
+                  "mt-0.5 inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border text-sm font-light transition-all duration-300",
                   isOpen
                     ? "rotate-45 border-brand-400/50 bg-brand-500/20 text-brand-300"
                     : "rotate-0 border-white/15 bg-white/[0.06] text-zinc-400",
@@ -54,7 +56,7 @@ export function FAQAccordion({ items }: FaqAccordionProps) {
               </span>
             </button>
             {isOpen ? (
-              <div className="border-t border-white/10 px-5 py-4 text-sm leading-relaxed text-zinc-400">
+              <div className="border-t border-white/10 px-5 py-4 text-pretty text-sm leading-relaxed text-zinc-400 break-words">
                 {item.answer}
               </div>
             ) : null}

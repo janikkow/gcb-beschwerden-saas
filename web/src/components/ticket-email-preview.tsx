@@ -52,19 +52,19 @@ export default function TicketEmailPreview({ scenario }: Props) {
         {/* Subtle top-left glow blob */}
         <div className="pointer-events-none absolute -left-6 -top-6 h-24 w-24 rounded-full bg-brand-500/10 blur-2xl" />
 
-        <div className="flex items-start justify-between gap-3">
-          <div>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
             <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-zinc-500">
               Ticket-Preview
             </p>
-            <h3 className="text-sm font-semibold text-white">
+            <h3 className="text-pretty text-sm font-semibold text-white break-words">
               Neue Meldung eingegangen
             </h3>
           </div>
 
           {/* Priority pill */}
           <span
-            className={`mt-0.5 flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold ${cfg.pill}`}
+            className={`flex w-fit shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold sm:mt-0.5 ${cfg.pill}`}
           >
             <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
             {cfg.label}
@@ -82,7 +82,7 @@ export default function TicketEmailPreview({ scenario }: Props) {
       {/* ── Body ───────────────────────────────────────────────── */}
       <div className="space-y-4 px-5 py-4">
         {/* Metadata grid */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-3 sm:grid-cols-2">
           {[
             { label: "Name",      value: scenario.name },
             { label: "E-Mail",    value: scenario.email },
@@ -93,7 +93,7 @@ export default function TicketEmailPreview({ scenario }: Props) {
               <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-600">
                 {label}
               </p>
-              <p className="mt-0.5 truncate text-sm text-zinc-200">{value}</p>
+              <p className="mt-0.5 break-words text-sm text-zinc-200 sm:truncate">{value}</p>
             </div>
           ))}
         </div>
