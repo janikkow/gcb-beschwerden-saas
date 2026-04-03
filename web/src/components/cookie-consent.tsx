@@ -155,10 +155,12 @@ const clearNonEssentialCookies = () => {
 export default function CookieConsent() {
   const [consent, setConsent] = useState<ConsentState>(() => readConsent());
   const t = useTranslations("cookie");
+  const isBrowser = typeof window !== "undefined";
 
   const chooseConsent = (value: Exclude<ConsentState, null>) => {
-    persistConsent(value);
+    // Close the banner immediately in the UI, even if storage/cookie writes fail.
     setConsent(value);
+    persistConsent(value);
 
     if (value !== "all") {
       clearNonEssentialCookies();
@@ -169,7 +171,7 @@ export default function CookieConsent() {
     <>
       {consent === "all" ? <Analytics /> : null}
 
-      {consent === null ? (
+      {isBrowser && consent === null ? (
         <div className="fixed inset-x-3 bottom-3 z-[80] mx-auto w-[calc(100%-1.5rem)] max-w-2xl rounded-2xl border border-white/15 bg-black/70 p-4 text-sm text-zinc-200 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:inset-x-6 sm:bottom-4 sm:w-full sm:p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
             {t("heading")}
