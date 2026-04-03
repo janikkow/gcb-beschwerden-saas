@@ -196,11 +196,10 @@ export default function DemoForm() {
             aria-describedby={status === "error" ? "demo-form-error" : undefined}
           />
         </label>
-
-        <div className="rounded-lg border border-brand-400/25 bg-brand-500/10 px-3 py-2 text-sm text-brand-300">
-          {t("focusHint")}{" "}
-          <span className="font-semibold">{t("focusValue")}</span>
-        </div>
+      </div>
+      <div className="mt-5 rounded-lg border border-brand-400/25 bg-brand-500/10 px-3 py-2 text-sm text-brand-300">
+        {t("focusHint")}{" "}
+        <span className="font-semibold">{t("focusValue")}</span>
       </div>
       <input type="hidden" name="vertical" value="automaten" />
 
