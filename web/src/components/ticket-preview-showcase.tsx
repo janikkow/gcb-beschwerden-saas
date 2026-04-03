@@ -25,8 +25,8 @@ export default function TicketPreviewShowcase() {
   if (!scenario) return null;
 
   return (
-    <div className="flex h-full flex-col gap-4">
-      <div className="flex flex-wrap gap-2">
+    <div className="flex h-full min-h-0 flex-col gap-2">
+      <div className="flex shrink-0 flex-wrap gap-2">
         {ticketScenarios.map((item) => {
           const active = item.id === scenario.id;
           const chipLabel = t(`scenarios.${item.id}.chip`);
@@ -54,7 +54,7 @@ export default function TicketPreviewShowcase() {
         })}
       </div>
 
-      <div className="flex-1 min-h-0">
+      <div className="min-h-0 shrink-0">
         <TicketEmailPreview scenario={scenario} />
       </div>
     </div>

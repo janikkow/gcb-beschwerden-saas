@@ -72,7 +72,7 @@ const TranscriptItem = memo(
   <div className={cn("flex w-full", transcript.speaker === "user" ? "justify-end" : "justify-start")}>
     <div
       className={cn(
-        "max-w-[85%] rounded-2xl px-4 py-2 text-sm leading-relaxed shadow-sm transition-all duration-300",
+        "max-w-[85%] rounded-xl px-3 py-1.5 text-sm leading-relaxed shadow-sm transition-all duration-300",
         transcript.speaker === "agent"
           ? "bg-brand-500/20 text-brand-50 border border-brand-400/20"
           : "bg-white/10 text-zinc-50 border border-white/5",
@@ -204,8 +204,8 @@ export default function VoiceDemoLive() {
   }, [isSessionActive, muted]);
 
   return (
-    <div className="flex h-full flex-col gap-6">
-      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-8 shadow-inner">
+    <div className="flex h-full min-h-0 flex-col gap-5">
+      <div className="shrink-0 rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-inner">
         <div className="flex flex-col items-center">
           {/* Main Interaction Button */}
           <button
@@ -247,7 +247,7 @@ export default function VoiceDemoLive() {
           </div>
 
           {/* Visualization bars */}
-          <div className="mt-6 flex h-10 items-end gap-[3px]">
+          <div className="mt-5 flex h-10 items-end gap-[3px]">
             {BAR_DELAYS.map((delay, index) => {
               const baseHeight = 20 + ((index * 19) % 75);
               return (
@@ -266,7 +266,7 @@ export default function VoiceDemoLive() {
         </div>
 
         {isSessionActive && (
-          <div className="mt-8 flex justify-center">
+          <div className="mt-6 flex justify-center">
             <button
               type="button"
               onClick={toggleMute}
@@ -283,14 +283,17 @@ export default function VoiceDemoLive() {
         )}
       </div>
 
-      {/* Transcript Log */}
-      <div className="flex flex-1 flex-col min-h-[300px]">
-        <div 
+      {/* Transcript: wächst mit Zeilenhöhe der Ticket-Vorschau, scrollt intern */}
+      <div className="flex min-h-0 flex-1 flex-col gap-1.5">
+        <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-500">
+          {t("transcriptLabel")}
+        </p>
+        <div
           ref={transcriptScrollRef}
-          className="flex-1 space-y-4 overflow-y-auto rounded-2xl border border-white/10 bg-black/20 p-6 scroll-smooth"
+          className="min-h-[7rem] flex-1 space-y-3 overflow-y-auto rounded-xl border border-white/10 bg-black/30 p-4 scroll-smooth"
         >
           {transcripts.length === 0 ? (
-            <div className="flex h-full items-center justify-center opacity-30 italic text-zinc-400 text-sm">
+            <div className="flex min-h-[4.5rem] items-center justify-center px-2 py-2 text-center text-xs italic text-zinc-500 opacity-60">
               {t("emptyTranscript")}
             </div>
           ) : (
@@ -307,13 +310,13 @@ export default function VoiceDemoLive() {
       </div>
 
       {errorMsg && (
-        <div role="alert" className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-xs font-medium text-rose-200 shadow-lg">
+        <div role="alert" className="shrink-0 rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-xs font-medium text-rose-200 shadow-lg">
           <span className="font-bold mr-2 uppercase tracking-tight">{t("errorPrefix")}</span>
           {errorMsg}
         </div>
       )}
 
-      <p className="text-center text-[10px] font-medium uppercase tracking-widest text-zinc-500 opacity-80">
+      <p className="shrink-0 text-center text-[10px] font-medium uppercase tracking-widest text-zinc-500 opacity-80">
         {t("footer")}
       </p>
     </div>

@@ -4,11 +4,11 @@
     "preise": "Preise",
     "faq": "FAQ",
     "blog": "Blog",
-    "demoButton": "Demo sichern",
+    "demoButton": "Pilot starten",
     "menuOpen": "Menü öffnen",
     "menuClose": "Menü schließen",
     "mainNav": "Navigation",
-    "mainNavDesc": "Hauptnavigation und Demo-Call-to-Action.",
+    "mainNavDesc": "Hauptnavigation und Wartelisten-Eintrag.",
     "switchToGerman": "Deutsche Sprache wählen",
     "switchToEnglish": "Englische Sprache wählen"
   },
@@ -19,7 +19,7 @@
     "faq": "FAQ",
     "blog": "Blog",
     "glossar": "Glossar",
-    "demo": "Demo sichern",
+    "demo": "Warteliste",
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "rights": "Alle Rechte vorbehalten."
@@ -43,28 +43,28 @@
     "groupAnalyticsToggle": "Analytics erlauben"
   },
   "home": {
-    "badge": "Dein digitaler Front-Desk",
-    "heroHeadline": "Schluss mit 24/7 Support-Stress: Wir filtern deine Anrufe.",
-    "heroBody": "Deine Automaten laufen rund um die Uhr – dein Handy muss das nicht. OUTAG3 nimmt Beschwerden entgegen, sammelt alle Daten für Erstattungen und alarmiert dich nur, wenn es wirklich brennt.",
+    "badge": "Digitaler Support für autonome Standorte",
+    "heroHeadline": "OUTAG3 – Digitaler Support für autonome Standorte",
+    "heroBody": "Erfasst Beschwerden rund um die Uhr, priorisiert Vorfälle und alarmiert nur dann, wenn es wirklich darauf ankommt.",
     "earlyAdopterLabel": "Early Adopter Programm 2026",
-    "earlyAdopterHeadline": "Sichere dir 90% mehr Zeit für dein Kerngeschäft.",
-    "earlyAdopterBody": "Werde einer der ersten Partner und verabschiede dich von Support-Chaos, ewigem Nachtelefonieren und unentdeckten Ausfällen.",
+    "earlyAdopterHeadline": "Sichere dir bis zu 90 % weniger Support-Zeit – bei klarer Priorität.",
+    "earlyAdopterBody": "Werde einer der ersten Partner: weniger 24/7-Unterbrechungen, kritische Ausfälle sichtbar, strukturierte Fälle statt Chaos. Start mit bestehenden Prozessen möglich – ohne großes IT-Projekt.",
     "earlyAdopterNote": "Exklusive Sonderkonditionen für die ersten 10 Standorte.",
-    "feat1": "Digitaler Front-Desk (24/7 KI-Agent)",
-    "feat2": "Triage: Bagatelle vs. Notfall",
-    "feat3": "Sofort-Alarm in Stoßzeiten",
-    "feat4": "Fertige Auszahlungslisten (PayPal/IBAN)",
-    "howLabel": "Der Support-Filter",
-    "howHeadline": "In 5 Schritten vom Stress-Anruf zur fertigen Liste",
-    "howBody": "Wir fangen den Frust ab, sammeln die Fakten und bereiten alles für dich vor. So sicherst du deinen Umsatz und deinen Schlaf.",
-    "demoLabel": "Live Demo",
-    "demoHeadline": "Teste deinen neuen digitalen Mitarbeiter",
-    "demoBody": "Sprich jetzt im Browser mit unserem KI-Agenten. Direkt danach siehst du, wie aus dem unstrukturierten Gespräch eine fertige Aufgabe für dich wird.",
+    "feat1": "Bagatellen bündeln – weniger Nacht-Alarm",
+    "feat2": "Kritische Störungen sofort eskalieren",
+    "feat3": "Strukturierte Fälle statt Support-Chaos",
+    "feat4": "Erstattungen: IBAN/PayPal mit Kontext",
+    "howLabel": "Der Ablauf",
+    "howHeadline": "In 5 Schritten vom Anruf zur priorisierten Aufgabe",
+    "howBody": "Voice AI strukturiert Beschwerden, trennt Bagatellen von kritischen Vorfällen und bereitet alles so auf, dass dein Team sofort handeln kann.",
+    "demoLabel": "Voice-Demo",
+    "demoHeadline": "Voice-Demo testen: vom Gespräch zum priorisierten Fall",
+    "demoBody": "Sprich im Browser mit dem Agenten – und sieh direkt danach, wie daraus ein strukturierter, priorisierter Fall wird, den dein Team sofort bearbeiten kann.",
     "whyLabel": "Warum OUTAG3?",
-    "whyHeadline": "Gebaut für Betreiber, die skalieren wollen",
-    "whyBody": "Wir wissen: Support ist der größte Flaschenhals, wenn du wachsen willst. Wir lösen dieses Problem, damit du den Kopf für neue Standorte frei hast.",
-    "ctaHeadline": "Bereit für echtes Wachstum ohne Support-Wahnsinn?",
-    "ctaBody": "Verpasse nie wieder einen Ausfall in Stoßzeiten und gewinne deinen Feierabend zurück. Wir zeigen dir den Ablauf in einer 20-minütigen Live-Demo.",
+    "whyHeadline": "Für Betreiber autonomer Standorte",
+    "whyBody": "Speziell für unbemannte Standorte: natürliche Telefonate, intelligente Triage nach eurer Logik – und klare Outputs statt Support-Lärm.",
+    "ctaHeadline": "Pilot für einen Standort starten?",
+    "ctaBody": "Trag dich auf die Warteliste ein – wir melden uns, sobald Early-Tester-Plätze frei werden. Funktioniert mit euren bestehenden Prozessen, ohne großes IT-Projekt. Einen festen Testzeitraum können wir noch nicht zusagen.",
     "useCaseReadLink": "Use-Case lesen",
     "steps": {
       "01": { "title": "Frust-Anruf geht ein", "body": "Kunden rufen 24/7 an – doch du musst nicht mehr selbst abheben." },
@@ -82,17 +82,17 @@
   "voiceDemo": {
     "tabLive": "Im Browser testen",
     "tabPhone": "Per Telefon anrufen",
-    "phoneLabel": "Voice-Demo per Telefon",
+    "phoneLabel": "Voice-Test per Telefon",
     "phoneHeadline": "Jetzt anrufen:",
-    "phoneBody": "Im Demo-Call werden Name, Problem und Kontakt abgefragt. Danach wird die Meldung automatisch klassifiziert und als Ticket vorbereitet.",
+    "phoneBody": "Im Testanruf werden Name, Problem und Kontakt abgefragt. Danach wird die Meldung automatisch klassifiziert und als Ticket vorbereitet.",
     "callMobile": "Auf Mobile anrufen",
     "showQr": "Desktop: QR-Code zeigen",
     "expectationTitle": "Erwartungsmanagement",
-    "expectationBody": "Der Agent ist auf die schnelle Aufnahme von Beschwerden ausgelegt. Ziel ist eine klare Meldung in unter 2 Minuten.",
-    "qrTitle": "Demo per QR starten",
+    "expectationBody": "Der Agent ist auf schnelle Beschwerden-Aufnahme und klare Priorität ausgelegt – Ziel ist eine verarbeitbare Meldung in unter 2 Minuten. Kein großes IT-Projekt nötig.",
+    "qrTitle": "Test per QR starten",
     "qrDesc": "Kamera öffnen und Code scannen, um direkt anzurufen.",
     "qrClose": "Schließen",
-    "qrAlt": "QR-Code zum Starten des Demo-Anrufs",
+    "qrAlt": "QR-Code zum Starten des Testanrufs",
     "live": {
       "status": {
         "idle": "Bereit",
@@ -123,8 +123,9 @@
       "muteOff": "Mikrofon Aus",
       "muteOn": "Stummschalten",
       "emptyTranscript": "Kein Transkript vorhanden ...",
+      "transcriptLabel": "Gesprächsverlauf",
       "errorPrefix": "Fehler:",
-      "footer": "Mikrofon-Zugriff erforderlich • Demo-Budget begrenzt"
+      "footer": "Mikrofon-Zugriff erforderlich • Test-Budget begrenzt"
     }
   },
   "ticketPreview": {
@@ -166,13 +167,13 @@
     }
   },
   "cta": {
-    "demoButton": "Demo sichern",
-    "demoSecondary": "Jetzt anrufen"
+    "demoButton": "Pilot für 1 Standort starten",
+    "demoSecondary": "Voice-Demo testen"
   },
   "meta": {
     "home": {
-      "title": "Digitaler Front-Desk für Automatenbetreiber",
-      "description": "Schluss mit 24/7 Support-Stress: OUTAG3 filtert Frust-Anrufe, bereitet Auszahlungslisten vor und alarmiert dich bei Ausfällen in Stoßzeiten – damit du nachts ruhig schlafen kannst."
+      "title": "OUTAG3 – Digitaler Support für autonome Standorte",
+      "description": "Beschwerden 24/7 erfassen, Vorfälle priorisieren und nur eskalieren, wenn es darauf ankommt. Strukturierte Fälle für dein Team – Pilot für einen Standort."
     },
     "pricing": {
       "title": "Preise & Rentabilität – Beschwerdemanagement ab 39 EUR/Monat",
@@ -187,8 +188,8 @@
       "description": "Pillar- und Support-Artikel zu Incident Management, Voice Intake und Priorisierung im Betrieb autonomer Standorte."
     },
     "demo": {
-      "title": "Demo sichern – OUTAG3",
-      "description": "Buche eine kostenlose 20-minütige Live-Demo und sieh OUTAG3 in Aktion."
+      "title": "Warteliste – OUTAG3",
+      "description": "Trag dich für Early Access ein. Wir sammeln Early-Tester – einen festen Testzeitraum geben wir noch nicht vor."
     },
     "glossary": {
       "title": "Glossar – Fachbegriffe im Incident Management",
@@ -203,8 +204,12 @@
       "description": "Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO."
     }
   },
+  "useCases": {
+    "parkhausCta": "Für Parkhäuser auf die Warteliste",
+    "cleanparkCta": "Für Cleanparks auf die Warteliste"
+  },
   "siteName": "OUTAG3",
-  "siteDescription": "Der digitale Front-Desk für deine Automaten. Wir verwandeln unstrukturierte Frust-Anrufe in klare, priorisierte Aufgaben – damit du 24/7 ruhig schlafen kannst.",
+  "siteDescription": "OUTAG3: Digitaler Support für autonome Standorte. Beschwerden rund um die Uhr erfassen, priorisieren und nur alarmieren, wenn es wirklich darauf ankommt.",
   "pricing": {
     "pageLabel": "Pricing & ROI",
     "pageHeadline": "Einfache, faire Preise",
@@ -246,9 +251,9 @@
       { "q": "Kann ich eigene Prioritätsregeln definieren?", "a": "Ja. Ihr legt fest, welche Störungstypen an welchem Standort wie dringend sind, etwa Kartenleser-Ausfall als hoch und Kleinstbeträge als normale Priorität. Regeln lassen sich an eure reale Betriebsrealität anpassen und nach dem Pilot weiter verfeinern. So entspricht die automatische Einordnung eurer internen Eskalationslogik." },
       { "q": "Kann ich Kategorien anpassen?", "a": "Ja. Kategorien, Bezeichnungen und Zuordnungen können auf eure Automaten, Produktgruppen und internen Reportings angepasst werden. Das hilft später auch bei Auswertungen, weil Meldungen in eurer Sprache landen und nicht in generischen Standardlabels. Gemeinsam mit den Prioritätsregeln entsteht so ein Bild, das zu eurem Betrieb passt." },
       { "q": "Wann wird ein Mensch eingeschaltet?", "a": "Sobald ein Fall inhaltlich unklar ist, sensible Themen berührt oder eine automatische Einordnung unsicher erscheint, wird er für ein manuelles Review markiert. Euer Team sieht dann explizit, dass hier menschliche Prüfung sinnvoll ist. So bleibt Qualität hoch, ohne dass jede Kleinigkeit manuell anfassen muss." },
-      { "q": "Wie schnell ist ein Pilot für Automatenläden live?", "a": "Ein fokussierter Pilot ist oft innerhalb weniger Tage machbar, sobald die wichtigsten Eckpunkte stehen, etwa Rufnummer, Weiterleitung und erste Kategorien. Der genaue Zeitrahmen hängt davon ab, ob ihr mit Webformular, Telefon oder beidem startet und wie schnell Freigaben bei euch erfolgen. In der Demo klären wir den schnellsten Weg für genau euren ersten Standort." },
+      { "q": "Wie schnell ist ein Pilot für Automatenläden live?", "a": "Ein fokussierter Pilot ist oft innerhalb weniger Tage machbar, sobald die wichtigsten Eckpunkte stehen, etwa Rufnummer, Weiterleitung und erste Kategorien. Der genaue Zeitrahmen hängt davon ab, ob ihr mit Webformular, Telefon oder beidem startet und wie schnell Freigaben bei euch erfolgen. Nach deinem Wartelisten-Eintrag klären wir gemeinsam den schnellsten Weg für euren ersten Standort, sobald Early-Tester-Plätze frei werden." },
       { "q": "Wie läuft der Pilot konkret ab?", "a": "Ihr startet mit einem Standort, abgestimmten Kategorien und festen Eskalationsregeln, damit alle wissen, wann wie reagiert wird. Über zwei bis vier Wochen sammelt ihr echte Meldungen; daran schärfen wir Erkennung, Priorität und Formulierung der Ausgaben. Zum Abschluss habt ihr belastbare Daten, ob der Ablauf zu eurem Alltag passt und was vor dem Rollout noch angepasst werden soll." },
-      { "q": "Wie werden Leads verarbeitet?", "a": "Gemeint sind Demo-Anfragen über die Website: Sie laufen durch ein geschütztes Formular und werden zuverlässig per API an eure E-Mail oder einen Webhook übergeben. So landen Anfragen strukturiert bei euch, ohne dass ihr parallel ein zweites CRM-Pflichtfeld pflegen müsst. Technische Schutzmechanismen reduzieren Spam und Missbrauch." },
+      { "q": "Wie werden Leads verarbeitet?", "a": "Gemeint sind Wartelisten- und Interessenanfragen über die Website: Sie laufen durch ein geschütztes Formular und werden zuverlässig per API an eure E-Mail oder einen Webhook übergeben. So landen Anfragen strukturiert bei euch, ohne dass ihr parallel ein zweites CRM-Pflichtfeld pflegen müsst. Technische Schutzmechanismen reduzieren Spam und Missbrauch." },
       { "q": "Ist eine Integration in bestehende Tools möglich?", "a": "Ja. Ihr könnt eingehende Meldungen per E-Mail, Webhook oder API in euer bestehendes Ticketing, eure Groupware oder euer CRM übernehmen. Viele Teams starten mit E-Mail und erweitern später auf tiefere Integrationen, wenn der Prozess steht. Ziel ist, dass OUTAG3 den ersten Kontakt abfängt und eure etablierten Workflows weiterlaufen." },
       { "q": "Sind Kundendaten getrennt speicherbar?", "a": "Ja. Für Betreiber mit mehreren Marken, Franchise-Strukturen oder strengen internen Vorgaben ist eine getrennte Datenhaltung pro Kunde bzw. Mandant vorgesehen. So bleiben Konfiguration und Datenlogik klar voneinander getrennt. Details stimmen wir im Projekt mit euren Anforderungen ab." },
       { "q": "Wie ist das Thema Datenschutz gelöst?", "a": "Wir arbeiten nach den Prinzipien Datensparsamkeit, Zweckbindung und nachvollziehbarer Verarbeitung, mit kontrolliertem Zugriff auf die Daten. Auf Wunsch lassen sich Aufbewahrungsfristen pro Datentyp definieren, damit ihr Lösch- und Dokumentationspflichten sauber abbilden könnt. Ausführliche Informationen findet ihr in unserer Datenschutzerklärung." },
@@ -260,7 +265,7 @@
       { "q": "Kann ich mit einem Standort starten und später skalieren?", "a": "Ja. Der übliche Weg ist ein Pilot an einem Standort mit anschließendem Rollout auf weitere Filialen, ohne den Kernprozess jedes Mal neu zu erfinden. Kategorien und Regeln könnt ihr von Standort zu Standort übernehmen oder standortspezifisch anpassen. So wächst der Support mit euch mit, statt neu aufzusetzen." },
       { "q": "Wie messe ich den Erfolg nach dem Start?", "a": "Sinnvolle Kennzahlen sind etwa die Reaktionszeit auf Meldungen, der Anteil sauber vorsortierter Fälle ohne Nachfrage, die Häufigkeit kritischer Eskalationen und die eingesparte Zeit im Support. Ein Vergleich vor und nach dem Start macht den Effekt besonders sichtbar. Gemeinsam können wir im Pilot definieren, welche Metriken für euch am aussagekräftigsten sind." },
       { "q": "Kann ich bestehende Prozesse weiter nutzen?", "a": "Ja. OUTAG3 sitzt vorne in der Kette und strukturiert eingehende Beschwerden, während eure bestehenden Ticket-, E-Mail- oder CRM-Prozesse dahinter unverändert oder leicht angepasst weiterlaufen können. Ihr müsst nicht alles umkrempeln, um von automatisierter Annahme zu profitieren. Integrationstiefe steigert ihr, wenn der Ablauf sitzt." },
-      { "q": "Wie starte ich am schnellsten?", "a": "Bucht eine kurze Live-Demo von etwa 20 Minuten, in der wir den Ablauf an eure Situation anknüpfen. Direkt im Anschluss klären wir Pilot-Scope, erste Kategorien und einen realistischen Live-Termin für den ersten Standort. So habt ihr schnell Klarheit statt langer Konzeptphase." }
+      { "q": "Wie starte ich am schnellsten?", "a": "Tragt euch auf die Warteliste ein. Wir sammeln Early-Tester und können noch keinen festen Testzeitraum zusagen – sobald es losgeht, melden wir uns mit den nächsten Schritten (Pilot-Scope, erste Kategorien, realistischer Start für den ersten Standort)." }
     ]
   },
   "blog": {
@@ -270,7 +275,7 @@
     "readingTime": "ca. {min} Min. Lesezeit",
     "readArticle": "Artikel lesen",
     "newArticles": "Neue Artikel erscheinen laufend aus dem Repository und werden statisch ausgeliefert.",
-    "demoLink": "Demo sichern",
+    "demoLink": "Zur Warteliste",
     "author": "DTK Workflows Redaktion",
     "articleLabel": "Blogartikel",
     "tocTitle": "Inhaltsverzeichnis",
@@ -281,12 +286,12 @@
     "articleNotFoundDesc": "Der angefragte Blogpost existiert nicht."
   },
   "demo": {
-    "pageLabel": "Demo",
-    "pageHeadline": "Demo sichern",
-    "pageBody": "Wähle deinen Plan und hinterlasse deine Daten. Wir melden uns, sobald der Pilot startet.",
+    "pageLabel": "Warteliste",
+    "pageHeadline": "Auf die Warteliste eintragen",
+    "pageBody": "Wähle deinen Plan und hinterlasse deine Daten. Wir sammeln Early-Tester – einen festen Testzeitraum geben wir noch nicht vor. Sobald es losgeht, melden wir uns bei dir.",
     "formLoading": "Formular wird geladen...",
     "afterSubmitTitle": "Was passiert nach Absenden?",
-    "afterSubmitBody": "Deine Daten werden gespeichert. Sobald der Pilot startet, bist du als Erster dabei.",
+    "afterSubmitBody": "Deine Daten werden gespeichert. Du stehst auf der Warteliste; sobald Early-Tester-Plätze frei werden, melden wir uns – ohne Zusage eines konkreten Testzeitraums.",
     "spamTitle": "Spam-Schutz aktiv",
     "spamBody": "Honeypot-Feld und serverseitiges Rate-Limit schützen das Formular automatisch.",
     "form": {
@@ -313,9 +318,9 @@
       "unknownError": "Unbekannter Fehler.",
       "sending": "Wird gesendet...",
       "sendingStatus": "Anfrage wird gesendet.",
-      "submit": "Demo sichern",
+      "submit": "Auf die Warteliste eintragen",
       "successTitle": "Danke für dein Interesse.",
-      "successBody": "Du bist auf der Liste. Sobald der Pilot startet, bist du dabei."
+      "successBody": "Du bist auf der Warteliste. Sobald Early-Tester-Plätze frei werden, melden wir uns – ohne Zusage eines festen Testzeitraums."
     }
   },
   "calculator": {
@@ -375,8 +380,8 @@
     "s2Title": "2. Hosting und Betrieb der Website",
     "s2p1": "Diese Website wird über den Dienst <strong>Vercel Inc.</strong> (340 Pine Street, Suite 701, San Francisco, CA 94104, USA) betrieben. Beim Aufruf der Website werden automatisch Verbindungsdaten verarbeitet, darunter IP-Adresse, Browsertyp, Betriebssystem, Referrer-URL sowie Datum und Uhrzeit des Abrufs.",
     "s2p2": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren und stabilen Betrieb der Website). Vercel ist nach dem EU-US Data Privacy Framework zertifiziert. Weitere Informationen finden Sie unter <a>vercel.com/legal/privacy-policy</a>.",
-    "s3Title": "3. Demo-Anfragen (Kontaktformular)",
-    "s3Intro": "Wenn Sie über das Demo-Formular eine Anfrage stellen, verarbeiten wir folgende Daten:",
+    "s3Title": "3. Warteliste und Kontaktanfragen (Formular)",
+    "s3Intro": "Wenn Sie über das Formular zur Warteliste oder für eine Kontaktanfrage Daten übermitteln, verarbeiten wir folgende Daten:",
     "s3li1": "Vor- und Nachname",
     "s3li2": "Firmenname",
     "s3li3": "E-Mail-Adresse",
@@ -385,10 +390,10 @@
     "s3li6": "Freitext-Nachricht (optional)",
     "s3p2": "Die Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage und zur Kontaktaufnahme verwendet. Eine Weitergabe an Dritte findet nicht statt. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen).",
     "s3p3": "Eingehende Anfragen werden über unsere interne Automatisierungsinfrastruktur (n8n, betrieben auf eigenen Servern) weitergeleitet und dort gespeichert. Eine Speicherung auf externen Drittdiensten findet nicht statt.",
-    "s4Title": "4. KI-gestützte Sprachverarbeitung (Voice-Demo)",
-    "s4p1": "Für die interaktive Voice-Demo auf dieser Website wird der Dienst <strong>Ultravox</strong> (Fixie.ai, Inc., USA) eingesetzt. Dabei wird eine Audioverbindung zwischen Ihrem Browser und dem Dienst aufgebaut.",
-    "s4p2": "Im Rahmen der Demo werden Sprachdaten zur Verarbeitung übermittelt. Diese Verarbeitung dient ausschließlich dem Betrieb der Demo. Eine dauerhafte Speicherung oder Verwendung für Trainingszwecke durch Ultravox ist vertraglich ausgeschlossen.",
-    "s4p3": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Die Demo ist ein optionales Feature; Sie können die Website vollständig ohne Nutzung der Voice-Demo verwenden. Weitere Informationen: <a>ultravox.ai/privacy</a>.",
+    "s4Title": "4. KI-gestützte Sprachverarbeitung (interaktiver Voice-Test)",
+    "s4p1": "Für den interaktiven Voice-Test auf dieser Website wird der Dienst <strong>Ultravox</strong> (Fixie.ai, Inc., USA) eingesetzt. Dabei wird eine Audioverbindung zwischen Ihrem Browser und dem Dienst aufgebaut.",
+    "s4p2": "Im Rahmen des Voice-Tests werden Sprachdaten zur Verarbeitung übermittelt. Diese Verarbeitung dient ausschließlich dem Betrieb des Tests. Eine dauerhafte Speicherung oder Verwendung für Trainingszwecke durch Ultravox ist vertraglich ausgeschlossen.",
+    "s4p3": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Der Voice-Test ist ein optionales Feature; Sie können die Website vollständig ohne Nutzung des Voice-Tests verwenden. Weitere Informationen: <a>ultravox.ai/privacy</a>.",
     "s5Title": "5. Cookies und lokale Speicherung",
     "s5p1": "Diese Website setzt standardmäßig nur technisch notwendige Cookies bzw. vergleichbare Speicher (z. B. für Sicherheit, Spracheinstellung oder den stabilen Betrieb).",
     "s5p2": "Im Cookie-Banner können Sie optional die Gruppe „Statistik / Analytics“ aktivieren. Bis dahin werden keine entsprechenden Analyse-Cookies von uns gesetzt und der Dienst Vercel Web Analytics nicht geladen.",

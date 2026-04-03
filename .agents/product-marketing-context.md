@@ -1,13 +1,38 @@
 # Product Marketing Context
 
-*Last updated: 2026-03-23*
+*Last updated: 2026-04-04*
 
 ## Product Overview
-**One-liner:** Voice-basiertes Incident Management für Betreiber autonomer Standorte.
+**One-liner:** OUTAG3 - Digital Support for staffless economy.
+**Core hero messaging:** OUTAG3 - Digital Support for staffless economy.
+**Core value subline:** Capture complaints 24/7, prioritize incidents, and alert only when it really matters.
+**Core hero messaging (DE):** OUTAG3 - Digitaler Support fuer autonome Standorte.
+**Core value subline (DE):** Erfasst Beschwerden rund um die Uhr, priorisiert Vorfaelle und alarmiert nur dann, wenn es wirklich darauf ankommt.
 **What it does:** OUTAG3 nimmt Kundenbeschwerden per Telefon (Voice AI) entgegen, strukturiert die unstrukturierten Informationen, priorisiert sie nach Relevanz und liefert dem Betreiber sofort verarbeitbare Aufgaben. Es trennt Bagatellen (wie kleine Erstattungen) von kritischen Ausfällen, die sofort gemeldet werden.
 **Product category:** Incident Management / Customer Support Automation
 **Product type:** B2B SaaS
 **Business model:** Subscription (SaaS) mit Early Adopter Programm.
+
+## Messaging Platform
+**Hero (DE):** OUTAG3 - Digitaler Support fuer autonome Standorte
+**Subline (DE):** Erfasst Beschwerden rund um die Uhr, priorisiert Vorfaelle und alarmiert nur dann, wenn es wirklich darauf ankommt.
+**Benefit bullets (DE):**
+- Weniger 24/7-Unterbrechungen: Bagatellen werden gebuendelt statt nachts einzeln durchgereicht.
+- Kritische Ausfaelle sofort sichtbar: Umsatzrelevante Stoerungen werden direkt eskaliert.
+- Klarer Output statt Support-Chaos: Strukturierte Faelle fuer schnelle Entscheidungen im Team.
+**Primary CTA (DE):** Pilot fuer 1 Standort starten
+**Secondary CTA (DE):** Voice-Demo testen
+**Risk-reversal (DE):** Start mit bestehenden Prozessen moeglich - ohne grosses IT-Projekt.
+
+**Hero (EN):** OUTAG3 - Digital Support for staffless economy
+**Subline (EN):** Capture complaints 24/7, prioritize incidents, and alert only when it really matters.
+**Benefit bullets (EN):**
+- Fewer 24/7 interruptions: minor issues are batched instead of waking you up one by one.
+- Critical outages become visible fast: revenue-impacting incidents are escalated immediately.
+- Clear outputs instead of support noise: structured cases your team can act on right away.
+**Primary CTA (EN):** Start a pilot for 1 location
+**Secondary CTA (EN):** Try the voice demo
+**Risk-reversal (EN):** Works with your current processes - no big IT project required.
 
 ## Target Audience
 **Target companies:** Betreiber autonomer Standorte (Automatenläden, Parkhäuser, Carwash-Anlagen).
@@ -75,6 +100,7 @@
 **How they describe us:**
 - "Der digitale Front-Desk."
 - "Mein Filter für den Support-Wahnsinn."
+ - "Digital Support for staffless economy."
 **Words to use:** Priorisierung, Zeitgewinn, Fokus, Skalierung, 24/7 ohne Stress.
 **Words to avoid:** Chatbot (wirkt billig), Ticket-System (wirkt kompliziert), IT-Projekt.
 

@@ -4,11 +4,11 @@
     "preise": "Pricing",
     "faq": "FAQ",
     "blog": "Blog",
-    "demoButton": "Get a Demo",
+    "demoButton": "Start pilot",
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "mainNav": "Navigation",
-    "mainNavDesc": "Main navigation and demo call-to-action.",
+    "mainNavDesc": "Main navigation and waitlist signup.",
     "switchToGerman": "Switch to German",
     "switchToEnglish": "Switch to English"
   },
@@ -19,7 +19,7 @@
     "faq": "FAQ",
     "blog": "Blog",
     "glossar": "Glossary",
-    "demo": "Get a Demo",
+    "demo": "Waitlist",
     "impressum": "Imprint",
     "datenschutz": "Privacy Policy",
     "rights": "All rights reserved."
@@ -43,28 +43,28 @@
     "groupAnalyticsToggle": "Allow analytics"
   },
   "home": {
-    "badge": "For the staffless economy",
-    "heroHeadline": "your digital complaint assistance for staffless economy",
-    "heroBody": "Unstaffed sites still need someone to take the heat. OUTAG3 handles complaints, captures refund details and alerts you only when it really matters.",
+    "badge": "Digital support for autonomous locations",
+    "heroHeadline": "OUTAG3 – Digital support for the staffless economy",
+    "heroBody": "Capture complaints 24/7, prioritize incidents, and alert only when it really matters.",
     "earlyAdopterLabel": "Early Adopter Program 2026",
-    "earlyAdopterHeadline": "Reclaim 90% more time for your core business.",
-    "earlyAdopterBody": "Be among the first partners and say goodbye to support chaos, endless follow-up calls and undetected outages.",
+    "earlyAdopterHeadline": "Cut support load by up to 90%—with clear priority on what counts.",
+    "earlyAdopterBody": "Be among the first partners: fewer 24/7 interruptions, critical outages visible fast, structured cases instead of noise. Works with your current processes—no big IT project required.",
     "earlyAdopterNote": "Exclusive terms for the first 10 locations.",
-    "feat1": "Digital Front Desk (24/7 AI Agent)",
-    "feat2": "Triage: minor issue vs. emergency",
-    "feat3": "Instant alerts during peak hours",
-    "feat4": "Ready-made payout lists (PayPal/IBAN)",
-    "howLabel": "The Support Filter",
-    "howHeadline": "From stressful call to finished list in 5 steps",
-    "howBody": "We absorb the frustration, collect the facts and prepare everything for you – securing your revenue and your sleep.",
-    "demoLabel": "Live Demo",
-    "demoHeadline": "Meet your new digital employee",
-    "demoBody": "Talk to our AI agent in the browser right now. Immediately after, you will see how the unstructured conversation becomes a ready-made task for you.",
+    "feat1": "Batch minor issues—fewer night pings",
+    "feat2": "Escalate critical outages immediately",
+    "feat3": "Structured cases, not support noise",
+    "feat4": "Refunds: IBAN/PayPal with context",
+    "howLabel": "How it works",
+    "howHeadline": "From call to prioritized task in 5 steps",
+    "howBody": "Voice AI structures complaints, separates minor issues from critical incidents, and prepares everything so your team can act immediately.",
+    "demoLabel": "Voice demo",
+    "demoHeadline": "Try the voice demo: from conversation to prioritized case",
+    "demoBody": "Talk to the agent in your browser—then see how it becomes a structured, prioritized case your team can work on right away.",
     "whyLabel": "Why OUTAG3?",
-    "whyHeadline": "Built for operators who want to scale",
-    "whyBody": "We know: support is the biggest bottleneck when you want to grow. We solve this problem so you can focus on new locations.",
-    "ctaHeadline": "Ready for real growth without support madness?",
-    "ctaBody": "Never miss an outage during peak hours again and get your evenings back. We show you the workflow in a 20-minute live demo.",
+    "whyHeadline": "Built for operators of autonomous sites",
+    "whyBody": "Built for unstaffed locations: natural phone conversations, smart triage to your rules—and clear outputs instead of support chaos.",
+    "ctaHeadline": "Start a pilot for one location?",
+    "ctaBody": "Join the waitlist—we will reach out when early-tester spots open up. Fits your existing workflows without a big IT project. We cannot commit to a fixed testing window yet.",
     "useCaseReadLink": "Read use case",
     "steps": {
       "01": { "title": "Frustration call comes in", "body": "Customers call 24/7 – but you no longer have to pick up yourself." },
@@ -82,17 +82,17 @@
   "voiceDemo": {
     "tabLive": "Test in browser",
     "tabPhone": "Call by phone",
-    "phoneLabel": "Voice demo by phone",
+    "phoneLabel": "Voice try-out by phone",
     "phoneHeadline": "Call now:",
-    "phoneBody": "The demo call collects name, problem and contact details. The report is then automatically classified and prepared as a ticket.",
+    "phoneBody": "The test call collects name, problem and contact details. The report is then automatically classified and prepared as a ticket.",
     "callMobile": "Call on mobile",
     "showQr": "Desktop: show QR code",
     "expectationTitle": "What to expect",
-    "expectationBody": "The agent is designed for quick complaint intake. The goal is a clear report in under 2 minutes.",
-    "qrTitle": "Start demo via QR",
+    "expectationBody": "The agent is built for fast complaint intake and clear priority—the goal is an actionable report in under 2 minutes. No big IT project required.",
+    "qrTitle": "Start try-out via QR",
     "qrDesc": "Open camera and scan code to call directly.",
     "qrClose": "Close",
-    "qrAlt": "QR code to start the demo call",
+    "qrAlt": "QR code to start the test call",
     "live": {
       "status": {
         "idle": "Ready",
@@ -123,8 +123,9 @@
       "muteOff": "Mic off",
       "muteOn": "Mute mic",
       "emptyTranscript": "No transcript yet ...",
+      "transcriptLabel": "Conversation log",
       "errorPrefix": "Error:",
-      "footer": "Microphone access required • Demo budget limited"
+      "footer": "Microphone access required • Try-out budget limited"
     }
   },
   "ticketPreview": {
@@ -166,13 +167,13 @@
     }
   },
   "cta": {
-    "demoButton": "Get a Demo",
-    "demoSecondary": "Call now"
+    "demoButton": "Start a pilot for 1 location",
+    "demoSecondary": "Try the voice demo"
   },
   "meta": {
     "home": {
-      "title": "Digital Front Desk for Vending Machine Operators",
-      "description": "your digital complaint assistance for staffless economy. OUTAG3 takes complaints, gathers refund data and alerts you only when it matters."
+      "title": "OUTAG3 – Digital support for the staffless economy",
+      "description": "Capture complaints 24/7, prioritize incidents, and alert only when it matters. Structured cases for your team—pilot one location to start."
     },
     "pricing": {
       "title": "Pricing & ROI – Complaint Management from €39/month",
@@ -187,8 +188,8 @@
       "description": "Pillar and support articles on incident management, voice intake and prioritization in autonomous location operations."
     },
     "demo": {
-      "title": "Get a Demo – OUTAG3",
-      "description": "Book a free 20-minute live demo and see OUTAG3 in action."
+      "title": "Waitlist – OUTAG3",
+      "description": "Sign up for early access. We are gathering early testers—we are not offering a fixed testing window yet."
     },
     "glossary": {
       "title": "Glossary – Incident Management Terms",
@@ -203,8 +204,12 @@
       "description": "Information on the processing of personal data in accordance with the GDPR."
     }
   },
+  "useCases": {
+    "parkhausCta": "Join waitlist for parking",
+    "cleanparkCta": "Join waitlist for Cleanparks"
+  },
   "siteName": "OUTAG3",
-  "siteDescription": "your digital complaint assistance for staffless economy. OUTAG3 takes complaints, gathers refund data and alerts you only when it matters.",
+  "siteDescription": "OUTAG3: digital support for autonomous locations. Capture complaints around the clock, prioritize incidents, and alert only when it really matters.",
   "pricing": {
     "pageLabel": "Pricing & ROI",
     "pageHeadline": "Simple, fair pricing",
@@ -246,9 +251,9 @@
       { "q": "Can I define my own priority rules?", "a": "Yes. You define how urgent each incident type is at each location, e.g. card reader outage as high and small amounts as normal priority. Rules can reflect your real operations and be refined after the pilot. Automatic triage then matches your internal escalation logic." },
       { "q": "Can I customize categories?", "a": "Yes. Categories, labels and mappings can match your machines, product groups and internal reporting. That also helps later analysis because reports land in your language, not generic defaults. Together with priority rules you get a picture that fits your business." },
       { "q": "When is a human brought in?", "a": "Whenever a case is unclear in content, touches sensitive topics or automatic classification seems uncertain, it is flagged for manual review. Your team then sees explicitly that human judgment is needed. That keeps quality high without hand-checking every small item." },
-      { "q": "How quickly can a pilot go live for vending machines?", "a": "A focused pilot can often go live within a few days once basics are in place, such as phone number, forwarding and initial categories. Exact timing depends on whether you start with web form, phone or both and how quickly approvals happen on your side. In the demo we align the fastest path for your first location." },
+      { "q": "How quickly can a pilot go live for vending machines?", "a": "A focused pilot can often go live within a few days once basics are in place, such as phone number, forwarding and initial categories. Exact timing depends on whether you start with web form, phone or both and how quickly approvals happen on your side. After you join the waitlist, we align the fastest path for your first location once early-tester spots open up." },
       { "q": "How does the pilot work in practice?", "a": "You start with one location, agreed categories and fixed escalation rules so everyone knows when and how to react. Over two to four weeks you collect real reports; we tune recognition, priority and output wording from that data. At the end you have evidence whether the flow fits your day-to-day and what to adjust before wider rollout." },
-      { "q": "How are leads processed?", "a": "This refers to website demo requests: they go through a protected form and are delivered reliably via API to your email or a webhook. Requests arrive in a structured way without maintaining a parallel mandatory CRM field. Technical protections reduce spam and abuse." },
+      { "q": "How are leads processed?", "a": "This refers to waitlist and interest requests via the website: they go through a protected form and are delivered reliably via API to your email or a webhook. Requests arrive in a structured way without maintaining a parallel mandatory CRM field. Technical protections reduce spam and abuse." },
       { "q": "Can OUTAG3 integrate with existing tools?", "a": "Yes. Incoming reports can be handed off by email, webhook or API into your existing ticketing, mail or CRM stack. Many teams start with email and deepen integration once the process is stable. The idea is that OUTAG3 handles first contact while your established workflows keep running." },
       { "q": "Can customer data be stored separately?", "a": "Yes. For operators with multiple brands, franchise structures or strict internal rules, separate storage per customer or tenant is supported. Configuration and data stay logically isolated. We align details with your requirements in the project." },
       { "q": "How is data privacy handled?", "a": "We follow data minimization, purpose limitation and traceable processing, with controlled access to data. On request, retention periods can be defined per data type so you can meet deletion and documentation duties. Full detail is in our privacy policy." },
@@ -260,7 +265,7 @@
       { "q": "Can I start with one location and scale later?", "a": "Yes. The usual path is a pilot at one site followed by rollout to more locations without reinventing the core process each time. Categories and rules can be reused across sites or customized per location. Support scales with you instead of starting from scratch." },
       { "q": "How do I measure success after launch?", "a": "Useful metrics include response time to reports, share of cases pre-sorted without follow-up, frequency of critical escalations and time saved in support. Comparing before and after makes the impact obvious. In the pilot we can define which metrics matter most for you." },
       { "q": "Can I continue using existing processes?", "a": "Yes. OUTAG3 sits at the front and structures incoming complaints while your existing ticket, email or CRM processes continue unchanged or with light adaptation behind it. You do not need to overhaul everything to benefit from automated intake. You deepen integration once the flow is proven." },
-      { "q": "What is the fastest way to get started?", "a": "Book a short live demo of about twenty minutes where we tie the flow to your situation. Right after, we clarify pilot scope, initial categories and a realistic go-live date for your first location. That gives you clarity quickly instead of a long conceptual phase." }
+      { "q": "What is the fastest way to get started?", "a": "Join the waitlist. We are gathering early testers and cannot commit to a fixed testing window yet—when onboarding opens, we will follow up with next steps (pilot scope, initial categories, realistic start for your first location)." }
     ]
   },
   "blog": {
@@ -270,7 +275,7 @@
     "readingTime": "approx. {min} min read",
     "readArticle": "Read article",
     "newArticles": "New articles are published continuously from the repository and served statically.",
-    "demoLink": "Get a Demo",
+    "demoLink": "Go to waitlist",
     "author": "DTK Workflows Editorial",
     "articleLabel": "Blog article",
     "tocTitle": "Table of contents",
@@ -281,12 +286,12 @@
     "articleNotFoundDesc": "The requested blog post does not exist."
   },
   "demo": {
-    "pageLabel": "Demo",
-    "pageHeadline": "Get a Demo",
-    "pageBody": "Choose your plan and leave your details. We will be in touch as soon as the pilot launches.",
+    "pageLabel": "Waitlist",
+    "pageHeadline": "Join the waitlist",
+    "pageBody": "Choose your plan and share your details. We are gathering early testers—we are not offering a fixed testing window yet. When we are ready, we will reach out.",
     "formLoading": "Loading form...",
     "afterSubmitTitle": "What happens after submitting?",
-    "afterSubmitBody": "Your details will be saved. As soon as the pilot launches, you will be first in line.",
+    "afterSubmitBody": "Your details are saved. You are on the waitlist; when early-tester spots open up, we will contact you—without promising a specific testing window.",
     "spamTitle": "Spam protection active",
     "spamBody": "Honeypot field and server-side rate limiting protect the form automatically.",
     "form": {
@@ -313,9 +318,9 @@
       "unknownError": "Unknown error.",
       "sending": "Sending...",
       "sendingStatus": "Sending request.",
-      "submit": "Get a Demo",
+      "submit": "Join the waitlist",
       "successTitle": "Thanks for your interest.",
-      "successBody": "You are on the list. As soon as the pilot launches, you will be there."
+      "successBody": "You are on the waitlist. When early-tester spots open up, we will reach out—without promising a fixed testing window."
     }
   },
   "calculator": {
@@ -375,8 +380,8 @@
     "s2Title": "2. Hosting and Website Operation",
     "s2p1": "This website is operated via the service <strong>Vercel Inc.</strong> (340 Pine Street, Suite 701, San Francisco, CA 94104, USA). When you access the website, connection data is processed automatically, including IP address, browser type, operating system, referrer URL, and the date and time of access.",
     "s2p2": "The legal basis is Art. 6(1)(f) GDPR (legitimate interest in the secure and stable operation of the website). Vercel is certified under the EU–US Data Privacy Framework. Further information is available at <a>vercel.com/legal/privacy-policy</a>.",
-    "s3Title": "3. Demo Requests (Contact Form)",
-    "s3Intro": "When you submit a request via the demo form, we process the following data:",
+    "s3Title": "3. Waitlist and contact requests (form)",
+    "s3Intro": "When you submit data via the waitlist or contact form, we process the following data:",
     "s3li1": "First and last name",
     "s3li2": "Company name",
     "s3li3": "Email address",
@@ -385,10 +390,10 @@
     "s3li6": "Free-text message (optional)",
     "s3p2": "The data is used solely to process your request and to contact you. It is not passed on to third parties. Processing is based on Art. 6(1)(b) GDPR (pre-contractual measures) and Art. 6(1)(f) GDPR (legitimate interest in responding to inquiries).",
     "s3p3": "Incoming requests are forwarded via our internal automation infrastructure (n8n, operated on our own servers) and stored there. No storage on external third-party services takes place.",
-    "s4Title": "4. AI-Assisted Voice Processing (Voice Demo)",
-    "s4p1": "The interactive voice demo on this website uses the service <strong>Ultravox</strong> (Fixie.ai, Inc., USA). An audio connection is established between your browser and the service.",
-    "s4p2": "Voice data is transmitted for processing as part of the demo. This processing serves exclusively to operate the demo. Permanent storage or use for training purposes by Ultravox is contractually excluded.",
-    "s4p3": "The legal basis is Art. 6(1)(a) GDPR (consent). The demo is an optional feature; you can use the website fully without using the voice demo. Further information: <a>ultravox.ai/privacy</a>.",
+    "s4Title": "4. AI-assisted voice processing (interactive voice try-out)",
+    "s4p1": "The interactive voice try-out on this website uses the service <strong>Ultravox</strong> (Fixie.ai, Inc., USA). An audio connection is established between your browser and the service.",
+    "s4p2": "Voice data is transmitted for processing as part of the try-out. This processing serves exclusively to operate the try-out. Permanent storage or use for training purposes by Ultravox is contractually excluded.",
+    "s4p3": "The legal basis is Art. 6(1)(a) GDPR (consent). The voice try-out is an optional feature; you can use the website fully without using it. Further information: <a>ultravox.ai/privacy</a>.",
     "s5Title": "5. Cookies and Local Storage",
     "s5p1": "By default, this website only uses strictly necessary cookies or similar storage (e.g. for security, language preference, or stable operation).",
     "s5p2": "In the cookie banner you may optionally enable the “Statistics / analytics” category. Until then, we do not set corresponding analytics cookies and do not load Vercel Web Analytics.",

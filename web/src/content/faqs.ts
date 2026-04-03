@@ -72,7 +72,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Wie werden Leads verarbeitet?",
     answer:
-      "Demo-Anfragen laufen über ein geschütztes Formular und werden per API an E-Mail oder Webhook weitergeleitet.",
+      "Wartelisten- und Interessenanfragen laufen über ein geschütztes Formular und werden per API an E-Mail oder Webhook weitergeleitet.",
   },
   {
     question: "Ist eine Integration in bestehende Tools möglich?",
@@ -132,6 +132,6 @@ export const faqItems: FaqItem[] = [
   {
     question: "Wie starte ich am schnellsten?",
     answer:
-      "Am schnellsten geht es mit einer 20-minütigen Demo, danach Pilot-Scoping und einem klaren Live-Termin für den ersten Standort.",
+      "Trag dich auf die Warteliste ein. Wir sammeln Early-Tester ohne Zusage eines festen Testzeitraums; sobald es losgeht, klären wir Pilot-Scope und den Start für den ersten Standort.",
   },
 ];

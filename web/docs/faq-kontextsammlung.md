@@ -286,16 +286,16 @@ Dieses Dokument ist die **Rohkontext-Basis** für spätere längere FAQ-Antworte
 
 ### FAQ-26 – Wie starte ich am schnellsten?
 
-**Live-Antwort:** Am schnellsten geht es mit einer 20-minütigen Demo, danach Pilot-Scoping und einem klaren Live-Termin für den ersten Standort.
+**Live-Antwort:** Trag dich auf die Warteliste ein. Wir sammeln Early-Tester ohne Zusage eines festen Testzeitraums; sobald es losgeht, klären wir Pilot-Scoping und den Start für den ersten Standort.
 
 | Dimension | Rohkontext |
 | --- | --- |
 | **Leserintention** | Call-to-Action; was muss ich vorbereiten? |
 | **Betriebssituation** | Entscheider will „nächste Schritte“. |
-| **Lücken der Kurzantwort** | Link zu Demo-Seite / Voice testen; optional Light-Tarif. |
+| **Lücken der Kurzantwort** | Link zur Warteliste / Voice testen; optional Light-Tarif. |
 | **Einwände / Missverständnisse** | „Pilot“ klingt teuer – Setup-Fees erwähnen wenn relevant. |
 | **Beispiele / Grenzen** | Parallel FAQ-12/13. |
-| **Rohmaterial (Stichpunkte)** | Einheitliche Story: Demo → Scoping → Pilot → Messen (24). |
+| **Rohmaterial (Stichpunkte)** | Einheitliche Story: Warteliste → Scoping → Pilot → Messen (24). |
 | **Ausbaupriorität später** | **reicht fast** – eher CTA-scharf als lang. |
 
 ---

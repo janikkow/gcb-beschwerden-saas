@@ -27,9 +27,9 @@ export default function VoiceDemoCard() {
   );
 
   return (
-    <div className="glass-card flex h-full flex-col overflow-hidden rounded-2xl">
+    <div className="glass-card flex h-full min-h-0 flex-col overflow-hidden rounded-2xl">
       {/* Tab bar */}
-      <div className="flex flex-col divide-y divide-white/10 sm:flex-row sm:divide-y-0 sm:border-b sm:border-white/10">
+      <div className="flex shrink-0 flex-col divide-y divide-white/10 sm:flex-row sm:divide-y-0 sm:border-b sm:border-white/10">
         {(["live", "phone"] as Tab[]).map((tabKey) => (
           <button
             key={tabKey}
@@ -47,13 +47,13 @@ export default function VoiceDemoCard() {
         ))}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex min-h-0 flex-1 flex-col p-6">
         {tab === "live" ? (
-          <div className="flex h-full flex-col justify-center">
+          <div className="flex min-h-0 flex-1 flex-col">
             <VoiceDemoLive />
           </div>
         ) : (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-1 flex-col justify-center gap-5">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-400">
                 {t("phoneLabel")}

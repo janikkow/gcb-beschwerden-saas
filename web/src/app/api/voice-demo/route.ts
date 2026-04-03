@@ -7,24 +7,24 @@ type Locale = "de" | "en";
 
 const messages = {
   de: {
-    overloaded: "Voice-Demo ist derzeit ausgelastet. Bitte gleich erneut versuchen.",
-    startFailed: "Voice-Demo konnte nicht gestartet werden.",
-    serviceUnavailable: "Voice-Demo Dienst ist momentan nicht erreichbar.",
-    requestFailed: "Voice-Demo Anfrage fehlgeschlagen.",
-    notAvailable: "Voice-Demo nicht verfuegbar",
+    overloaded: "Voice-Test ist derzeit ausgelastet. Bitte gleich erneut versuchen.",
+    startFailed: "Voice-Test konnte nicht gestartet werden.",
+    serviceUnavailable: "Voice-Test Dienst ist momentan nicht erreichbar.",
+    requestFailed: "Voice-Test Anfrage fehlgeschlagen.",
+    notAvailable: "Voice-Test nicht verfuegbar",
     invalidSessionUrl: "Keine gueltige Sitzungs-URL erhalten.",
-    timeout: "Voice-Demo Zeitlimit ueberschritten. Bitte erneut versuchen.",
-    internal: "Interner Fehler beim Starten der Voice-Demo.",
+    timeout: "Voice-Test Zeitlimit ueberschritten. Bitte erneut versuchen.",
+    internal: "Interner Fehler beim Starten des Voice-Tests.",
   },
   en: {
-    overloaded: "Voice demo is currently busy. Please try again shortly.",
-    startFailed: "Voice demo could not be started.",
-    serviceUnavailable: "Voice demo service is currently unavailable.",
-    requestFailed: "Voice demo request failed.",
-    notAvailable: "Voice demo not available",
+    overloaded: "Voice try-out is currently busy. Please try again shortly.",
+    startFailed: "Voice try-out could not be started.",
+    serviceUnavailable: "Voice try-out service is currently unavailable.",
+    requestFailed: "Voice try-out request failed.",
+    notAvailable: "Voice try-out not available",
     invalidSessionUrl: "No valid session URL received.",
-    timeout: "Voice demo timed out. Please try again.",
-    internal: "Internal error while starting the voice demo.",
+    timeout: "Voice try-out timed out. Please try again.",
+    internal: "Internal error while starting the voice try-out.",
   },
 } as const;
 

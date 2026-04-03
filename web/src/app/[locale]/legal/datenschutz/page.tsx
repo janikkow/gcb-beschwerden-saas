@@ -118,7 +118,7 @@ export default async function DatenschutzPage({ params }: PageProps) {
             </p>
           </Block>
 
-          {/* 3. Demo requests */}
+          {/* 3. Waitlist / contact form */}
           <Block title={t("s3Title")}>
             <p>{t("s3Intro")}</p>
             <ul className="list-inside list-disc space-y-1 text-zinc-300">

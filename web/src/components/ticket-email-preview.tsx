@@ -58,41 +58,41 @@ export default function TicketEmailPreview({ scenario }: Props) {
 
   return (
     <div
-      className={`overflow-hidden rounded-2xl border bg-white/[0.05] backdrop-blur-2xl ${cfg.border}`}
+      className={`overflow-hidden rounded-3xl border bg-white/[0.05] backdrop-blur-2xl ${cfg.border}`}
       style={{ WebkitBackdropFilter: "blur(24px)" }}
     >
       <div
-        className={`relative overflow-hidden border-b border-white/10 bg-gradient-to-br ${cfg.glow} to-white/[0.03] px-5 py-4`}
+        className={`relative overflow-hidden border-b border-white/10 bg-gradient-to-br ${cfg.glow} to-white/[0.03] px-6 py-5 sm:px-7 sm:py-6`}
       >
-        <div className="pointer-events-none absolute -left-6 -top-6 h-24 w-24 rounded-full bg-brand-500/10 blur-2xl" />
+        <div className="pointer-events-none absolute -left-6 -top-6 h-28 w-28 rounded-full bg-brand-500/10 blur-2xl" />
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-zinc-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.13em] text-zinc-500">
               {t("kicker")}
             </p>
-            <h3 className="text-pretty text-sm font-semibold text-white break-words">
+            <h3 className="text-pretty text-base font-semibold text-white break-words sm:text-lg">
               {t("title")}
             </h3>
           </div>
 
           <span
-            className={`flex w-fit shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold sm:mt-0.5 ${cfg.pill}`}
+            className={`flex w-fit shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold sm:mt-0.5 ${cfg.pill}`}
           >
-            <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
+            <span className={`h-2 w-2 rounded-full ${cfg.dot}`} />
             {impactLabel}
           </span>
         </div>
 
-        <div className="mt-3">
-          <span className="rounded-md border border-brand-400/25 bg-brand-500/15 px-2.5 py-1 text-xs font-semibold text-brand-300">
+        <div className="mt-4">
+          <span className="rounded-lg border border-brand-400/25 bg-brand-500/15 px-3 py-1.5 text-sm font-semibold text-brand-300">
             {category}
           </span>
         </div>
       </div>
 
-      <div className="space-y-4 px-5 py-4">
-        <div className="grid grid-cols-1 gap-x-4 gap-y-3 sm:grid-cols-2">
+      <div className="space-y-5 px-6 py-5 sm:px-7 sm:py-6">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
           {[
             { key: "name", label: t("name"), value: scenario.name },
             { key: "email", label: t("email"), value: scenario.email },
@@ -100,26 +100,26 @@ export default function TicketEmailPreview({ scenario }: Props) {
             { key: "time", label: t("time"), value: timeDisplay },
           ].map(({ key, label, value }) => (
             <div key={key}>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-600">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-600">
                 {label}
               </p>
-              <p className="mt-0.5 break-words text-sm text-zinc-200 sm:truncate">{value}</p>
+              <p className="mt-1 break-words text-base text-zinc-200 sm:truncate">{value}</p>
             </div>
           ))}
         </div>
 
-        <div className={`rounded-xl border-l-2 ${cfg.border} bg-white/[0.04] p-3`}>
-          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-600">
+        <div className={`rounded-xl border-l-[3px] ${cfg.border} bg-white/[0.04] p-4 sm:p-5`}>
+          <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-600">
             {t("message")}
           </p>
-          <p className="text-sm leading-relaxed text-zinc-300">{messageBody}</p>
+          <p className="text-base leading-relaxed text-zinc-300">{messageBody}</p>
         </div>
       </div>
 
-      <div className="border-t border-white/[0.07] bg-white/[0.02] px-5 py-3">
-        <p className="text-xs text-zinc-600">
+      <div className="border-t border-white/[0.07] bg-white/[0.02] px-6 py-4 sm:px-7">
+        <p className="text-sm text-zinc-600">
           {t("referencePrefix")}{" "}
-          <span className="font-mono font-semibold text-zinc-300">
+          <span className="font-mono text-base font-semibold text-zinc-300">
             {scenario.reference}
           </span>
         </p>

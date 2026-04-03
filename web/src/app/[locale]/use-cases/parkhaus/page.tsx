@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -6,6 +7,8 @@ import { Section } from "@/components/ui/section";
 import StructuredData from "@/components/structured-data";
 import { buildMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
+
+type PageProps = { params: Promise<{ locale: string }> };
 
 const faqs = [
   {
@@ -42,7 +45,10 @@ export const metadata: Metadata = buildMetadata({
   path: "/use-cases/parkhaus",
 });
 
-export default function ParkhausUseCasePage() {
+export default async function ParkhausUseCasePage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "useCases" });
+
   return (
     <>
       <StructuredData
@@ -119,7 +125,7 @@ export default function ParkhausUseCasePage() {
       <Section title="FAQ Parkhaus" description="Häufige Fragen aus dem Betrieb.">
         <FAQAccordion items={faqs} />
         <div className="mt-8">
-          <Button href="/demo">Demo für Parkhäuser anfragen</Button>
+          <Button href="/demo">{t("parkhausCta")}</Button>
         </div>
       </Section>
     </>

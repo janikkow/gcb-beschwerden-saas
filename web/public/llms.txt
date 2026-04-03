@@ -24,11 +24,11 @@ Wichtige URLs:
 - https://outag3.com/faq
 - https://outag3.com/blog
 - https://outag3.com/glossar
-- https://outag3.com/demo
+- https://outag3.com/demo (Warteliste / Early Access – kein fester Demo- oder Testtermin)
 
 Glossar:
 - https://outag3.com/glossar
 
 Kontakt:
-- Demo: https://outag3.com/demo
+- Warteliste: https://outag3.com/demo
 - E-Mail: ai@outag3.com

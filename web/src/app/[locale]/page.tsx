@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import {
   PixelPhone,
@@ -41,8 +40,11 @@ const stepIcons = [PixelPhone, PixelRobot, PixelFilter, PixelEmail, PixelUser];
 const stepKeys = ["01", "02", "03", "04", "05"] as const;
 const ucKeys = ["uc1", "uc2", "uc3"] as const;
 
-export default function HomePage() {
-  const t = useTranslations("home");
+export default async function HomePage({ params }: PageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+  const pageLang = locale === "en" ? "en-US" : "de-DE";
+  const operatingSystem = locale === "en" ? "Web-based" : "Web-basiert";
 
   return (
     <>
@@ -53,7 +55,7 @@ export default function HomePage() {
           name: `${siteConfig.name} – ${t("heroHeadline")}`,
           url: absoluteUrl("/"),
           description: t("heroBody"),
-          inLanguage: "de-DE",
+          inLanguage: pageLang,
           dateModified: "2026-03-23",
           publisher: {
             "@type": "Organization",
@@ -69,7 +71,7 @@ export default function HomePage() {
           name: siteConfig.name,
           description: t("heroBody"),
           applicationCategory: "BusinessApplication",
-          operatingSystem: "Web-basiert",
+          operatingSystem,
           url: absoluteUrl("/"),
           offers: [
             { "@type": "Offer", name: "Light", price: "39", priceCurrency: "EUR", priceSpecification: { "@type": "UnitPriceSpecification", price: "39", priceCurrency: "EUR", unitText: "Monat" } },
@@ -81,8 +83,8 @@ export default function HomePage() {
       />
 
       {/* ── Hero ────────────────────────────────────────────────────── */}
-      <section className="pb-16 pt-16 sm:pt-24">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 sm:px-6 lg:px-8">
+      <section className="pb-6 pt-16 sm:pb-8 sm:pt-24">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <Badge variant="default">{t("badge")}</Badge>
             <TypewriterHeading
@@ -112,11 +114,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-2 flex flex-wrap gap-3 opacity-85 sm:mt-4">
+          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-2.5 opacity-85 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3">
             {(["feat1", "feat2", "feat3", "feat4"] as const).map((key) => (
               <span
                 key={key}
-                className="glass max-w-full rounded-full px-4 py-1.5 text-center text-sm font-medium text-pretty text-zinc-200 [text-wrap:balance]"
+                className="glass w-fit max-w-full rounded-full px-4 py-1.5 text-center text-sm font-medium text-pretty text-zinc-200 [text-wrap:balance]"
               >
                 {t(key)}
               </span>
@@ -126,7 +128,7 @@ export default function HomePage() {
       </section>
 
       {/* ── How it works ────────────────────────────────────────────── */}
-      <section id="how-it-works" className="py-16 sm:py-20">
+      <section id="how-it-works" className="pt-6 pb-16 sm:pt-8 sm:pb-20">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
@@ -166,7 +168,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Voice Demo + Ticket Preview ──────────────────────────────── */}
-      <section className="relative py-24 sm:py-32 overflow-hidden">
+      <section id="voice-demo" className="relative py-24 sm:py-32 overflow-hidden scroll-mt-24">
         <div className="absolute left-1/2 top-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 bg-brand-500/10 blur-[120px] rounded-full" />
         <div className="absolute right-0 top-0 -z-10 h-[300px] w-[300px] bg-brand-600/5 blur-[80px] rounded-full" />
 
@@ -184,9 +186,9 @@ export default function HomePage() {
           </div>
 
           <div className="grid items-stretch gap-12 lg:grid-cols-2">
-            <div className="relative group">
+            <div className="relative group flex min-h-0 h-full flex-col">
               <div className="absolute -inset-1 bg-gradient-to-r from-brand-400/20 to-brand-500/20 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500" />
-              <div className="relative z-10 h-full">
+              <div className="relative z-10 flex min-h-0 h-full flex-1 flex-col">
                 <VoiceDemoCard />
               </div>
             </div>

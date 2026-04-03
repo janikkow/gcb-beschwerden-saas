@@ -19,7 +19,7 @@ export default function HomeCtaActions() {
         </Link>
       </GradientButton>
       <Button
-        href="/preise"
+        href="#voice-demo"
         variant="cta-secondary"
         className="inline-flex h-auto min-h-12 w-full items-center justify-center gap-2 px-6 py-3 text-center text-base text-pretty sm:w-auto sm:px-8 sm:py-0"
       >
